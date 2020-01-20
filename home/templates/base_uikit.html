@@ -1,0 +1,87 @@
+
+{% load dsu %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Edit samples/settings.py and add APP_NAME = 'DJ4E Samples' or similar -->
+        <title>{% block title %}{{ settings.APP_NAME }}{% endblock %}</title>
+        {% dsu_stylesheet_url %}
+
+
+        <!-- UIkit CSS -->
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/css/uikit.min.css" /> -->
+
+        <!-- UIkit JS -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit-icons.min.js"></script> -->
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
+
+        <!-- Scroll Reveal -->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">
+
+        <!-- Add additional SCSS in static file -->
+        {% load static %}
+        {% load sass_tags %}
+        <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
+        <link href="{% sass_src 'theme.scss' %}" rel="stylesheet" type="text/css" />
+
+    </head>
+    <body>
+    {% block navbar %} 
+      <header>
+       
+      </header>
+    {% endblock %}
+
+      <div class="container">
+          {% block content %}
+          {% endblock %}
+      </div>
+      {% dsu_jquery_url %}
+      {% dsu_javascript_url %}
+    </body>
+
+    <footer class="footer-home">
+      <div class="uk-child-width-expand@s" uk-grid>
+        <div>
+          <h4>Services</h4>
+          <ul class="uk-list uk-list-large">
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Articles</h4>
+          <ul class="uk-list uk-list-large">
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Team</h4>
+        </div>
+
+        <div>
+          <h4>FAQ</h4>
+        </div>
+
+        <div>
+          <h4>Contact Us</h4>
+        </div>
+      </div>
+      <hr>
+      <div>
+        Copyright © University of Michigan School of Information || Data4Good Center 2019
+      </div>
+    </footer>
+</html>

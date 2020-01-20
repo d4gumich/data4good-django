@@ -1,0 +1,11 @@
+
+# Elastic Beanstalk Files
+# # .elasticbeanstalk/*
+# !.elasticbeanstalk/*.cfg.yml
+# !.elasticbeanstalk/*.global.yml
+
+
+__pycache__/
+z
+d4g/__pycache__/
+
