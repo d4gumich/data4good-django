@@ -2,6 +2,10 @@ branch-defaults:
   master:
     environment: data4good-env
     group_suffix: null
+environment-defaults:
+  data4good-env:
+    branch: null
+    repository: null
 global:
   application_name: data4good
   branch: null
