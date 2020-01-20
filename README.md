@@ -1,11 +1,9 @@
 # Data4Good Django on Amazon Web Services (Elastic Beanstalk)
 
 [![Build Status](https://travis-ci.com/d4gumich/Data4Good-AWS-Django.svg?branch=master)](https://travis-ci.com/d4gumich/Data4Good-AWS-Django)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/505de309137b4acabb8def858cf7a6e8)](https://www.codacy.com/app/hopetambala/d4g-react-website?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hopetambala/d4g-react-website&amp;utm_campaign=Badge_Grade)
-[![codecov](https://codecov.io/gh/hopetambala/puente-react-dashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/hopetambala/d4g-react-website)
 ![](https://img.shields.io/badge/Django-✓-blue.svg)
 ![](https://img.shields.io/badge/d3-✓-blue.svg)
-![](https://img.shields.io/badge/amazon-web-services-✓-blueviolet.svg)
+![](https://img.shields.io/badge/elastic_beanstalk-✓-blueviolet.svg)
 
 [Website](http://data4good.fjwji7zqan.us-east-1.elasticbeanstalk.com/)
 
