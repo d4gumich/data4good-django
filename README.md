@@ -1,6 +1,6 @@
 # Data4Good Django on Amazon Web Services (Elastic Beanstalk)
 
-[![Build Status](https://travis-ci.com/d4gumich/Data4Good-AWS-Django.svg?branch=master)](https://travis-ci.com/d4gumich/Data4Good-AWS-Django)
+[![Build Status](https://travis-ci.com/d4gumich/data4good-django.svg?branch=master)](https://travis-ci.com/d4gumich/data4good-django)
 ![](https://img.shields.io/badge/Django-✓-blue.svg)
 ![](https://img.shields.io/badge/d3-✓-blue.svg)
 ![](https://img.shields.io/badge/elastic_beanstalk-✓-blueviolet.svg)
