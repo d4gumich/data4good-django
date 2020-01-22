@@ -1,7 +1,7 @@
 # Data4Good Django on Amazon Web Services (Elastic Beanstalk)
 
 [![Build Status](https://travis-ci.com/d4gumich/data4good-django.svg?branch=master)](https://travis-ci.com/d4gumich/data4good-django)
-[![Known Vulnerabilities](https://snyk.io/test/github/d4gumich/data4good-django/badge.svg)](https://snyk.io/test/github/d4gumich/data4good-django)
+[![Known Vulnerabilities](https://snyk.io/test/github/d4gumich/data4good-django/badge.svg?branch=master)](https://snyk.io/test/github/d4gumich/data4good-django)
 ![GitHub repo size](https://img.shields.io/github/repo-size/d4gumich/data4good-django.svg)
 ![GitHub](https://img.shields.io/github/license/d4gumich/data4good-django.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/d4gumich/data4good-django.svg)
