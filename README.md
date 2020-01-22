@@ -28,6 +28,20 @@ This project is built with [Django](https://www.djangoproject.com/) on [AWS Bean
 ## Setup
 
 ### Django
+Activate the virtual environment
+```
+source ~/eb-virt/bin/activate
+```
+
+Install the requirements from the requirements.txt
+```
+pip install -r requirements.txt
+```
+
+Run the server and look at the localhost
+```
+python manage.py runserver
+```
 
 ### AWS + Beanstalk
 
