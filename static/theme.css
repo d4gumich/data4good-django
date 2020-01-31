@@ -15,4 +15,33 @@ p, a {
   color: #FFFFFF;
   background: #000000; }
 
+.pusher {
+  background-image: url("website/landing-hero.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 !important;
+  padding-bottom: 15%; }
+
+.pusher:hover {
+  opacity: 0.8; }
+
+.ui.container.header.hero {
+  padding-top: 10%; }
+
+.ui.text.container {
+  max-width: 900px !important; }
+
+.ui.vertical.stripe.segment {
+  padding-top: 2%;
+  padding-bottom: 2%; }
+
+.ui.header.horizontal.divider {
+  padding-top: 2%; }
+
+#site-title {
+  font-size: 4em; }
+
+#impact-button-container {
+  padding: 2%; }
+
 /*# sourceMappingURL=theme.css.map */
