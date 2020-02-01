@@ -91,6 +91,14 @@ source ~/eb-virt/bin/activate
 python manage.py runserver
 ```
 
+## Versioning
+This project uses [standard versioning](https://github.com/conventional-changelog/standard-version) to automatically update the CHANGELOG.md. Follow the instructions (with a global install) so that you can be able to use:
+```
+standard-version
+```
+to bump the version
+
+
 ## Troubleshooting
 - https://stackoverflow.com/questions/58373960/wsgi-error-using-django-2-2-on-elastic-beanstalk
 - https://github.com/jiansoung/issues-list/issues/13
