@@ -10,6 +10,7 @@
 ![](https://img.shields.io/badge/aws_elastic_beanstalk-✓-blueviolet.svg)
 
 [Website](http://data4good.fjwji7zqan.us-east-1.elasticbeanstalk.com/)
+_Built in US West Oregon (us-west-2)_
 
 
 ## Project Layout
