@@ -22,7 +22,7 @@
 
 ## Development
 
-This project is built with [Django](https://www.djangoproject.com/) on [AWS Beanstalk](https://aws.amazon.com/elasticbeanstalk/).
+This project is built with [Django](https://www.djangoproject.com/) on [AWS Beanstalk](https://aws.amazon.com/elasticbeanstalk/). Database solution is [PostGresql, look at this guide for installation with Django](https://medium.com/agatha-codes/painless-postgresql-django-d4f03364989)
 
 
 ## Setup
@@ -94,6 +94,7 @@ python manage.py runserver
 ## Troubleshooting
 - https://stackoverflow.com/questions/58373960/wsgi-error-using-django-2-2-on-elastic-beanstalk
 - https://github.com/jiansoung/issues-list/issues/13
+- [Deploying Django + Python 3 + PostgreSQL to AWS Elastic Beanstalk](https://realpython.com/deploying-a-django-app-and-postgresql-to-aws-elastic-beanstalk/)
 
 # Key Libraries
 <a href="http://www.djangoproject.com/"><img src="https://www.djangoproject.com/m/img/badges/djangopowered126x54.gif" border="0" alt="Powered by Django." title="Powered by Django." /></a>
