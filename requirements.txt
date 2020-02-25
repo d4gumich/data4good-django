@@ -1,6 +1,6 @@
 certifi==2019.11.28
 chardet==3.0.4
-codecov==2.0.15
+codecov==2.0.16
 coverage==5.0.3
 Django==2.1.1
 django-appconf==1.0.3
