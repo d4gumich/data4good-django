@@ -21,34 +21,22 @@ class MainView(TemplateView) :
         # ctx = { 'make_count': mc, 'auto_list': al }
         return render(request, 'web/home.html')#, ctx)
 
-class ServicesView(TemplateView) :
+class ProjectsView(TemplateView) :
     def get(self, request):
-        # mc = Make.objects.all().count();
-        # al = Auto.objects.all();
+        return render(request, 'web/projects.html')#, ctx)
 
-        # ctx = { 'make_count': mc, 'auto_list': al }
-        return render(request, 'web/services.html')#, ctx)
-
-class ArticlesView(TemplateView) :
+class DataSetsView(TemplateView) :
     def get(self, request):
-        # mc = Make.objects.all().count();
-        # al = Auto.objects.all();
+        return render(request, 'web/datasets.html')#, ctx)
 
-        # ctx = { 'make_count': mc, 'auto_list': al }
-        return render(request, 'web/articles.html')#, ctx)
-
-class CompanyView(TemplateView) :
+class ContributeView(TemplateView) :
     def get(self, request):
-        # mc = Make.objects.all().count();
-        # al = Auto.objects.all();
+        return render(request, 'web/contribute.html')#, ctx)
 
-        # ctx = { 'make_count': mc, 'auto_list': al }
-        return render(request, 'web/company.html')#, ctx)
+class OrganizationView(TemplateView) :
+    def get(self, request):
+        return render(request, 'web/organization.html')#, ctx)
 
 class FAQView(TemplateView) :
     def get(self, request):
-        # mc = Make.objects.all().count();
-        # al = Auto.objects.all();
-
-        # ctx = { 'make_count': mc, 'auto_list': al }
         return render(request, 'web/faq.html')#, ctx)

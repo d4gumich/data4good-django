@@ -1,11 +1,11 @@
 ### Description of proposed changes
 _What does this pull request accomplish? Why should it be integrated?_
-Created mockup of new landing page to demonstrate proficiency of Semantic UI
-and familiarity with Data4Good Django web application.
+Updated basic site architecture to include pages based on findings from comparative analysis 
+and design jam.
 
 ### Checklist
 _Put an `x` in the boxes that apply. _
-- [x] My lint and unit tests pass locally with my changes
+- [ ] My lint and unit tests pass locally with my changes
 - [ ] I have added tests that prove my changes work (if applicable)
 - [ ] I have added or updated necessary documentation (if appropriate)
 
