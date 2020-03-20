@@ -35,6 +35,9 @@ p, a {
   padding-top: 2%;
   padding-bottom: 2%; }
 
+.ui.header {
+  padding-top: 2%; }
+
 .ui.header.horizontal.divider {
   padding-top: 2%; }
 
