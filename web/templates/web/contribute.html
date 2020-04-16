@@ -11,66 +11,44 @@
     <div class="ui main text container">
         <h1 class="ui header">Contribute</h1>
 
-        <h2 class="ui header">Tasks</h2>
-        <div class="ui vertical container">
-            <h3 class="ui header">Task Category</h3>
-            <div class="ui vertical stripe segment">
-                <div class="ui fluid placeholder">
-                    <div class="image header">
-                      <div class="line"></div>
-                      <div class="line"></div>
-                    </div>
-                    <div class="paragraph">
-                      <div class="line"></div>
-                      <div class="line"></div>
-                      <div class="line"></div>
-                    </div>
-                  </div>
+        <!-- <blockquote class="trello-board-compact">
+          <a href="https://trello.com/b/IuN1fzqs">Trello Board</a>
+        </blockquote>
+        <script src="https://p.trellocdn.com/embed.min.js"></script> -->
 
-                <div class="ui fluid placeholder">
-                <div class="image header">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-                <div class="paragraph">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-                </div>
-            </div>
-        
-            <div class="ui vertical stripe segment">
-                <h3 class="ui header">Task Category</h3>
-                <div class="ui fluid placeholder">
-                    <div class="image header">
-                      <div class="line"></div>
-                      <div class="line"></div>
-                    </div>
-                    <div class="paragraph">
-                      <div class="line"></div>
-                      <div class="line"></div>
-                      <div class="line"></div>
-                    </div>
+        <h2 class="ui header">Tasks</h2>
+        <p>
+          {% if task_list %}
+          <div class="task_gallery">
+            {% for task in task_list %}
+              <!--A Task-->
+              <div class="task_cell flip-card item" tabindex="0">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <p>{{ task.name }}</p>
                   </div>
-            </div>
-        
-            <div class="ui vertical stripe segment">
-                <h3 class="ui header">Task Category</h3>
-                <div class="ui fluid placeholder">
-                    <div class="image header">
-                      <div class="line"></div>
-                      <div class="line"></div>
-                    </div>
-                    <div class="paragraph">
-                      <div class="line"></div>
-                      <div class="line"></div>
-                      <div class="line"></div>
-                    </div>
+                  <div class="task_description flip-card-back"> 
+                    <p class="task_title">{{ task.name }}</p>
+                    <p class="task_desc">{{ task.description }}</p>
                   </div>
-            </div>
-        
+                </div>
+              </div>
+              <!--End Task-->
+
+              <!-- {% if ad.owner == user %}
+                (<a href="{% url 'ads:ad_update' ad.id %}">Edit</a> |
+                <a href="{% url 'ads:ad_delete' ad.id %}">Delete</a>)
+              {% endif %} -->
+            {% endfor %}
         </div>
+            {% else %}
+              <p>There are no ads in the database.</p>
+            {% endif %}
+        </p>
+
+        
+          
+        
     </div>
 </div>
 

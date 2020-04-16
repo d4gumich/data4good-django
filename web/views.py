@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 
-# from website.models import Auto, Make
+from web.models import Task
 # from website.forms import MakeForm
 
 # Create your views here.
@@ -30,8 +30,12 @@ class DataSetsView(TemplateView) :
         return render(request, 'web/datasets.html')#, ctx)
 
 class ContributeView(TemplateView) :
-    def get(self, request):
-        return render(request, 'web/contribute.html')#, ctx)
+    template_name = "web/contribute.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['task_list'] = Task.objects.all();
+        return context
 
 class OrganizationView(TemplateView) :
     def get(self, request):

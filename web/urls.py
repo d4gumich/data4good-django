@@ -2,6 +2,7 @@
 from django.urls import path
 from . import views
 from django.views.generic import TemplateView
+# from web.views import ContributeView
 
 app_name='web'
 urlpatterns = [
