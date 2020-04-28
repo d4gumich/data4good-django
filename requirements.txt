@@ -9,7 +9,7 @@ django-sass-processor==0.7.4
 django2-semantic-ui==1.2.2
 idna==2.8
 libsass==0.19.4
-pytz==2019.3
+pytz==2020.1
 rcssmin==1.0.6
 requests==2.22.0
 rjsmin==1.1.0
