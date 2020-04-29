@@ -3,6 +3,7 @@ from django.core.validators import MinLengthValidator
 
 # Create your models here.
 
+# Contribute page models.
 class User(models.Model):
     username = models.CharField(max_length=45)
     first_name = models.CharField(max_length=45)
@@ -12,7 +13,7 @@ class User(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.name
+        return self.username
 
 class Task(models.Model): 
     name = models.CharField(max_length=45)
@@ -21,14 +22,20 @@ class Task(models.Model):
     date_finished = models.DateTimeField(null=True)
     is_active = models.BooleanField(default=False)
     owner_fk = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
-
+    
     def __str__(self):
-        """String for representing the Model object."""
         return self.name
 
 class Organization(models.Model):
     name = models.CharField(max_length=45)
 
     def __str__(self):
-        """String for representing the Model object."""
+        return self.name
+
+# Project page models.
+class Project(models.Model):
+    name = models.CharField(max_length=45)
+    description = models.TextField(max_length=1000, null=True)
+
+    def __str__(self):
         return self.name

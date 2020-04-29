@@ -11,11 +11,6 @@
     <div class="ui main text container">
         <h1 class="ui header">Contribute</h1>
 
-        <!-- <blockquote class="trello-board-compact">
-          <a href="https://trello.com/b/IuN1fzqs">Trello Board</a>
-        </blockquote>
-        <script src="https://p.trellocdn.com/embed.min.js"></script> -->
-
         <h2 class="ui header">Tasks</h2>
         <p>
           {% if task_list %}
@@ -30,11 +25,13 @@
                   <div class="task_description flip-card-back"> 
                     <p class="task_title">{{ task.name }}</p>
                     <p class="task_desc">{{ task.description }}</p>
+                    <div class="ui primary test button" tabindex="0">
+                      Details
+                    </div>
                   </div>
                 </div>
               </div>
               <!--End Task-->
-
               <!-- {% if ad.owner == user %}
                 (<a href="{% url 'ads:ad_update' ad.id %}">Edit</a> |
                 <a href="{% url 'ads:ad_delete' ad.id %}">Delete</a>)
@@ -44,13 +41,12 @@
             {% else %}
               <p>There are no ads in the database.</p>
             {% endif %}
-        </p>
-
-        
-          
-        
+        </p>        
     </div>
 </div>
 
-
+<script type="text/javascript">
+  $('.test.modal').modal('attach events', '.test.button', 'show');
+</script>
 {% endblock %}
+
