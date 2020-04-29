@@ -12,28 +12,17 @@
         <h1 class="ui header">CIO4Good</h1>
 
         <div class="ui top attached tabular menu">
-          <a class="item active" data-tab="Survey_Data">Survey Data</a>
-          <a class="item" data-tab="Visualizations">Visualizations</a>
+          <a class="item" data-tab="Survey_Data">Survey Data</a>
+          <a class="item active" data-tab="Visualizations">Visualizations</a>
           <a class="item" data-tab="Benchmarking">Benchmarking</a>
+          <a class="item" data-tab="Research">Research</a>
         </div>
-        <div class="ui bottom attached tab segment active" data-tab="Survey_Data">
-          Survey Data
-          <script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script>
-          <div class='tableauPlaceholder' style='width: 858px; height: 400px;'>
-            <object class='tableauViz' width='858' height='400' style='display:none;'>
-              <param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' />
-              <param name='embed_code_version' value='3' />
-              <param name='site_root' value='&#47;t&#47;UM-Academic' />
-              <param name='name' value='CIO4GoodVisualizations&#47;CountofOrganizationsResponded' />
-              <param name='tabs' value='yes' />
-              <param name='toolbar' value='yes' />
-              <param name='showAppBanner' value='false' />
-            </object></div>
+        <div class="ui bottom attached tab segment" data-tab="Survey_Data">
+          <p>EXCEL FILE HERE</p>
         </div>
-        <div class="ui bottom attached tab segment" data-tab="Visualizations">
-          Visualizations
+        <div class="ui bottom attached tab segment active" data-tab="Visualizations">
           <script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 1560px; height: 727px;'>
-            <object class='tableauViz' width='1560' height='727' style='display:none;'
+            <object class='tableauViz' width='100%'  height='500' style='display:none;'
             ><param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' />
             <param name='embed_code_version' value='3' />
             <param name='site_root' value='&#47;t&#47;UM-Academic' />
@@ -42,9 +31,9 @@
             <param name='showAppBanner' value='false' /></object></div>
         </div>
         <div class="ui bottom attached tab segment" data-tab="Benchmarking">
-          Benchmarking
           <script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script>
-          <div class='tableauPlaceholder' style='width: 1000px; height: 827px;'><object class='tableauViz' width='1000' height='827' style='display:none;'>
+          <div class='tableauPlaceholder' style='width: 858px; height: 500px;'>
+            <object class='tableauViz' width='100%'  height='500' style='display:none;'>
             <param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' /> 
             <param name='embed_code_version' value='3' /> 
             <param name='site_root' value='&#47;t&#47;UM-Academic' /
@@ -54,13 +43,20 @@
           </div>
         </div>
         <div class="ui bottom attached tab segment" data-tab="Research">
-          Research
+          <p>RESEARCH DATA HERE</p>
         </div>
 
 </div>
 
-<script>
-  console.log("Hello, I'm here.")
-  $('.menu.item').tab();
+<script type="text/javascript">
+   $('.tabular.menu .item').on('click', function() {
+      $('.tabular.menu .item').removeClass('active');
+      $(this).addClass('active'); 
+      $('.ui.bottom.attached.tab.segment').removeClass('active');
+      // console.log(this)
+
+      current_tab = $(this).attr('data-tab');
+      $("[data-tab=" + current_tab + "]").addClass('active');  
+    });
 </script>
 {% endblock %}

@@ -7,13 +7,13 @@
         <title>{% block title %}{{ settings.APP_NAME }}{% endblock %}</title>
         {% dsu_stylesheet_url %}
 
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-        <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
         <script
           src="https://code.jquery.com/jquery-3.1.1.min.js"
           integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
           crossorigin="anonymous"></script>
-        <script src="semantic/dist/semantic.min.js"></script>
+        <script src="semantic/dist/semantic.min.js"></script> -->
 
         <!-- UIkit CSS -->
         <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/css/uikit.min.css" /> -->
@@ -55,16 +55,16 @@
       {% dsu_javascript_url %}
     </body>
 
-    <footer class="footer-home">
+    <footer class="footer-home" style="padding: 1%;">
       <!-- TODO: fix vertical stacking of menu items -->
-      <div class="uk-flex-inline uk-flex-center uk-flex-space-between">
+      <div style="display: flex; justify-content: space-evenly;">
             <div><a href="/organization" class="item">Our Organization</a></div>
             <div><a href="/projects" class="item">Projects</a></div>
-            <div><a href="/datasets" class="item">Data Sets</a></div>
+            <!-- <div><a href="/datasets" class="item">Data Sets</a></div> -->
             <div><a href="/contribute" class="item">Contribute</a></div>
             <div><a href="/faq" class="item">FAQ</a></div>
       </div>
-      <div>
+      <div style="text-align: center; padding-top: 1%;">
         Copyright © University of Michigan School of Information || Data4Good Center 2020
       </div>
     </footer>

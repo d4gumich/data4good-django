@@ -6,7 +6,7 @@
 {% load static %}
 {% load sass_tags %}
 <!-- <div style="background-image: url('/static/images/cover_networks.jpg')"> -->
-<div>
+<div style="height: 700px;">
   {% include 'web/_nav.html' %}
     <div class="ui main text container">
         <h1 class="ui header">Projects</h1>
@@ -18,16 +18,16 @@
               <p>{{ project.description }}</p>
 
               <button class="ui button">
-                <a href="{% url 'web:project_detail' project.id%}">Survey Data</a>
+                <a href="{% url 'web:project_detail' project.id%}">Download Data</a>
               </button>
               <button class="ui button">
-                <a href="{% url 'web:project_detail' project.id%}">Visualizations</a>
+                <a href="{% url 'web:project_detail' project.id%}">Visualize Data</a>
               </button>
               <button class="ui button">
-                <a href="{% url 'web:project_detail' project.id%}">Benchmarking</a>
+                <a href="{% url 'web:project_detail' project.id%}">Benchmark</a>
               </button>
               <button class="ui button">
-                <a href="{% url 'web:project_detail' project.id%}">Research</a>
+                <a href="{% url 'web:project_detail' project.id%}">View Research</a>
               </button>
             </div>
           {% endfor %}
