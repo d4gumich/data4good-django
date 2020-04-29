@@ -47,6 +47,11 @@ p, a {
 #impact-button-container {
   padding: 2%; }
 
+/*Landing Page*/
+.tool-cards {
+  display: flex;
+  justify-content: space-evenly; }
+
 /*Image Gallery*/
 .task_cell {
   margin: 2%;
