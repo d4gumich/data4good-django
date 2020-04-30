@@ -6,47 +6,85 @@
 {% load static %}
 {% load sass_tags %}
 <!-- <div style="background-image: url('/static/images/cover_networks.jpg')"> -->
+
 <div>
     {% include 'web/_nav.html' %}
-    <div class="ui main text container">
+    <div class="ui main text container" style="height: 800px;">
         <h1 class="ui header">Contribute</h1>
 
         <h2 class="ui header">Tasks</h2>
         <p>
           {% if task_list %}
           <div class="task_gallery">
+            <!-- TODO: Decide which task UI to implement. -->
             {% for task in task_list %}
-              <!--A Task-->
-              <div class="task_cell flip-card item" tabindex="0">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
+              <!--A Card Task-->
+                <div class="ui card">
+                  <div class="content">
                     <p>{{ task.name }}</p>
-                  </div>
-                  <div class="task_description flip-card-back"> 
-                    <p class="task_title">{{ task.name }}</p>
+                    <div class="ui placeholder">
+                      <div class="rectangle image"></div>
+                    </div>
                     <p class="task_desc">{{ task.description }}</p>
-                    <div class="ui primary test button" tabindex="0">
+                    <div class="ui button" tabindex="0" style="margin-left: 60%;">
                       Details
                     </div>
                   </div>
                 </div>
-              </div>
-              <!--End Task-->
+              <!-- End Card Task -->
+
               <!-- {% if ad.owner == user %}
                 (<a href="{% url 'ads:ad_update' ad.id %}">Edit</a> |
                 <a href="{% url 'ads:ad_delete' ad.id %}">Delete</a>)
               {% endif %} -->
             {% endfor %}
+
+            <div class="ui tiny modal">
+              <div class="header">{{task.name}}</div>
+              <div class="image content">
+                <img class="image">
+                <div class="description">
+                  <p>{{task.description}}</p>
+                </div>
+                <div class="actions">
+                  <div class="ui approve button">Approve</div>
+                  <div class="ui button">Neutral</div>
+                  <div class="ui cancel button">Cancel</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- {% for task in task_list %} -->
+            <!--A Task-->
+            <!-- <div class="task_cell flip-card item" tabindex="0">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <p>{{ task.name }}</p>
+                </div>
+                <div class="task_description flip-card-back"> 
+                  <p class="task_title">{{ task.name }}</p>
+                  <p class="task_desc">{{ task.description }}</p>
+                  <div class="ui button" tabindex="0" style="margin-left: 50%;">
+                    Details
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!--End Task-->
+            <!-- {% endfor %} -->
+
         </div>
             {% else %}
-              <p>There are no ads in the database.</p>
+              <p>There are no tasks in the database.</p>
             {% endif %}
         </p>        
     </div>
 </div>
 
 <script type="text/javascript">
-  $('.test.modal').modal('attach events', '.test.button', 'show');
+  $('.ui.button').click(function(){
+        $('.ui.tiny.modal').modal('show');
+    });
 </script>
 {% endblock %}
 

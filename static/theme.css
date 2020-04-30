@@ -72,7 +72,7 @@ p, a {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center; }
+  justify-content: space-between; }
 
 /*Flip card reference for lines 80-118: https://www.w3schools.com/howto/howto_css_flip_card.asp */
 .flip-card {
