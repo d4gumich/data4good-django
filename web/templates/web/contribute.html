@@ -35,22 +35,25 @@
                 (<a href="{% url 'ads:ad_update' ad.id %}">Edit</a> |
                 <a href="{% url 'ads:ad_delete' ad.id %}">Delete</a>)
               {% endif %} -->
-            {% endfor %}
 
-            <div class="ui tiny modal">
-              <div class="header">{{task.name}}</div>
-              <div class="image content">
-                <img class="image">
-                <div class="description">
-                  <p>{{task.description}}</p>
+              <div class="ui modal">
+                <div class="header">
+                  {{ task.name }}
+                </div>
+                <div>
+                  <div class="description">
+                    <h4 class="ui header">Description:</h4>
+                    <p class="task_desc">{{ task.description }}</p>                
+                  </div>
                 </div>
                 <div class="actions">
-                  <div class="ui approve button">Approve</div>
-                  <div class="ui button">Neutral</div>
                   <div class="ui cancel button">Cancel</div>
+                  <div class="ui approve button">OK</div>
                 </div>
               </div>
-            </div>
+            {% endfor %}
+
+
         </div>
             {% else %}
               <p>There are no tasks in the database.</p>
@@ -62,7 +65,7 @@
 
 <script type="text/javascript">
   $('.ui.button').click(function(){
-        $('.ui.tiny.modal').modal('show');
+        $('.ui.modal').modal('show');
     });
 </script>
 {% endblock %}
