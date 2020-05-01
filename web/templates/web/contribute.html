@@ -21,10 +21,8 @@
               <!--A Card Task-->
                 <div class="ui card">
                   <div class="content">
-                    <p>{{ task.name }}</p>
-                    <div class="ui placeholder">
-                      <div class="rectangle image"></div>
-                    </div>
+                    <h3 class="ui header">{{ task.name }}</p>
+                    <h4 class="ui header">Description:</h4>
                     <p class="task_desc">{{ task.description }}</p>
                     <div class="ui button" tabindex="0" style="margin-left: 60%;">
                       Details
@@ -53,31 +51,12 @@
                 </div>
               </div>
             </div>
-
-            <!-- {% for task in task_list %} -->
-            <!--A Task-->
-            <!-- <div class="task_cell flip-card item" tabindex="0">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <p>{{ task.name }}</p>
-                </div>
-                <div class="task_description flip-card-back"> 
-                  <p class="task_title">{{ task.name }}</p>
-                  <p class="task_desc">{{ task.description }}</p>
-                  <div class="ui button" tabindex="0" style="margin-left: 50%;">
-                    Details
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!--End Task-->
-            <!-- {% endfor %} -->
-
         </div>
             {% else %}
               <p>There are no tasks in the database.</p>
             {% endif %}
-        </p>        
+        </p>
+        <!-- <h2 class="ui header">Add a Task</h2> -->
     </div>
 </div>
 
