@@ -1,7 +1,6 @@
 ### Description of proposed changes
 _What does this pull request accomplish? Why should it be integrated?_
-Updated basic site architecture to include pages based on findings from comparative analysis 
-and design jam.
+Update work in progress landing, organization, projects, and contribute pages for V1 release.
 
 ### Checklist
 _Put an `x` in the boxes that apply. _
