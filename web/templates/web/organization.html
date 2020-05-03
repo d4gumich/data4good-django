@@ -1,0 +1,78 @@
+
+{% extends "base_uikit.html" %}
+
+{% block content %}
+
+{% load static %}
+{% load sass_tags %}
+<!-- <div style="background-image: url('/static/images/cover_networks.jpg')"> -->
+<div>
+    {% include 'web/_nav.html' %}
+    <div class="ui main text container">
+        <h1 class="ui header">Our Organization</h1>
+
+        <div class="ui vertical container">
+            <div class="ui vertical stripe segment">
+                <h2 class="ui header">Data4Good's Mission</h2>
+                <p>The UMSI Data4Good center brings together non-profit organizations' 
+                  data into larger datasets for benchmarking and trend analysis. 
+                  Putting data in the hands of nonprofits contributes to the body of knowledge 
+                  about a broad scope of development and relief programs, which in turn will lead 
+                  to better decision-making in nonprofit work.</p>
+                <h2 class="ui header">Data4Good's Values</h2>
+                <ul>
+                  <li>Access to information</li>
+                  <li>Sharing data and resources</li>
+                  <li>Support in the age of digital transformation</li>
+                </ul>
+            </div>
+        
+            <div class="ui vertical stripe segment">
+                <h2 class="ui header">Data4Good's Team</h2>
+                <div class="ui three cards">
+                    <div class="ui card">
+                      <div class="content">
+                        <img src="{% static 'website/team/Ed_Headshot.jpg' %}" alt="Headshot of Ed Happ" width=100%>
+                        <h3>Ed Happ</h3>
+                        <h4>Executive Fellow</h4>
+                        <p>Edward G. Happ is an Executive Fellow at the University of Michigan School of Information, where he is teaching and conducting research.
+                          His 40 years of professional experience include all facets of managing information services and high technology businesses, 
+                          including general management with P&L responsibility, operations, product management, sales, marketing, customer service, 
+                          human resources management, technical consulting, manufacturing, and both software and hardware development.</p>
+                      </div>
+                    </div>
+                    <div class="ui card">
+                      <div class="content">
+                        <div class="ui placeholder">
+                          <div class="square image"></div>
+                        </div>
+                        <h3>HoJoon Kim</h3>
+                        <h4>Project Manager</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent fringilla tortor at ex tincidunt dictum. Nunc condimentum ipsum lacus, 
+                          fermentum lobortis erat porta in. Nam eu ante dignissim libero accumsan convallis. Integer pharetra congue imperdiet. In iaculis nulla at
+                          lacus elementum tincidunt. Sed commodo nisi fringilla sapien dignissim, in scelerisque ante feugiat. Aliquam tempus erat eu turpis porta eleifend. 
+                          </p>
+                      </div>
+                    </div>
+                    <div class="ui card">
+                      <div class="content">
+                        <img src="{% static 'website/team/Mariah_Headshot.jpg' %}" alt="Headshot of Mariah Jacobs" width=100%>
+                        <h3>Mariah Jacobs</h3>
+                        <h4>UX Designer & Software Engineer</h4>
+                        <p>Mariah Jacobs is a graduate student at UMSI focusing in User Experience (UX) research, design, and development. 
+                          Prior to UMSI, she received her B.S. in Computer Science and has completed past internships at Intel as a software engineer. 
+                          After graduation, she hopes to work as a UX Engineer, where she can blend her passion for design and code.</p>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        
+            <div class="ui vertical stripe segment">
+            </div>
+        
+          </div>
+    </div>
+</div>
+
+
+{% endblock %}

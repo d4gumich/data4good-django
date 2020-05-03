@@ -13,91 +13,33 @@
         <h1 class="ui header" id="site-title">
           Data4Good
         </h1>
-        <h2>Make data, training, and implementation <b>connect</b> to make nonprofit organizations stronger.</h2>
-
-        <!-- Button icon not loading, need to import icon lib?-->
-        <!-- <button class="circular ui icon button huge">
-          <i class="icon angle double down"></i> 
-        </button> -->
+        <h2>Make data, training, and implementation connect to make nonprofit organizations stronger.</h2>
       </div>
     </div>
   </div>
 
   <div class="ui vertical container">
       <div class="ui vertical stripe segment">
-        <h3 class="ui header horizontal divider">Projects</h3>
-        <div class="ui three cards">
-          <div class="ui card">
-            <div class="content">
-              <div class="ui placeholder">
-                <div class="square image"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+        <h3 class="ui header horizontal divider">Featured Tools</h3>
+        <div class="tool-cards">
+          <a href="{% url 'web:project_detail' 1%}" class="item">
+            <div class="ui card">
+              <div class="content">
+                <img class="visualization_thumb" width="100%" src="{% static 'website/visualization_tool_thumb.png' %}" alt="Thumbnail of CIO4Good visualization">
+                <h4>CIO4Good Visualizations</h4>
               </div>
             </div>
-          </div>
-          <div class="ui card">
+          </a>
+          <!-- <div class="ui card">
               <div class="content">
                 <div class="ui placeholder">
                   <div class="square image"></div>
-                  <div class="line"></div>
-                  <div class="line"></div>
-                  <div class="line"></div>
                 </div>
+                <h4>CIO4Good Benchmarking</h4>
               </div>
-          </div>
-          <div class="ui card">
-            <div class="content">
-              <div class="ui placeholder">
-                <div class="square image"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-              </div>
-            </div>
-          </div>
+          </div> -->
         </div>
       </div>
-
-      <div class="ui vertical stripe segment">
-          <h3 class="ui header horizontal divider">Impact</h3>
-          <div class="ui text container">
-            <div class="ui fluid placeholder">
-              <div class="paragraph">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-              </div>
-              <div class="paragraph">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-              </div>
-            </div>
-          </div>
-          <div class="ui container center aligned" id="impact-button-container">
-            <a class="ui medium button">Find out more.</a>
-          </div>
-      </div>
-
-      <div class="ui vertical stripe segment">
-          <h3 class="ui header horizontal divider">Resources</h3>
-          <div class="ui text container">
-            <div class="ui fluid placeholder">
-                <div class="paragraph">
-                  <div class="line"></div>
-                  <div class="line"></div>
-                  <div class="line"></div>
-                </div>
-                <div class="paragraph">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-              </div>
-            </div>
-          </div>
     </div>
 
     <!-- <div class="uk-section uk-section-xlarge" >
