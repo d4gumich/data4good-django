@@ -5,52 +5,52 @@
 
 {% load static %}
 {% load sass_tags %}
-<!-- <div style="background-image: url('/static/images/cover_networks.jpg')"> -->
-<!-- <script src="jquery-csv.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script> -->
+<script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script>
+
 <div>
     {% include 'web/_nav.html' %}
     <div class="ui main text container">
         <h1 class="ui header">CIO4Good</h1>
-        <div class="tab">
-          <button class="tablinks" onclick="openTab(event, 'Visualizations')" id="defaultOpen">Visualizations</button>
-          <button class="tablinks" onclick="openTab(event, 'Benchmarking')">Benchmarking</button>
-          <button class="tablinks" onclick="openTab(event, 'Survey_Data')">Survey Data</button>
-          <button class="tablinks" onclick="openTab(event, 'Research')">Research</button>
+
+        <div class="ui top attached tabular menu">
+          <a class="item active" data-tab="Visualizations">Visualizations</a>
+          <a class="item" data-tab="Benchmarking" id="Benchmarking">Benchmarking</a>
+          <a class="item" data-tab="Survey_Data">Survey Data</a>
+          <a class="item" data-tab="Research">Research</a>
         </div>
 
-        <div id="Visualizations" class="tabcontent">
-          <script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script>
-          <div class='tableauPlaceholder' style='width: 1560px; height: 727px;'>
-            <object class='tableauViz' width='100%'  height='750px' style='display:none;'
-            ><param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' />
-            <param name='embed_code_version' value='3' />
-            <param name='site_root' value='&#47;t&#47;UM-Academic' />
-            <param name='name' value='CIO4GoodVisualizations&#47;CountofOrganizationsResponded' />
-            <param name='tabs' value='yes' /><param name='toolbar' value='yes' />
-            <param name='showAppBanner' value='false' /></object></div>
-        </div>
-        <div id="Benchmarking" class="tabcontent">
-          <script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script>
-          <div class='tableauPlaceholder' style='width: 1560px; height: 727px;'>
-            <object class='tableauViz' width='100%' height='750px' style='display:none;'>
+        <div class="ui bottom attached tab segment active" data-tab="Visualizations">
+          <object class='tableauViz' width='100%'  height='827px' style='display:none;'>
               <param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' />
               <param name='embed_code_version' value='3' />
               <param name='site_root' value='&#47;t&#47;UM-Academic' />
-              <param name='name' value='v4BenchmarkingDashboard&#47;Benchmarking' />
-              <param name='tabs' value='no' />
+              <param name='name' value='CIO4GoodVisualizations&#47;CountofOrganizationsResponded' />
+              <param name='tabs' value='yes' />
               <param name='toolbar' value='yes' />
               <param name='showAppBanner' value='false' />
             </object>
-          </div>
         </div>
-        <div id="Survey_Data" class="tabcontent">
+
+        <div class="ui bottom attached tab segment" data-tab="Benchmarking">
+          <object class='tableauViz' width='100%' height='827px' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='&#47;t&#47;UM-Academic' />
+            <param name='name' value='v4BenchmarkingDashboard&#47;Benchmarking' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='device' value='desktop'/> <!--Needed to prevent stretched mobile view when rendering.-->
+            <param name='showAppBanner' value='false' />
+          </object>
+        </div> 
+
+        <div class="ui bottom attached tab segment" data-tab="Survey_Data">
           <div id="table_container">
             <iframe width=100% height=727px src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQyDHBTILuOdRgKr2YA7lOjGKjQINCpfTp-ptqOEUs7cwy-QTvpUS_9_ePXOI3tD6FdvNZbtpQIWvuk/pubhtml?gid=1528335567&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
           </div>
         </div> 
-        <div id="Research" class="tabcontent">
+
+        <div class="ui bottom attached tab segment" data-tab="Research" width='100%' height='800px'>
           <h2 class="ui dividing header">What do NPO IT leaders say about investment over the past 17 years?</h2>
           <h3 class="ui header">Description</h3>
           <p>The Data4Good Center at the University of the Michigan School of Information (UMSI) brings together non-profit organizations’ (NPOs) data into larger datasets for benchmarking and trend analysis. The CIO4Good is a listserv of over 300 NPO IT leaders. 
@@ -68,52 +68,18 @@
           <h3 class="ui header">Read the full paper <a href="https://docs.google.com/document/d/1dFlhdqrhOumFIe2R1kGiSPkHdsr7RoLq9CUqLYQGV80/edit?usp=sharing" 
             target="_blank">here</a>.</h3>
         </div>
+
     </div>
 </div>
 
 <script type="text/javascript">
-    // Get the element with id="defaultOpen" and click on it
-    window.onload = function (e) {
-      defaultTab = document.getElementById("defaultOpen")
-      defaultTab.click();
-    }; 
-
-    function openTab(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-      tablinks[i].className = tablinks[i].className.replace(" defaultOpen", "");
-
-    }
-    // document.getElementById("defaultOpen").className.replace("defaultOpen", "");
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-  } 
-
-  // TODO: see if this code is worth keeping for improved table
-  // $(document).ready( function () {
-  //   $('#table_id').DataTable();
-  // } );
-
-  // CsvToHtmlTable.init({
-  //   csv_path: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQyDHBTILuOdRgKr2YA7lOjGKjQINCpfTp-ptqOEUs7cwy-QTvpUS_9_ePXOI3tD6FdvNZbtpQIWvuk/pub?gid=1528335567&single=true&output=csv',
-  //   element: 'table_container', 
-  //   allow_download: true,
-  //   csv_options: {separator: ';', delimiter: '"'},
-  //   datatables_options: {"paging": false}
-  // });
+  $('.tabular.menu .item').on('click', function() {
+      $('.tabular.menu .item').removeClass('active');
+      $(this).addClass('active'); 
+      $('.ui.bottom.attached.tab.segment').removeClass('active');
+      current_tab = $(this).attr('data-tab');
+      $("[data-tab=" + current_tab + "]").addClass('active');  
+    });
 </script>
 
 {% endblock %}
