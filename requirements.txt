@@ -1,3 +1,5 @@
+boto3==1.13.9
+botocore==1.16.9
 certifi==2019.11.28
 chardet==3.0.4
 codecov==2.0.15
@@ -6,12 +8,18 @@ Django==2.2.12
 django-appconf==1.0.4
 django-compressor==2.4
 django-sass-processor==0.7.4
+django-storages==1.9.1
 django2-semantic-ui==1.2.2
+docutils==0.15.2
 idna==2.8
+jmespath==0.10.0
 libsass==0.19.4
+python-dateutil==2.8.1
 pytz==2019.3
 rcssmin==1.0.6
 requests==2.23.0
 rjsmin==1.1.0
+s3transfer==0.3.3
 six==1.13.0
+sqlparse==0.3.1
 urllib3==1.25.7

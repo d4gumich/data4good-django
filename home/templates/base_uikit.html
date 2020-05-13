@@ -31,8 +31,10 @@
         <!-- Add additional SCSS in static file -->
         {% load static %}
         {% load sass_tags %}
-        <!-- <link rel="stylesheet" href="{% static 'css/styles.css' %}"> -->
-        <link href="{% sass_src 'theme.scss' %}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'web/theme.scss' %}"> -->
+
+        <!-- <link href="{% sass_src 'theme.scss' %}" rel="stylesheet" type="text/css" /> -->
 
     </head>
     
@@ -52,7 +54,6 @@
     </body>
 
     <footer class="footer-home" style="padding: 1%;">
-      <!-- TODO: fix vertical stacking of menu items -->
       <div style="display: flex; justify-content: space-evenly;">
             <div><a href="/organization" class="item">Our Organization</a></div>
             <div><a href="/projects" class="item">Projects</a></div>
