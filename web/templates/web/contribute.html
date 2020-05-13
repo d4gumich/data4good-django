@@ -5,8 +5,6 @@
 
 {% load static %}
 {% load sass_tags %}
-<!-- <div style="background-image: url('/static/images/cover_networks.jpg')"> -->
-
 <div>
     {% include 'web/_nav.html' %}
     <div class="ui main text container" style="min-height: 625px;">
@@ -16,7 +14,6 @@
         <p>
           {% if task_list %}
           <div class="task_gallery">
-            <!-- TODO: Decide which task UI to implement. -->
             {% for task in task_list %}
               <!--A Card Task-->
                 <div class="ui card">
@@ -52,8 +49,6 @@
                 </div>
               </div>
             {% endfor %}
-
-
         </div>
             {% else %}
               <p>There are no tasks in the database.</p>
