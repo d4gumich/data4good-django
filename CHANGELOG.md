@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/d4gumich/data4good-django/compare/v1.1.0...v1.1.1) (2020-05-03)
+
+
+### Bug Fixes
+
+* requirements.txt to reduce vulnerabilities ([6752f93](https://github.com/d4gumich/data4good-django/commit/6752f93c020a7cf504c096ea0332256fdbe208db))
+
 ## 1.1.0 (2020-02-01)
 
 
