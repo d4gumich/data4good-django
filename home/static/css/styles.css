@@ -1,9 +1,104 @@
+/* BaseUIKit Styling */
+
 .home{
     height: 100vh
 }
 
+.footer-home{
+    color: #FFFFFF;
+    background: #000000;
+}
+
+/* Semantic UI Website Styling */
+
+.pusher{
+    background-image: url("https://d4gwebsite-bucket.s3.us-east-2.amazonaws.com/static/web/landing-hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 !important;
+    padding-bottom: 15%;
+}
+
+h1,h2,h3 {
+    font-family: 'Open Sans', sans-serif;
+}
+p,a{
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.logo{
+    width: 50px;
+    height: 50px;
+}
+
+.home{
+    height: 100vh
+}
 
 .footer-home{
     color: #FFFFFF;
     background: #000000;
+}
+
+.pusher:hover{
+    opacity: 0.8;
+}
+
+.ui.container.header.hero{
+    padding-top: 10%;
+}
+
+.ui.text.container{
+    max-width: 1050px !important;
+}
+
+.ui.vertical.stripe.segment {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.ui.header {
+    padding-top: 2%;;
+}
+
+.ui.header.horizontal.divider {
+    padding-top: 2%;
+}
+
+.top.attached.segment + .ui.bottom.tabular.menu {
+    position: relative;
+    width: calc(100% + (100px * 2));
+    left: -1px;
+  }
+
+#site-title {
+    font-size: 4em;
+}
+
+#impact-button-container{
+    padding: 2%;
+}
+
+/* Landing Page */
+.tool-cards {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#visualization-card {
+    background-color: #e2f2c7;
+    padding: 1%;
+    margin: 4%;
+}
+
+/* Tabs */
+.ui.bottom.attached.tab.segment {
+    padding: 10px 20px;
+    margin-bottom: 1%;
+  }
+
+/* FAQ */
+.ui.divided.items.faq {
+    padding: 2%;
 }

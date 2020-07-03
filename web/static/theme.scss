@@ -1,143 +1,123 @@
 
-h1,h2,h3 {
-    font-family: 'Open Sans', sans-serif;
-}
-p,a{
-    font-family: 'Roboto', sans-serif;
+// h1,h2,h3 {
+//     font-family: 'Open Sans', sans-serif;
+// }
+// p,a{
+//     font-family: 'Roboto', sans-serif;
 
-}
-
-
-.logo{
-    width: 50px;
-    height: 50px;
-}
-
-
-
-.home{
-    height: 100vh
-}
-
-
-.footer-home{
-    color: #FFFFFF;
-    background: #000000;
-}
-
-
-.pusher{
-    background-image: url("website/landing-hero.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0 !important;
-    padding-bottom: 15%;
-}
-
-.pusher:hover{
-    opacity: 0.8;
-}
-
-.ui.container.header.hero{
-    padding-top: 10%;
-}
-
-.ui.text.container{
-    max-width: 900px !important;
-}
-
-.ui.vertical.stripe.segment {
-    padding-top: 2%;
-    padding-bottom: 2%;
-}
-
-.ui.header {
-    padding-top: 2%;;
-}
-
-.ui.header.horizontal.divider {
-    padding-top: 2%;
-}
-
-#site-title {
-    font-size: 4em;
-}
-
-#impact-button-container{
-    padding: 2%;
-}
-
-/*Landing Page*/
-.tool-cards {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-/*Image Gallery*/
-.task_cell {
-    margin: 2%;
-    font-size: 1em;
-}
-
-.task_desc {
-	margin-top: 5px;
-	text-align: left;
-	margin-left: 20px;
-	// padding: 20px;
-}
-
-.task_title {
-	font-size: 1em;
-    font-style: bold;
-    padding-left: 2%;
-}
-
-.task_gallery {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-}
-
-/*Flip card reference for lines 80-118: https://www.w3schools.com/howto/howto_css_flip_card.asp */
-.flip-card {
-    background-color: transparent;
-    width: 217px;
-	height: 320px;
-    perspective: 1000px;
-}
-
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: left;
-    padding: 1%;
-    transition: transform 0.7s;
-    transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner, .flip-card:focus .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-.flip-card-front, .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    background-color: #bbb;
-    color: black;
-}
-
-// .flip-card-front {
-//     background-color: #bbb;
-//     color: black;
 // }
 
-.flip-card-back {
-    transform: rotateY(180deg);
-    
-}
+
+// .logo{
+//     width: 50px;
+//     height: 50px;
+// }
+
+
+
+// .home{
+//     height: 100vh
+// }
+
+
+// .footer-home{
+//     color: #FFFFFF;
+//     background: #000000;
+// }
+
+// .pusher{
+//     background-image: url("website/landing-hero.jpg");
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     margin: 0 !important;
+//     padding-bottom: 15%;
+// }
+
+// .pusher:hover{
+//     opacity: 0.8;
+// }
+
+// .ui.container.header.hero{
+//     padding-top: 10%;
+// }
+
+// .ui.text.container{
+//     max-width: 1050px !important;
+// }
+
+// .ui.vertical.stripe.segment {
+//     padding-top: 2%;
+//     padding-bottom: 2%;
+// }
+
+// .ui.header {
+//     padding-top: 2%;;
+// }
+
+// .ui.header.horizontal.divider {
+//     padding-top: 2%;
+// }
+
+// .top.attached.segment + .ui.bottom.tabular.menu {
+//     position: relative;
+//     width: calc(100% + (100px * 2));
+//     left: -1px;
+//   }
+
+// #site-title {
+//     font-size: 4em;
+// }
+
+// #impact-button-container{
+//     padding: 2%;
+// }
+
+// /*Landing Page*/
+// .tool-cards {
+//     display: flex;
+//     justify-content: space-evenly;
+// }
+
+// #visualization-card {
+//     background-color: #e2f2c7;
+//     padding: 1%;
+//     margin: 4%;
+// }
+
+// /*Image Gallery*/
+// .task_cell {
+//     margin: 2%;
+//     font-size: 1em;
+// }
+
+// .task_desc {
+// 	margin-top: 5px;
+// 	text-align: left;
+// 	margin-left: 20px;
+// 	// padding: 20px;
+// }
+
+// .task_title {
+// 	font-size: 1em;
+//     font-style: bold;
+//     padding-left: 2%;
+// }
+
+// .task_gallery {
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     align-items: center;
+//     justify-content: space-between;
+// }
+
+// /* Tabs */
+// .ui.bottom.attached.tab.segment {
+//     padding: 10px 20px;
+//     margin-bottom: 1%;
+//   }
+
+//   /* FAQ */
+//   .ui.divided.items.faq {
+//       padding: 2%;
+//   }

@@ -5,45 +5,29 @@
 
 {% load static %}
 {% load sass_tags %}
-<!-- <div style="background-image: url('/static/images/cover_networks.jpg')"> -->
+
 <div style="height: 700px;">
   {% include 'web/_nav.html' %}
     <div class="ui main text container">
         <h1 class="ui header">Projects</h1>
-
         {% if project_list %}
           {% for project in project_list %}
-            <div class="ui raised very padded text container segment">
-              <h2 class="ui header">{{ project.name}}</h2>
+            <div class="ui raised very padded text container segment project-card">
+              <h2 class="ui header">{{ project.name }}</h2>
               <p>{{ project.description }}</p>
-
-              <button class="ui button">
-                <a href="{% url 'web:project_detail' project.id%}">Download Data</a>
-              </button>
-              <button class="ui button">
-                <a href="{% url 'web:project_detail' project.id%}">Visualize Data</a>
-              </button>
-              <button class="ui button">
-                <a href="{% url 'web:project_detail' project.id%}">Benchmark</a>
-              </button>
-              <button class="ui button">
-                <a href="{% url 'web:project_detail' project.id%}">View Research</a>
-              </button>
+              <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQyDHBTILuOdRgKr2YA7lOjGKjQINCpfTp-ptqOEUs7cwy-QTvpUS_9_ePXOI3tD6FdvNZbtpQIWvuk/pub?output=csv" class="item" >
+                <button class="ui button item"> Download Data</button>
+              </a>
+              <a href="{% url 'web:project_detail' project.id%}"><button class="ui button">Visualize Data</button></a>
+              <a href="{% url 'web:project_detail' project.id%}"><button class="ui button">Benchmark</button></a>
+              <a href="https://docs.google.com/document/d/1dFlhdqrhOumFIe2R1kGiSPkHdsr7RoLq9CUqLYQGV80/edit?usp=sharing" 
+              target="_blank">
+                <button class="ui button">View Research</button>
+              </a>
             </div>
           {% endfor %}
         {% endif %}
     </div>  
+  </a>
 </div>
-
-<!-- <script>
-  console.log("Hello, I'm here.")
-  $('.menu.item').tab();
-</script> -->
-
-<!-- <script>
-  $('.ui.button').click(function(){
-      $('.ui.basic.modal').modal('show');
-
-  });
-</script> -->
 {% endblock %}

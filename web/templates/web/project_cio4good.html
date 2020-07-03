@@ -5,58 +5,83 @@
 
 {% load static %}
 {% load sass_tags %}
-<!-- <div style="background-image: url('/static/images/cover_networks.jpg')"> -->
+<script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script>
+
 <div>
     {% include 'web/_nav.html' %}
     <div class="ui main text container">
         <h1 class="ui header">CIO4Good</h1>
 
         <div class="ui top attached tabular menu">
-          <a class="item" data-tab="Survey_Data">Survey Data</a>
           <a class="item active" data-tab="Visualizations">Visualizations</a>
-          <a class="item" data-tab="Benchmarking">Benchmarking</a>
+          <a class="item" data-tab="Benchmarking" id="Benchmarking">Benchmarking</a>
+          <a class="item" data-tab="Survey_Data">Survey Data</a>
           <a class="item" data-tab="Research">Research</a>
         </div>
-        <div class="ui bottom attached tab segment" data-tab="Survey_Data">
-          <p>EXCEL FILE HERE</p>
-        </div>
+
         <div class="ui bottom attached tab segment active" data-tab="Visualizations">
-          <script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 1560px; height: 727px;'>
-            <object class='tableauViz' width='100%'  height='500' style='display:none;'
-            ><param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' />
-            <param name='embed_code_version' value='3' />
-            <param name='site_root' value='&#47;t&#47;UM-Academic' />
-            <param name='name' value='CIO4GoodVisualizations&#47;ITOperatingBudgetasaPercentofRevenue' />
-            <param name='tabs' value='yes' /><param name='toolbar' value='yes' />
-            <param name='showAppBanner' value='false' /></object></div>
-        </div>
-        <div class="ui bottom attached tab segment" data-tab="Benchmarking">
-          <script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script>
-          <div class='tableauPlaceholder' style='width: 858px; height: 500px;'>
-            <object class='tableauViz' width='100%'  height='500' style='display:none;'>
-            <param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' /> 
-            <param name='embed_code_version' value='3' /> 
-            <param name='site_root' value='&#47;t&#47;UM-Academic' /
-            ><param name='name' value='v2BenchmarkingDashboard&#47;Benchmarking' />
-            <param name='tabs' value='no' /><param name='toolbar' value='yes' />
-            <param name='showAppBanner' value='false' /></object></div>
-          </div>
-        </div>
-        <div class="ui bottom attached tab segment" data-tab="Research">
-          <p>RESEARCH DATA HERE</p>
+          <object class='tableauViz' width='100%'  height='827px' style='display:none;'>
+              <param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' />
+              <param name='embed_code_version' value='3' />
+              <param name='site_root' value='&#47;t&#47;UM-Academic' />
+              <param name='name' value='CIO4GoodVisualizations&#47;CountofOrganizationsResponded' />
+              <param name='tabs' value='yes' />
+              <param name='toolbar' value='yes' />
+              <param name='showAppBanner' value='false' />
+            </object>
         </div>
 
+        <div class="ui bottom attached tab segment" data-tab="Benchmarking">
+          <object class='tableauViz' width='100%' height='827px' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Ftableau.dsc.umich.edu%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='&#47;t&#47;UM-Academic' />
+            <param name='name' value='v4BenchmarkingDashboard&#47;Benchmarking' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='device' value='desktop'/> <!--Needed to prevent stretched mobile view when rendering.-->
+            <param name='showAppBanner' value='false' />
+          </object>
+        </div> 
+
+        <div class="ui bottom attached tab segment" data-tab="Survey_Data">
+          <div id="table_container">
+            <iframe width=100% height=727px src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQyDHBTILuOdRgKr2YA7lOjGKjQINCpfTp-ptqOEUs7cwy-QTvpUS_9_ePXOI3tD6FdvNZbtpQIWvuk/pubhtml?gid=1528335567&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+          </div>
+        </div> 
+
+        <div class="ui bottom attached tab segment" data-tab="Research" width='100%' height='800px'>
+          <h2 class="ui dividing header">What do NPO IT leaders say about investment over the past 17 years?</h2>
+          <h3 class="ui header">Description</h3>
+          <p>The Data4Good Center at the University of the Michigan School of Information (UMSI) brings together non-profit organizations’ (NPOs) data into larger datasets for benchmarking and trend analysis. The CIO4Good is a listserv of over 300 NPO IT leaders. 
+            Since 2001 a portion of CIOs have voluntarily respond to an annual survey of their IT practices.</p>
+          <h3 class="ui header">Background Information</h3>
+          <p>Non-profit organizations do not spend the needed / required amount on overhead especially IT costs, according Ann Goggins Gregory and Don Howard; 
+          they call this the NPO Starvation Cycle where funders have unrealistic expectations, non-profits feel pressure to conform, and non-profits neglect i
+          nfrastructure and misrepresent data.</p>
+          <h3 class="ui header">Findings</h3>
+          <ol>
+            <li>IT spending in NPOs is slightly growing.</li>
+            <li>Government and education sector IT spending is similar to NPOs, nearing a 1% growth rate.</li>
+            <li>The IT gap is growing among government, education and service sectors.</li>
+          </ol>
+          <h3 class="ui header">Read the full paper <a href="https://docs.google.com/document/d/1dFlhdqrhOumFIe2R1kGiSPkHdsr7RoLq9CUqLYQGV80/edit?usp=sharing" 
+            target="_blank">here</a>.</h3>
+        </div>
+
+    </div>
 </div>
 
 <script type="text/javascript">
-   $('.tabular.menu .item').on('click', function() {
+  $('.tabular.menu .item').on('click', function() {
       $('.tabular.menu .item').removeClass('active');
       $(this).addClass('active'); 
       $('.ui.bottom.attached.tab.segment').removeClass('active');
-      // console.log(this)
-
       current_tab = $(this).attr('data-tab');
       $("[data-tab=" + current_tab + "]").addClass('active');  
     });
 </script>
+
 {% endblock %}
+
+

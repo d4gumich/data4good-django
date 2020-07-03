@@ -1,28 +1,8 @@
 {% load static %}
-<!-- <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
-    <div class="uk-navbar-left">
-        <a href="/" class="uk-navbar-item uk-logo uk-active">
-            <img class="logo" src="{% static 'website/logo.png' %}" alt="My image">
-            Data4Good
-        </a>
-    </div>
-    <div class="uk-navbar-right">
-        <ul class="uk-navbar-nav">
-            <li class="uk-active"><a href="#">Services</a></li>
-            <li><a href="/articles">Articles</a></li>
-            <li><a href="/team">Team</a></li>
-            <li><a href="/faq">FAQ</a></li>
-            <li><a href="#">Contact Us</a></li>
-        </ul>
-    </div>
-</nav> -->
 <div class="ui container">
   <div class="ui large secondary pointing menu">
-    <!-- <a class="toc item">
-      <i class="sidebar icon"></i>
-    </a> -->
     <a href="/" class="item">
-        <img class="logo" src="{% static 'website/logo.png' %}" alt="Data4Good logo">
+        <img class="logo" src="{% static 'web/logo.png' %}" alt="Data4Good logo">
     </a>
     <a href="/organization"  class="item">
         Our Organization
@@ -42,8 +22,8 @@
     </a>
     <!--TODO: Authentication, as a stretch goal-->
     <!-- <div class="right item">
-      <a class="ui button">Log in</a>
-      <a class="ui primary button">Sign Up</a>
+        <button class="ui button">
+        </button>
     </div> -->
   </div>
 </div>
