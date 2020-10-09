@@ -19,13 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0^d9%w!skz_+nky-v3p!)1*l=d83p!n6u)#6a-(k&him#*qha7'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['data4good-env.6pfevaaxjh.us-west-2.elasticbeanstalk.com',"*"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -134,20 +131,6 @@ STATICFILES_FINDERS = [
 
 # Django Sass
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
-
-AWS_STORAGE_BUCKET_NAME = 'd4gwebsite-bucket'
-AWS_S3_REGION_NAME = 'us-east-2'  # e.g. us-east-2
-#AWS_ACCESS_KEY_ID = ''
-#AWS_SECRET_ACCESS_KEY = ''
-
-# Tell django-storages the domain to use to refer to static files.
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-
-# Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
-# you run `collectstatic`).
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_DEFAULT_ACL = None
 
 
 STATICFILES_LOCATION = 'static'
