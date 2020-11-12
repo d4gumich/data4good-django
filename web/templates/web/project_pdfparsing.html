@@ -1,0 +1,135 @@
+
+{% extends "base_uikit.html" %}
+
+{% block content %}
+
+{% load static %}
+{% load sass_tags %}
+
+
+<html>
+<head>
+  <style>
+    .body-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-top: 2%;
+    }
+
+    h2 {
+      font-size: larger;
+    }
+
+    .search-bar-container {
+      display: flex;
+      width: 100%;
+      margin-left: 1%;
+      margin-right: 1%;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      padding-left: 1%;
+      padding-right: 1%;
+    }
+
+    #search-bar-label {
+      font-size: larger;
+      padding-right: 1%;
+      padding-top: 15px;
+      font-weight: bold;
+    }
+
+    #search-bar {
+      height: 50px;
+      margin-right: 1%;
+    }
+
+    #search-bar input {
+      font-size: larger;
+    }
+
+    .ui.button {
+      background-color: rgba(173, 216, 219, 1);
+    }
+
+    .ui.button:hover {
+      background-color: rgba(173, 216, 219, 0.6);
+    }
+
+    .search-results-container {
+      margin-left: 1%;
+      margin-right: 1%;      
+      /* height: 95vh; */
+      width: 100%;
+      background-color: rgba(211, 211, 211, 0.44);
+      margin-bottom: 1%;
+      padding-bottom: 1%;
+    }
+
+    #search-results-header {
+      padding: 1%;
+      background-color: lightgray;
+    }
+
+    .search-results-item {
+      background-color: white;
+      border-radius: 5px;
+      margin-bottom: 2%;
+      padding: 2%;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+
+    .search-results-item:hover {
+      background-color:rgba(255, 255, 255, 0.6);
+    }
+
+  </style>
+</head>
+<body>
+
+<div>
+    {% include 'web/_nav.html' %}
+    <div class="ui main text container">
+        <div class="body-header">
+          <h1 class="ui header">PDF Parser</h1>
+          <h2> Search a phrase below and receive a list of NGO report links in order of relevancy.</h2>
+        </div>
+        <form action = "" method="post">
+          {% csrf_token %}
+
+          <div class="ui icon input search-bar-container">
+            <label id="search-bar-label" for="search-bar">Enter a search query: </label>
+            <input name='search-query'id="search-bar" type="text" placeholder="Search PDF reports...">
+            <button id="search-submit" class="ui button">
+              <i class="search icon"></i>Search</button>
+          </div>
+        </form>
+        <div class="search-results-container">
+          <h2 id="search-results-header">Search Results</h2>
+          <div class="search-results-list">
+            {% block search_content %}
+            {% for search_result in search_results %}
+            <div class="search-results-item">
+              <p><strong>Report Title:</strong> {{search_result.title}}</p>
+              <p><strong>Summary:</strong> {{search_result.summary}}</p>
+              <p><strong>Link:</strong> <a href={{search_result.link}}>{{search_result.link}}</a></p>
+            </div>
+            {% endfor %}
+            {% endblock search_content %}            
+          </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    // $("search-submit").click(function () {
+
+    // })
+</script>
+
+{% endblock %}
+
+
