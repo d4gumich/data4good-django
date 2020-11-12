@@ -1,9 +1,18 @@
+*.pyc
+*~
+/.vscode
+__pycache__
+myvenv
+my_d4g_env
+db.sqlite3
+/static
+.DS_Store
 
 # Elastic Beanstalk Files
-# # .elasticbeanstalk/*
+.elasticbeanstalk
+.ebextensions
 # !.elasticbeanstalk/*.cfg.yml
 # !.elasticbeanstalk/*.global.yml
-
 
 __pycache__/
 z

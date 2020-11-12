@@ -12,7 +12,7 @@
 /* Semantic UI Website Styling */
 
 .pusher{
-    background-image: url("https://d4gwebsite-bucket.s3.us-east-2.amazonaws.com/static/web/landing-hero.jpg");
+    background-image: url("../../../web/static/web/landing-hero.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 !important;
