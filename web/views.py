@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.views import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import TemplateView
@@ -8,7 +9,6 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 
 from web.models import Task, Project
-# from website.forms import MakeForm
 
 # PDF Parsing
 import pandas as pd
@@ -16,7 +16,6 @@ import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy import sparse
 
-# Create your views here.
 
 #class MainView(LoginRequiredMixin, View) :
 class MainView(TemplateView) :
@@ -34,7 +33,6 @@ class ProjectsView(TemplateView) :
             template_name = "web/project_cio4good.html"
 
         return context
-
 
 # class ProjectDetailView(TemplateView) :
 #     # def get(self, request, project):
@@ -64,28 +62,35 @@ class CIO4GoodView(TemplateView) :
     def get(self, request) :
         return render(request, "web/project_cio4good.html")#, context)
 
-
-
 class PDFParsingView(TemplateView) :
     template_name = "web/projects.html"
 
-    def get(self, request) :
+    def get(self, request):
         if request.method == 'GET':
             # Debug
             print(request.GET)
+            
+            return render(request, "web/project_pdfparsing.html")
 
-            # Define argument dictionary with empty list of PDF search results
-            args= {}
-            args['search_results'] = []
+    def post(self, request, **kwargs):
+        if request.method == 'POST':
+            # Debug
+            print(request.POST)
+
+            context = {
+                'search_results': []
+            }
+            query = request.POST['search-query']
+            print(query)
             
             # Prepare dataframes
             df_pdfs = pd.read_csv('d4g_doc_final.csv')
-            df_queries = pd.read_csv('d4g_query.csv')
-            df_queries['Query']=df_queries['Query'].replace('', np.nan)
+            # df_queries = pd.read_csv('d4g_query.csv')
+            # df_queries['Query']=df_queries['Query'].replace('', np.nan)
 
             # Extract summaries from PDFs and queries from query list
             summaries = [x for x in df_pdfs.summary]
-            queries = [x for x in df_queries.Query]
+            # queries = [x for x in df_queries.Query]
 
             vectorizer = TfidfVectorizer()
             class BM25(object):
@@ -119,7 +124,7 @@ class PDFParsingView(TemplateView) :
 
             bm25 = BM25()
             bm25.fit(summaries)
-            query_sample = bm25.transform(queries[6], summaries)
+            query_sample = bm25.transform(query, summaries)
 
             weights = []
             for i in query_sample:
@@ -135,7 +140,7 @@ class PDFParsingView(TemplateView) :
             top_indexes = [x[0][0] for x in sorted_top_i]
 
             # Debug
-            print('Query: ' + str(queries[5]) + '\n')
+            print('Query: ' + query + '\n')
 
             for i in top_indexes:
                 # Create a new PDF dictionary and add it to the list of search results
@@ -144,14 +149,9 @@ class PDFParsingView(TemplateView) :
                     "summary": str(df_pdfs.summary[i])[:750] + "...", # Truncate summary after 750 characters
                     "link": str(df_pdfs.URL[i])
                 }
-                args['search_results'].append(pdf)
-            
-            return render(request, "web/project_pdfparsing.html", args)
+                context['search_results'].append(pdf)
 
-        elif request.method == 'POST':
-            print(request.POST)
-
-            return render(request, "web/project_pdfparsing.html", args)
+            return render(request, "web/project_pdfparsing.html", context)
 
 
 class DataSetsView(TemplateView) :

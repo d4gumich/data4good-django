@@ -97,9 +97,10 @@
         </div>
         <form action = "" method="post">
           {% csrf_token %}
+
           <div class="ui icon input search-bar-container">
             <label id="search-bar-label" for="search-bar">Enter a search query: </label>
-            <input id="search-bar" type="text" placeholder="Search PDF reports...">
+            <input name='search-query'id="search-bar" type="text" placeholder="Search PDF reports...">
             <button id="search-submit" class="ui button">
               <i class="search icon"></i>Search</button>
           </div>
@@ -110,7 +111,7 @@
             {% block search_content %}
             {% for search_result in search_results %}
             <div class="search-results-item">
-              <p><strong>Title:</strong> {{search_result.title}}</p>
+              <p><strong>Report Title:</strong> {{search_result.title}}</p>
               <p><strong>Summary:</strong> {{search_result.summary}}</p>
               <p><strong>Link:</strong> <a href={{search_result.link}}>{{search_result.link}}</a></p>
             </div>
