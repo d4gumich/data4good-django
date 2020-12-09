@@ -84,8 +84,8 @@ class PDFParsingView(TemplateView) :
             print(query)
             
             # Prepare dataframes
-            df_pdfs = pd.read_csv('d4g_doc_final.csv')
-            # df_queries = pd.read_csv('d4g_query.csv')
+            df_pdfs = pd.read_csv('/home/D4GUMSI/data4good-django/d4g_doc_final.csv')
+            df_queries = pd.read_csv('/home/D4GUMSI/data4good-django/d4g_query.csv')
             # df_queries['Query']=df_queries['Query'].replace('', np.nan)
 
             # Extract summaries from PDFs and queries from query list
