@@ -14,11 +14,22 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding-top: 2%;
+      padding: 2% 0%;
+    }
+
+    .body-header h2 {
+      flex-grow: 2;
+      margin-left: 10%;
     }
 
     h2 {
       font-size: larger;
+    }
+
+    img {
+        max-height: 100px;
+        width: auto;
+        padding-left: 2%;
     }
 
     .search-bar-container {
@@ -92,7 +103,7 @@
     {% include 'web/_nav.html' %}
     <div class="ui main text container">
         <div class="body-header">
-          <h1 class="ui header">PDF Parser</h1>
+            <img src="/static/Chetah_Logo.png" alt="Product logo depicting cheetah jumping through search magnifying glass hoop">
           <h2> Search a phrase below and receive a list of NGO report links in order of relevancy.</h2>
         </div>
         <form action = "" method="post">
