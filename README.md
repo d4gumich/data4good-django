@@ -23,73 +23,87 @@ _Built in US West Oregon (us-west-2)_
 
 ## Development
 
-This project is built with [Django](https://www.djangoproject.com/) on [AWS Beanstalk](https://aws.amazon.com/elasticbeanstalk/).
+This project is built with [Django](https://www.djangoproject.com/) and hosted on [Python Anywhere](https://www.pythonanywhere.com).
 
 
 ## Setup
 
 ### Django
-Activate the virtual environment
+In order to configure this project, please follow these steps:
+
+1. Clone the repository onto your local system.
 ```
-source ~/eb-virt/bin/activate
+$ git clone https://github.com/d4gumich/data4good-django.git
 ```
 
-Install the requirements from the requirements.txt
+2. Set up the virtual environment and install required packages by doing the following:
+
+* Create a new virtual environment:
 ```
-pip install -r requirements.txt
+$ virtualenv myenv
 ```
 
-Run the server and look at the localhost
+* Activate the virtual environment
+```
+$ source myenv/bin/activate
+```
+
+* Change directories into the data4good-django directory. Verify that there are no modules installed by pip (freeze), and then do a pip install from requirements.txt. You should see the following list of modules (as of 11/17/2020):
+```
+(myenv) $ pip freeze
+(myenv) $ pip install -r requirements.txt
+(myenv) $ pip freeze
+
+certifi==2019.11.28
+chardet==3.0.4
+codecov==2.0.15
+coverage==5.0.3
+Django==2.1.1
+django-appconf==1.0.4
+django-compressor==2.4
+django-sass-processor==0.7.4
+django-storages==1.9.1
+django2-semantic-ui==1.2.2
+docutils==0.15.2
+idna==2.8
+jmespath==0.10.0
+joblib==0.17.0
+libsass==0.19.4
+numpy==1.19.4
+pandas==1.1.4
+python-dateutil==2.8.1
+python-dotenv==0.14.0
+pytz==2019.3
+rcssmin==1.0.6
+requests==2.23.0
+rjsmin==1.1.0
+s3transfer==0.3.3
+scikit-learn==0.23.2
+scipy==1.5.4
+six==1.13.0
+sqlparse==0.3.1
+threadpoolctl==2.1.0
+```
+
+3. Start running the server and navigate to http://127.0.0.1:8000/ in your browser:
 ```
 python manage.py runserver
 ```
 
-### AWS + Beanstalk
 
-- Get Django working on AWS by [installing the Elastic beanstalk CLI](https://github.com/aws/aws-elastic-beanstalk-cli-setup).
-- Run `eb init` inside a directory
+## Deploy on PythonAnywhere
+(Coming soon.)
 
-Then to get eb in your system path
-```
- echo 'export PATH="/Users/[YOUR-USERNAME]/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile && source ~/.bash_profile
-```
-
-## Deploy on AWS + Beanstalk
-find the domain name of your new environment by running 
- 
-```
-eb status
-```
-
-Activate the virtual environment
-```
-source ~/eb-virt/bin/activate
-```
-
-Commit your files to git before you deploy them to AWS
-```
-git commit .
-```
-
-Deploy
-``` 
-eb deploy data4good-env
-```
-
-Open the project on the web!
-``` 
-eb open data4good-env
-```
 
 ## Run Locally
 Just activate your virtual environment and run
 
 ```
-source ~/eb-virt/bin/activate
+$ source myenv/bin/activate
 ```
 
 ```
-python manage.py runserver
+$ python manage.py runserver
 ```
 
 ## Versioning
