@@ -13,6 +13,7 @@ from web.models import Task, Project
 # PDF Parsing
 import pandas as pd
 import numpy as np
+import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy import sparse
 
@@ -78,14 +79,19 @@ class PDFParsingView(TemplateView) :
             print(request.POST)
 
             context = {
-                'search_results': []
+                'search_query': "",
+                'search_results': [],
             }
             query = request.POST['search-query']
-            print(query)
+            context['search_query'] = query
             
-            # Prepare dataframes
-            df_pdfs = pd.read_csv('/home/D4GUMSI/data4good-django/d4g_doc_final.csv')
-            df_queries = pd.read_csv('/home/D4GUMSI/data4good-django/d4g_query.csv')
+            # Prepare dataframe
+            #Uncomment in test, comment in prod
+            df_pdfs = pd.read_csv('final_with_cluster.csv')
+            # df_queries = pd.read_csv('d4g_query.csv')
+            #Uncomment in prod, comment in test
+            # df_pdfs = pd.read_csv('/home/D4GUMSI/data4good-django/d4g_doc_final.csv')
+            # df_queries = pd.read_csv('/home/D4GUMSI/data4good-django/d4g_query.csv')
             # df_queries['Query']=df_queries['Query'].replace('', np.nan)
 
             # Extract summaries from PDFs and queries from query list
@@ -143,13 +149,20 @@ class PDFParsingView(TemplateView) :
             print('Query: ' + query + '\n')
 
             for i in top_indexes:
+                # Process the clusters associated with the PDF
+                clusters_list = []
+
                 # Create a new PDF dictionary and add it to the list of search results
                 pdf = {
                     "title": str(df_pdfs.Title[i]),
-                    "summary": str(df_pdfs.summary[i])[:750] + "...", # Truncate summary after 750 characters
-                    "link": str(df_pdfs.URL[i])
+                    "date": df_pdfs.Date[i],
+                    "link": str(df_pdfs.URL[i]),
+                    "cluster": str(df_pdfs.cluster[i]),
+                    "summary_short": str(df_pdfs.summary[i])[:450] + "...", # Truncate summary after 450 characters
+                    "summary_full": str(df_pdfs.summary[i]),
                 }
-                context['search_results'].append(pdf)
+                context['search_results'].append(pdf)       
+            # print(context)         
 
             return render(request, "web/project_pdfparsing.html", context)
 
