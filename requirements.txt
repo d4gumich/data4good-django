@@ -17,7 +17,7 @@ numpy==1.19.4
 pandas==1.1.4
 python-dateutil==2.8.1
 python-dotenv==0.14.0
-pytz==2019.3
+pytz==2020.5
 rcssmin==1.0.6
 requests==2.23.0
 rjsmin==1.1.0
