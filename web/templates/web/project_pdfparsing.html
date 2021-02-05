@@ -76,21 +76,36 @@
       padding-bottom: 2%;
     }
 
+    .ui.form {
+      font-size: large;
+    }
+
     .search-filters-container {
-      margin: 2% 5%;
+      margin: 0% 5% 2% 5%;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
     }
 
+    .search-results-header-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .search-results-order-container {
+      margin-right: 5%;
+    }
+
     #search-filters-header {
       margin-left: 5%;
+      flex-grow: 2;
+      font-size: large;
+      font-weight: bold;
     }
 
     .search-results-container {
       margin-left: 1%;
       margin-right: 1%;      
-      /* height: 95vh; */
       width: 100%;
       background-color: rgba(211, 211, 211, 0.44);
       margin-bottom: 1%;
@@ -124,7 +139,7 @@
       <div class="ui main text container">
           <div class="body-header">
               <img src="/static/Chetah_Logo.png" alt="Product logo depicting cheetah jumping through search magnifying glass hoop">
-            <h2> Search a phrase below and receive a list of NGO report links in order of relevancy.</h2>
+            <h2> Search a phrase below and receive a list of UN and NGO report links in order of relevancy.</h2>
           </div>
           <form action = "" method="post">
             {% csrf_token %}
@@ -142,7 +157,29 @@
           </form>
           <div class="search-results-container">
             <h2 id="search-results-header">Search Results</h2>
-            <h3 id="search-filters-header">Filters</h3>
+            <header class="search-results-header-container">
+              <p id="search-filters-header">Please use the filters for specific UN clusters:</p>
+                <div id="orderResultsForm" class="ui form search-results-order-container">
+                  <form action = "" method="get">
+                    {% csrf_token %}
+                    <div class="inline fields">
+                      <label for="results">Order By:</label>
+                      <div class="field">
+                        <div class="ui radio checkbox">
+                          <input id="relevancy_radio" type="radio" name="results" checked="" tabindex="0" class="hidden">
+                          <label>Relevancy</label>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <div class="ui radio checkbox">
+                          <input id="date_radio" type="radio" name="results" tabindex="0" class="hidden">
+                          <label>Date</label>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </header>
             <div class="search-filters-container">
               <select id="clusters-filter" name="clusters" multiple="" class="ui fluid dropdown">
                 <option value="">Clusters</option>
@@ -195,6 +232,9 @@
 
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
+
+    $('.ui.radio.checkbox').checkbox();
+
     $('#clear-btn').on('click', function() {
       $('.ui.dropdown').dropdown('clear');
       let num_results = $('.search-results-list').children().length;
@@ -208,22 +248,48 @@
       const filters = $(this).val();
       const results = JSON.parse(document.getElementById('search_results_json').textContent);
       let filtered_results_indices = [];
-      // console.log(filters);
 
       for (i = 0; i < results.length; i++) {
         let cluster_list = results[i].cluster.split(',').map(item => item.trim());
         let in_common = cluster_list.some(cluster => filters.includes(cluster));
-        // console.log({cluster_list});
-        // console.log({in_common})
         if (in_common === false) {
-          // console.log("Title:", results[i].title);
           filtered_results_indices.push(i);
-          // console.log($('.search-results-list').children().eq(i+1))
           $('.search-results-list').children().eq(i+1).css("display","none");
         } else {
           $('.search-results-list').children().eq(i+1).css("display","block");
         }
       }
+    });
+
+    $('#orderResultsForm input').on('change',function() {
+      const order_selection = $('input[name=results]:checked', '#orderResultsForm');
+      //Have a JSON results object
+      const results = JSON.parse(document.getElementById('search_results_json').textContent);
+      console.log(order_selection[0].i);
+      var sorted_results = [];
+
+      if (order_selection[0].id=== "date_radio") {
+         sorted_results = results.sort(
+        function (report1, report2) {
+          let report1_date = new Date (report1.date);
+          let report2_date = new Date (report2.date);
+          console.log(report1_date);
+          console.log(report2_date);
+          if (report2_date - report1_date > 0) {
+            return 1;
+          } else if (report2_date - report1_date < 0) {
+            return -1;
+          };
+
+          return 0;
+        });
+        console.log(sorted_results)
+      } else {
+        sorted_results = results;
+      }
+
+      console.log(results)
+      console.log(sorted_results)
     });
 
     function toggleModal (target) {

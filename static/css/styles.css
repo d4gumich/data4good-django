@@ -22,7 +22,7 @@
 /* Semantic UI Website Styling */
 
 .pusher{
-    background-image: url("../../../web/static/web/landing-hero.jpg");
+    background-image: url("../images/landing-hero.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 !important;
@@ -93,10 +93,10 @@ p,a{
 /* Landing Page */
 .tool-cards {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
-#visualization-card {
+#project-card {
     background-color: #e2f2c7;
     padding: 1%;
     margin: 4%;

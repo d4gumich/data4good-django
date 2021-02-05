@@ -5,7 +5,42 @@
 
 {% load static %}
 {% load sass_tags %}
+<head>
+  <style>
+    .projects-container {
+      padding-top: 2%;
+    }
 
+    .ui.card {
+      width: 70vw !important;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .body-content {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .image {
+      /* max-height: 400px !important;
+      min-height: 400px !important; */
+    }
+
+    .pusher{
+    background-image: url("/static/images/landing-hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 !important;
+    padding-bottom: 15%;
+}
+
+  </style>
+</head>
+<body>
   <div class="pusher">
     {% include 'web/_nav.html' %}
     <div class="ui container header hero">
@@ -18,35 +53,257 @@
     </div>
   </div>
 
-  <div class="ui vertical container">
+  <div class="ui vertical container" id="projects">
       <div class="ui vertical stripe segment">
-        <h3 class="ui header horizontal divider">Featured Tools</h3>
-        <div class="tool-cards">
-          <a href="{% url 'web:cio4good'%}" class="item" >
-            <div class="ui card" id="visualization-card">
-              <div class="content">
-                <!-- <img class="visualization_thumb" width="100%" src="{% static 'website/visualization_tool_thumb.png' %}" alt="Thumbnail of CIO4Good visualization"> -->
-                <h2>CIO4Good Visualizations</h2>
-              </div>
+        <h2 class="ui header horizontal divider">Projects</h2>
+        <div class="ui divided items projects-container">
+          <div class="item">
+            <div class="image">
+              <img src="https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png">
             </div>
-          </a>
-          <a href="{% url 'web:pdfparsing'%}" class="item" >
-            <div class="ui card" id="visualization-card">
-              <div class="content">
-                <h2>PDF Parser</h2>
-                <br>
+            <div class="content">
+              <a class="header" href="{% url 'web:cio4good'%}">Trends in the IT Sector of Non-Profit Organizations</a>
+              <div class="meta">
+                <!-- <span class="cinema">Union Square 14</span> -->
               </div>
-            </div>
-          </a>
-          <!-- <div class="ui card">
-              <div class="content">
-                <div class="ui placeholder">
-                  <div class="square image"></div>
+              <div class="description">
+                <p>What do NPO IT leaders say about IT investment over the past 17 years? Visualize CIO4Good survey trends.</p>
+             
+                <div class="extra">
+                  <a href="{% url 'web:cio4good'%}">
+                    <div class="ui right floated primary button">
+                      Explore
+                      <i class="right chevron icon"></i>
+                    </div>
+                  </a>
                 </div>
-                <h4>CIO4Good Benchmarking</h4>
               </div>
+              </div>
+          </div>
+          <div class="item">
+            <div class="image">
+              <img src="https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png">
+            </div>
+            <div class="content">
+              <a class="header" href="{% url 'web:pdfparsing'%}">Chetah Search Engine</a>
+              <div class="meta">
+              </div>
+              <div class="description">
+                <p>Search and parse UN and NGO PDF reports powered by deep-learing-based text summarization.</p>
+                <div class="extra">
+                  <a href="{% url 'web:pdfparsing'%}">
+                    <div class="ui right floated primary button">
+                      Search
+                      <i class="right chevron icon"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="image">
+              <img src="https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png">
+            </div>
+            <div class="content">
+              <a class="header" href="https://drive.google.com/file/d/17sz0ih_1RQ91IcyMTRn3Tmb4LUgw65wt/view">Think Paper on Digital Identification</a>
+              <div class="meta">
+              </div>
+              <div class="description">
+                <p>Digital identification and biometric data have become increasingly popular in the private sector and have slowly been introduced and piloted in governmental and non-governmental organizations in the emerging world.</p>
+                <p>The IFRC S2030 Think Piece on Digital Identification summarizes research into how biometric data, digital identification, and blockchain technology have and will take part in the lives of vulnerable populations in refugee camps.</p>              </div>
+                <div class="extra">
+                  <a href="https://drive.google.com/file/d/17sz0ih_1RQ91IcyMTRn3Tmb4LUgw65wt/view">
+                    <div class="ui right floated primary button">
+                      View
+                      <i class="right chevron icon"></i>
+                    </div>
+                  </a>
+                </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="image">
+              <img src="https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png">
+            </div>
+            <div class="content">
+              <a class="header" href="https://drive.google.com/file/d/1k5KTfw5x5wjicFecdyaE0qWkXwsbbNgY/view">Refugee Demographic & Connectitivity Trends in Greece and Serbia</a>
+              <div class="meta">
+              </div>
+              <div class="description">
+                <p>What can we learn about refugees' access to the internet and mobile device ownership from a high level perspective?</p>
+              </div>
+                <div class="extra">
+                  <a href="https://drive.google.com/file/d/1k5KTfw5x5wjicFecdyaE0qWkXwsbbNgY/view">
+                    <div class="ui right floated primary button">
+                      View
+                      <i class="right chevron icon"></i>
+                    </div>
+                  </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- <div class="tool-cards">
+          <div class="ui cards">
+              <div class="ui card">
+                  <div class="content">
+                    <div class="header">
+                      <a href="{% url 'web:cio4good'%}">Trends in the IT Sector of Non-Profit Organizations</a>
+                    </div>
+                  </div>
+                  <div class="content body-content">
+                    <div class="description">
+                      <p>What do NPO IT leaders say about IT investment over the past 17 years? Visualize CIO4Good survey trends.</p>
+                    </div>
+                    <img class="right floated ui image" src='https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png'>
+                  </div>
+              </div>
+              <div class="ui card">
+                <div class="content">
+                  <div class="header">
+                    <a href={{project.url_path}}>{{project.name}}</a>
+                  </div>
+                </div>
+                <div class="content body-content">
+                  <div class="description">
+                    {{project.description}}
+                  </div>
+                  <img class="right floated ui image" src={{project.image}}>
+                </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <div class="header">
+                  <a href={{project.url_path}}>{{project.name}}</a>
+                </div>
+              </div>
+              <div class="content body-content">
+                <div class="description">
+                  {{project.description}}
+                </div>
+                <img class="right floated ui image" src={{project.image}}>
+              </div>
+          </div>
+          <div class="ui card">
+            <div class="content">
+              <div class="header">
+                <a href={{project.url_path}}>{{project.name}}</a>
+              </div>
+            </div>
+            <div class="content body-content">
+              <div class="description">
+                {{project.description}}
+              </div>
+              <img class="right floated ui image" src={{project.image}}>
+            </div>
+        </div>
           </div> -->
+        <!-- </div> -->
+      </div>
+    </div>
+
+    <div class="ui vertical container" id="about">
+      <div class="ui vertical stripe segment">
+        <h2 class="ui header horizontal divider">About</h2>
+      <div class="ui vertical container">
+            <h3 class="ui header">Data4Good's Mission</h3>
+            <p>The UMSI Data4Good center brings together non-profit organizations' 
+              data into larger datasets for benchmarking and trend analysis. 
+              Putting data in the hands of nonprofits contributes to the body of knowledge 
+              about a broad scope of development and relief programs, which in turn will lead 
+              to better decision-making in nonprofit work.</p>
+            <h3 class="ui header">Data4Good's Values</h3>
+            <p>The Data4Good center values transparency and equal access to information and data analysis 
+              that has the potential to impact lives through nonprofit organizations.</p>
+            <h3 class="ui header">Data4Good's Team</h3>
+            <div class="ui five cards">
+                <div class="ui card">
+                  <div class="content">
+                    <!-- <img src="{% static 'web/team/Ed-Headshot.jpg' %}" alt="Headshot of Ed Happ" width=100%> -->
+                    <h3><a href="https://www.linkedin.com/in/edward-g-happ/">Ed Happ</a></h3>
+                    <h4>Executive Fellow</h4>
+                    <p>Edward G. Happ is an Executive Fellow at the University of Michigan School of Information, where he is teaching and conducting research.
+                      His 40 years of professional experience include all facets of managing information services and high technology businesses, 
+                      including general management with P&L responsibility, operations, product management, sales, marketing, customer service, 
+                      human resources management, technical consulting, manufacturing, and both software and hardware development.</p>
+                  </div>
+                </div>
+                <div class="ui card">
+                  <div class="content">
+                    <!-- <img src="{% static 'web/team/HoJoon-Headshot.jpg' %}" alt="Headshot of HoJoon Kim" width=100%> -->
+                    <h3><a href="https://www.linkedin.com/in/hojoon-kim-88ba17aa/">HoJoon Kim</a></h3>
+                    <h4>Project Manager & Data Scientist</h4>
+                  </div>
+                </div>
+                <div class="ui card">
+                  <div class="content">
+                    <!-- <img src="{% static 'web/team/Mariah-Headshot.jpg' %}" alt="Headshot of Mariah Jacobs" width=100%> -->
+                    <h3><a href="https://www.linkedin.com/in/mariah-jacobs/">Mariah Jacobs</a></h3>
+                    <h4>Web Developer</h4>
+                  </div>
+                </div>
+                <div class="ui card">
+                  <div class="content">
+                    <h3><a href="https://www.linkedin.com/in/shivika-k-bisen/">Shivika Bisen</a></h3>
+                    <h4>Data Scientist</h4>
+                  </div>
+                </div>
+                <div class="ui card">
+                  <div class="content">
+                    <h3><a href="https://www.linkedin.com/in/gordon-nenadovic-4281b61a3/">Gordon Nenadovic</a></h3>
+                    <h4>UX Designer & Game Designer</h4>
+                  </div>
+                </div>
+              </div>
         </div>
       </div>
     </div>
+
+    <div class="ui vertical container" id="faq">
+      <div class="ui vertical stripe segment">
+        <h2 class="ui header horizontal divider">FAQ</h2>
+        <div class="ui items faq">
+            <div class="item">
+              <div class="content">
+                <a class="header">What is Data4Good?</a>
+                <div class="meta">
+                  <span>UMSI Data4Good center brings together non-profit organizations' data into larger datasets for benchmarking and trend analysis.</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+                <div class="content">
+                  <a class="header">What projects is Data4Good working on?</a>
+                  <div class="meta">
+                    <span>Find our most recent work on the Projects page, and click on each project listed for more details.</span>
+                  </div>
+                </div>
+              </div>
+            <div class="item">
+              <div class="content">
+                <a class="header">How do I get in touch with Data4Good?</a>
+                <div class="meta">
+                  <span>Reach us at:
+                    <br><br>
+                    ehapp@umich.edu
+                    <br><br>
+                    Data4Good Center
+                    <br>
+                    School of Information
+                    <br>
+                    4322 North Quad
+                    <br>
+                    105 S. State Street
+                    <br>
+                    Ann Arbor, MI 48109-1285 </span>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+    </div>
+    </body>
 {% endblock %}
