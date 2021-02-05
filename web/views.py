@@ -21,19 +21,58 @@ from scipy import sparse
 #class MainView(LoginRequiredMixin, View) :
 class MainView(TemplateView) :
     def get(self, request):
-        return render(request, 'web/home.html')#, ctx)
+        return render(request, 'web/home.html')
 
 class ProjectsView(TemplateView) :
     template_name = "web/projects.html"
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['project_list'] = Project.objects.all();
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['project_list'] = Project.objects.all();
+    #     if context['project_list'] and context['project_list'] == 'cio4good' :
+    #         template_name = "web/project_cio4good.html"
 
-        if context['project_list'] and context['project_list'] == 'cio4good' :
-            template_name = "web/project_cio4good.html"
+    #     return context
+    def get(self, request):
+        project_list = []
 
-        return context
+        cio4good_project = {
+            "name": 'Trends in the IT Sector of Non-Profit Organizations',
+            "description": 'What do NPO IT leaders say about IT investment over the past 17 years? Visualize CIO4Good survey trends.',
+            "image": 'https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png',
+            "url_path": "{% url 'web:cio4good'%}"
+        }
+        pdfparsing_project = {
+            "name": 'Chetah: PDF Parsing',
+            "description": 'Description',
+            "image": 'https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png',
+            "url_path": ''
+        }
+        refugee_project = {
+            "name": 'Think Paper on Digital Identification',
+            "description": 'Digital identification and biometric data have become increasingly popular in the private sector and have slowly been introduced and piloted in governmental and non-governmental organizations in the emerging world.',
+            "image": 'https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png',
+            "url_path": ''
+        }
+        digitalidenfication_project = {
+            "name": 'Refugee Demographic & Connectitivity Trends in Greece and Serbia',
+            "description": 'What can we learn about refugees\' access to the internet and mobile device ownership from a high level perspective?',
+            "image": 'https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png',
+            "url_path": ''
+        }
+
+        project_list.append(cio4good_project) 
+        project_list.append(pdfparsing_project) 
+        project_list.append(refugee_project) 
+        project_list.append(digitalidenfication_project) 
+
+        # print("project_list", project_list) 
+
+        context = {
+            'project_list': project_list
+        }  
+
+        return render(request, 'web/projects.html', context)
 
 # class ProjectDetailView(TemplateView) :
 #     # def get(self, request, project):
@@ -63,6 +102,14 @@ class CIO4GoodView(TemplateView) :
     def get(self, request) :
         return render(request, "web/project_cio4good.html")#, context)
 
+class DigitalIdentificationView(TemplateView) :
+    def get(self, request) :
+        return render(request, "web/project_digitalidentification.html")#, context)
+
+class RefugeesView(TemplateView) :
+    def get(self, request) :
+        return render(request, "web/project_refugees.html")#, context)
+
 class PDFParsingView(TemplateView) :
     template_name = "web/projects.html"
 
@@ -87,13 +134,10 @@ class PDFParsingView(TemplateView) :
             
             # Prepare dataframe
             #Uncomment in test, comment in prod
-            df_pdfs = pd.read_csv('final_with_cluster.csv')
-            # df_queries = pd.read_csv('d4g_query.csv')
+            # df_pdfs = pd.read_csv('final_with_cluster.csv')
             #Uncomment in prod, comment in test
-            # df_pdfs = pd.read_csv('/home/D4GUMSI/data4good-django/d4g_doc_final.csv')
-            # df_queries = pd.read_csv('/home/D4GUMSI/data4good-django/d4g_query.csv')
-            # df_queries['Query']=df_queries['Query'].replace('', np.nan)
-
+            df_pdfs = pd.read_csv('/home/D4GUMSI/data4good-django/final_with_cluster.csv')
+            
             # Extract summaries from PDFs and queries from query list
             summaries = [x for x in df_pdfs.summary]
             # queries = [x for x in df_queries.Query]
@@ -173,10 +217,9 @@ class DataSetsView(TemplateView) :
 
 class ContributeView(TemplateView) :
     template_name = "web/contribute.html"
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['task_list'] = Task.objects.all();
+        context['task_list'] = Task.objects.all()
         return context
 
 class OrganizationView(TemplateView) :
