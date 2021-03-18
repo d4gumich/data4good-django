@@ -1,0 +1,341 @@
+
+{% extends "base_uikit.html" %}
+
+{% block content %}
+
+{% load static %}
+{% load sass_tags %}
+
+
+<html>
+<head>
+  <title>Chetah</title>
+  <style>
+    .body-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 2% 0%;
+    }
+
+    .body-header h2 {
+      flex-grow: 2;
+      margin-left: 10%;
+    }
+
+    h2 {
+      font-size: larger;
+    }
+
+    img {
+        max-height: 100px;
+        width: auto;
+        padding-left: 2%;
+    }
+
+    .details-container {
+      padding-left: 2%;
+      padding-bottom: 2%;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 2%;
+    }
+
+    #about {
+      display: none;
+    }
+
+    .search-bar-container {
+      display: flex;
+      width: 100%;
+      margin-left: 1%;
+      margin-right: 1%;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      padding-left: 1%;
+      padding-right: 1%;
+    }
+
+    #search-bar-label {
+      font-size: larger;
+      padding-right: 1%;
+      padding-top: 15px;
+      font-weight: bold;
+    }
+
+    #search-bar {
+      height: 50px;
+      margin-right: 1%;
+    }
+
+    #search-bar input {
+      font-size: larger;
+    }
+
+    .ui.button {
+      background-color: rgba(173, 216, 219, 1);
+    }
+
+    .ui.secondary.button {
+      margin: 0%;
+      padding: 5px 5px 5px 10px;
+    }
+
+    .ui.button:hover {
+      background-color: rgba(173, 216, 219, 0.6);
+    }
+
+    .ui.modal {
+      padding-bottom: 2%;
+    }
+
+    .ui.form {
+      font-size: large;
+    }
+
+    .search-filters-container {
+      margin: 0% 5% 2% 5%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    .search-results-header-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .search-results-order-container {
+      margin-right: 5%;
+    }
+
+    #search-filters-header {
+      margin-left: 5%;
+      flex-grow: 2;
+      font-size: large;
+      font-weight: bold;
+    }
+
+    .search-results-container {
+      margin-left: 1%;
+      margin-right: 1%;      
+      width: 100%;
+      background-color: rgba(211, 211, 211, 0.44);
+      margin-bottom: 1%;
+      padding-bottom: 1%;
+    }
+
+    #search-results-header {
+      padding: 1%;
+      background-color: lightgray;
+    }
+
+    .search-results-item {
+      background-color: white;
+      border-radius: 5px;
+      margin-bottom: 2%;
+      padding: 2%;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+
+    .search-results-item:hover {
+      background-color:rgba(255, 255, 255, 0.6);
+    }
+
+  </style>
+  <title>Chetah</title>
+</head>
+<body>
+  <div>
+      {% include 'web/_nav.html' %}
+      <div class="ui main text container">
+          <div class="body-header">
+              <img src="/static/Chetah_Logo.png" alt="Product logo depicting cheetah jumping through search magnifying glass hoop">
+            <h2> Search a phrase below and receive a list of UN and NGO report links in order of relevancy.</h2>
+          </div>
+          <div class="details-container">
+            <section class="button-group">
+              <button id="about-btn" class="ui button grey">About Chetah</button>
+              <a href="https://drive.google.com/file/d/13Jij3MG6P_P5OGGMLNIbGdgpCUaDVGce/view?usp=sharing" target="_blank"><button id="research-btn" class="ui button grey">View Research</button></a>
+              <a href="https://forms.gle/YHT9biBSnzCHePUB8" target="_blank"><button id="feedback-btn" class="ui button grey">Provide Feedback</button></a>
+            </section>
+            <section id="about">
+              <h3>About</h3>
+              <p>Chetah is a search engine for UN and NGOs reports and it summarizes reports with the state of the art deep learning algorithm, BERT. Users can search by applying filters of UN Clusters. This phase 1 product has reports from IFRC, IWA and UNICEF. It retrieves evidence-based program reports and annual reports. The results have been proven better than the Google and Bing for Non-profit sector, with an F1-score of 0.78. It is developed to help NGO program managers and policy makers to design programs and grant funds. This tool aims to provide better answers for nonprofit work and eventually to help solve the crucial real problems that NGO and UN are facing.</p>
+            </section>
+          </div>
+          <form action = "" method="post">
+            {% csrf_token %}
+
+            <div class="ui icon input search-bar-container">
+              <label id="search-bar-label" for="search-bar">Enter a search query: </label>
+              {% if search_query %}
+              <input name='search-query'id="search-bar" type="text" value="{{search_query}}">
+              {% else %}
+              <input name='search-query'id="search-bar" type="text" placeholder="Search PDF reports...">
+              {% endif %}
+              <button id="search-submit" class="ui button">
+                <i class="search icon"></i>Search</button>
+            </div>
+          </form>
+          <div class="search-results-container">
+            <h2 id="search-results-header">Search Results</h2>
+            <header class="search-results-header-container">
+              <p id="search-filters-header">Please use the filters for specific UN clusters:</p>
+                <div id="orderResultsForm" class="ui form search-results-order-container">
+                  <form action = "" method="get">
+                    {% csrf_token %}
+                    <!-- <div class="inline fields">
+                      <label for="results">Order By:</label>
+                      <div class="field">
+                        <div class="ui radio checkbox">
+                          <input id="relevancy_radio" type="radio" name="results" checked="" tabindex="0" class="hidden">
+                          <label>Relevancy</label>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <div class="ui radio checkbox">
+                          <input id="date_radio" type="radio" name="results" tabindex="0" class="hidden">
+                          <label>Date</label>
+                        </div>
+                      </div>
+                    </div> -->
+                  </form>
+                </div>
+            </header>
+            <div class="search-filters-container">
+              <select id="clusters-filter" name="clusters" multiple="" class="ui fluid dropdown">
+                <option value="">Clusters</option>
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
+                <option value="Nutrition">Nutrition</option>
+                <option value="Protection">Protection</option>
+                <option value="Shelter">Shelter</option>
+                <option value="WASH">Water, Sanitation, & Hygiene</option>
+                <option value="Camp Coordination">Camp Coordination & Management</option>
+                <option value="Early Recovery">Early Recovery</option>
+                <option value="Emergency Telecom">Emergency Telecom</option>
+                <option value="Food Security">Food Security</option>
+                <option value="Humanitarian & Emergency Relief">Humanitarian & Emergency Relief</option>
+                <option value="Logistics">Logistics</option>
+              </select>
+              <button id="clear-btn" class="ui button grey">Reset</button>
+            </div>
+            <div class="search-results-list">
+              {{ search_results |json_script:'search_results_json' }}
+              {% block search_content %}
+              {% for search_result in search_results %}
+              <div class="search-results-item">
+                <p><strong>Report Title:</strong> {{search_result.title}}</p>
+                <p><strong>Date Published:</strong> {{search_result.date}}</p>
+                <p><strong>Link:</strong> <a href={{search_result.link}}>{{search_result.link}}</a></p>
+                <p><strong>Cluster(s):</strong> {{search_result.cluster}} </p>
+                <p><strong>Summary:</strong> {{search_result.summary_short}} 
+                  <button class="ui secondary button" data="{{search_result.summary_full}}" onclick="toggleModal(this);">
+                  <i class="plus icon"></i>More</button>
+                </p>
+              </div>
+              {% endfor %}
+              {% endblock search_content %}            
+            </div>
+          </div>
+      </div>
+  </div>
+  <div class="ui longer modal">
+    <div class="header">Full Summary</div>
+    <div class="scrolling content">
+      <p class="summary-content"></p>
+    </div>
+    <div class="actions">
+      <div class="ui ok button grey">Close</div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    $('.ui.dropdown').dropdown();
+
+    $('.ui.radio.checkbox').checkbox();
+
+    $('#about-btn').on('click', function() {
+      let display_state = $('#about').css('display');
+      console.log(display_state);
+      if (display_state === "none"){
+        $('#about').css('display', 'inline');
+      } else {
+        $('#about').css('display', 'none');
+      }
+    });
+
+    $('#clear-btn').on('click', function() {
+      $('.ui.dropdown').dropdown('clear');
+      let num_results = $('.search-results-list').children().length;
+      for (i = 0; i < num_results; i++) {
+        //Make all results visible again
+        $('.search-results-list').children().eq(i+1).css("display","block");
+      }
+    });
+
+    $('#clusters-filter').on('change',function() {
+      const filters = $(this).val();
+      const results = JSON.parse(document.getElementById('search_results_json').textContent);
+      let filtered_results_indices = [];
+
+      for (i = 0; i < results.length; i++) {
+        let cluster_list = results[i].cluster.split(',').map(item => item.trim());
+        let in_common = cluster_list.some(cluster => filters.includes(cluster));
+        if (in_common === false) {
+          filtered_results_indices.push(i);
+          $('.search-results-list').children().eq(i+1).css("display","none");
+        } else {
+          $('.search-results-list').children().eq(i+1).css("display","block");
+        }
+      }
+    });
+
+    $('#orderResultsForm input').on('change',function() {
+      const order_selection = $('input[name=results]:checked', '#orderResultsForm');
+      //Have a JSON results object
+      const results = JSON.parse(document.getElementById('search_results_json').textContent);
+      console.log(order_selection[0].i);
+      var sorted_results = [];
+
+      if (order_selection[0].id=== "date_radio") {
+         sorted_results = results.sort(
+        function (report1, report2) {
+          let report1_date = new Date (report1.date);
+          let report2_date = new Date (report2.date);
+          console.log(report1_date);
+          console.log(report2_date);
+          if (report2_date - report1_date > 0) {
+            return 1;
+          } else if (report2_date - report1_date < 0) {
+            return -1;
+          };
+
+          return 0;
+        });
+        console.log(sorted_results)
+      } else {
+        sorted_results = results;
+      }
+
+      console.log(results)
+      console.log(sorted_results)
+    });
+
+    function toggleModal (target) {
+      let summary = $(target).attr("data");
+      $(".summary-content").text(summary);
+      $('.ui.longer.modal').modal('show');
+    }
+</script>
+
+{% endblock %}
+
+
