@@ -32,6 +32,21 @@
         padding-left: 2%;
     }
 
+    .details-container {
+      padding-left: 2%;
+      padding-bottom: 2%;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 2%;
+    }
+
+    #about {
+      display: none;
+    }
+
     .search-bar-container {
       display: flex;
       width: 100%;
@@ -141,6 +156,17 @@
               <img src="/static/Chetah_Logo.png" alt="Product logo depicting cheetah jumping through search magnifying glass hoop">
             <h2> Search a phrase below and receive a list of UN and NGO report links in order of relevancy.</h2>
           </div>
+          <div class="details-container">
+            <section class="button-group">
+              <button id="about-btn" class="ui button grey">About Chetah</button>
+              <a href="https://drive.google.com/file/d/13Jij3MG6P_P5OGGMLNIbGdgpCUaDVGce/view?usp=sharing" target="_blank"><button id="research-btn" class="ui button grey">View Research</button></a>
+              <a href="https://forms.gle/YHT9biBSnzCHePUB8" target="_blank"><button id="feedback-btn" class="ui button grey">Provide Feedback</button></a>
+            </section>
+            <section id="about">
+              <h3>About</h3>
+              <p>Chetah is a search engine for UN and NGOs reports and it summarizes reports with the state of the art deep learning algorithm, BERT. Users can search by applying filters of UN Clusters. This phase 1 product has reports from IFRC, IWA and UNICEF. It retrieves evidence-based program reports and annual reports. The results have been proven better than the Google and Bing for Non-profit sector, with an F1-score of 0.78. It is developed to help NGO program managers and policy makers to design programs and grant funds. This tool aims to provide better answers for nonprofit work and eventually to help solve the crucial real problems that NGO and UN are facing.</p>
+            </section>
+          </div>
           <form action = "" method="post">
             {% csrf_token %}
 
@@ -234,6 +260,16 @@
     $('.ui.dropdown').dropdown();
 
     $('.ui.radio.checkbox').checkbox();
+
+    $('#about-btn').on('click', function() {
+      let display_state = $('#about').css('display');
+      console.log(display_state);
+      if (display_state === "none"){
+        $('#about').css('display', 'inline');
+      } else {
+        $('#about').css('display', 'none');
+      }
+    });
 
     $('#clear-btn').on('click', function() {
       $('.ui.dropdown').dropdown('clear');
