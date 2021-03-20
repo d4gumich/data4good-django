@@ -5,8 +5,11 @@
 
 {% load static %}
 {% load sass_tags %}
-<script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script>
-
+<head>
+  <title>CIO4Good</title>
+  <script type='text/javascript' src='https://tableau.dsc.umich.edu/javascripts/api/viz_v1.js'></script>
+</head>
+<body>
 <div>
     {% include 'web/_nav.html' %}
     <div class="ui main text container">
@@ -81,7 +84,7 @@
       $("[data-tab=" + current_tab + "]").addClass('active');  
     });
 </script>
-
+</body>
 {% endblock %}
 
 
