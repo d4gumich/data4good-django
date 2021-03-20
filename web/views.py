@@ -162,7 +162,7 @@ class ChetahView(TemplateView) :
                 context['search_results'].append(pdf)       
             # print(context)         
 
-            return render(request, "web/project_pdfparsing.html", context)
+            return render(request, "web/project_chetah.html", context)
 
 
 # class DataSetsView(TemplateView) :
