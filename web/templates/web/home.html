@@ -6,13 +6,14 @@
 {% load static %}
 {% load sass_tags %}
 <head>
+  <title>Data4Good Center</title>
   <style>
     .projects-container {
       padding-top: 2%;
     }
 
     .ui.card {
-      width: 70vw !important;
+      width: 80vw !important;
     }
 
     .project-card {
@@ -31,9 +32,14 @@
     background-size: cover;
     margin: 0 !important;
     padding-bottom: 15%;
-}
+  }
 
-  </style>
+  .bios {
+    display: flex;
+    flex-grow: 2;
+  }
+
+</style>
 </head>
 <body>
   <div class="pusher">
@@ -79,13 +85,13 @@
               <img src="/static/images/chetah_thumb.png" alt="Research poster for the Chetah Search Engine">
             </div>
             <div class="content">
-              <a class="header" href="{% url 'web:pdfparsing'%}">Chetah Search Engine</a>
+              <a class="header" href="{% url 'web:chetah'%}">Chetah Search Engine</a>
               <div class="meta">
               </div>
               <div class="description">
                 <p>Chetah is a search engine for UN and NGOs reports and it summarizes reports with the state of the art deep learning algorithm, BERT. Users can search by applying filters of UN Clusters. This phase 1 product has reports from IFRC, IWA and UNICEF. It retrieves evidence-based program reports and annual reports. The results have been proven better than the Google and Bing for Non-profit sector, with an F1-score of 0.78. It is developed to help NGO program managers and policy makers to design programs and grant funds. This tool aims to provide better answers for nonprofit work and eventually to help solve the crucial real problems that NGO and UN are facing.</p>
                 <div class="extra">
-                  <a href="{% url 'web:pdfparsing'%}">
+                  <a href="{% url 'web:chetah'%}">
                     <div class="ui right floated primary button">
                       Search
                       <i class="right chevron icon"></i>
@@ -158,7 +164,7 @@
             <p>The Data4Good center values transparency and equal access to information and data analysis 
               that has the potential to impact lives through nonprofit organizations.</p>
             <h3 class="ui header">Data4Good's Team</h3>
-            <div class="ui five cards">
+            <div class="ui five cards bios">
                 <div class="ui card">
                   <div class="content">
                     <!-- <img src="{% static 'web/team/Ed-Headshot.jpg' %}" alt="Headshot of Ed Happ" width=100%> -->

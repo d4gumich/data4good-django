@@ -34,44 +34,6 @@ class ProjectsView(TemplateView) :
 
     #     return context
     def get(self, request):
-        project_list = []
-
-        cio4good_project = {
-            "name": 'Trends in the IT Sector of Non-Profit Organizations',
-            "description": 'What do NPO IT leaders say about IT investment over the past 17 years? Visualize CIO4Good survey trends.',
-            "image": 'https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png',
-            "url_path": "{% url 'web:cio4good'%}"
-        }
-        pdfparsing_project = {
-            "name": 'Chetah: PDF Parsing',
-            "description": 'Description',
-            "image": 'https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png',
-            "url_path": ''
-        }
-        refugee_project = {
-            "name": 'Think Paper on Digital Identification',
-            "description": 'Digital identification and biometric data have become increasingly popular in the private sector and have slowly been introduced and piloted in governmental and non-governmental organizations in the emerging world.',
-            "image": 'https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png',
-            "url_path": ''
-        }
-        digitalidenfication_project = {
-            "name": 'Refugee Demographic & Connectitivity Trends in Greece and Serbia',
-            "description": 'What can we learn about refugees\' access to the internet and mobile device ownership from a high level perspective?',
-            "image": 'https://wtwp.com/wp-content/uploads/2015/06/placeholder-image.png',
-            "url_path": ''
-        }
-
-        project_list.append(cio4good_project) 
-        project_list.append(pdfparsing_project) 
-        project_list.append(refugee_project) 
-        project_list.append(digitalidenfication_project) 
-
-        # print("project_list", project_list) 
-
-        context = {
-            'project_list': project_list
-        }  
-
         return render(request, 'web/projects.html', context)
 
 # class ProjectDetailView(TemplateView) :
@@ -102,15 +64,7 @@ class CIO4GoodView(TemplateView) :
     def get(self, request) :
         return render(request, "web/project_cio4good.html")#, context)
 
-class DigitalIdentificationView(TemplateView) :
-    def get(self, request) :
-        return render(request, "web/project_digitalidentification.html")#, context)
-
-class RefugeesView(TemplateView) :
-    def get(self, request) :
-        return render(request, "web/project_refugees.html")#, context)
-
-class PDFParsingView(TemplateView) :
+class ChetahView(TemplateView) :
     template_name = "web/projects.html"
 
     def get(self, request):
@@ -118,7 +72,7 @@ class PDFParsingView(TemplateView) :
             # Debug
             print(request.GET)
             
-            return render(request, "web/project_pdfparsing.html")
+            return render(request, "web/project_chetah.html")
 
     def post(self, request, **kwargs):
         if request.method == 'POST':
@@ -211,21 +165,14 @@ class PDFParsingView(TemplateView) :
             return render(request, "web/project_pdfparsing.html", context)
 
 
-class DataSetsView(TemplateView) :
-    def get(self, request):
-        return render(request, 'web/datasets.html')#, ctx)
+# class DataSetsView(TemplateView) :
+#     def get(self, request):
+#         return render(request, 'web/datasets.html')#, ctx)
 
-class ContributeView(TemplateView) :
-    template_name = "web/contribute.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['task_list'] = Task.objects.all()
-        return context
+# class ContributeView(TemplateView) :
+#     template_name = "web/contribute.html"
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['task_list'] = Task.objects.all()
+#         return context
 
-class OrganizationView(TemplateView) :
-    def get(self, request):
-        return render(request, 'web/organization.html')#, ctx)
-
-class FAQView(TemplateView) :
-    def get(self, request):
-        return render(request, 'web/faq.html')#, ctx)
