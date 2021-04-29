@@ -1,13 +1,11 @@
 # Data4Good Django Website (Hosted on Python Anywhere)
 
 [![Build Status](https://travis-ci.com/d4gumich/data4good-django.svg?branch=master)](https://travis-ci.com/d4gumich/data4good-django)
-[![Known Vulnerabilities](https://snyk.io/test/github/d4gumich/data4good-django/badge.svg)](https://snyk.io/test/github/d4gumich/data4good-django)
 ![GitHub repo size](https://img.shields.io/github/repo-size/d4gumich/data4good-django.svg)
 ![GitHub](https://img.shields.io/github/license/d4gumich/data4good-django.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/d4gumich/data4good-django.svg)
 ![](https://img.shields.io/badge/django-✓-blue.svg)
 ![](https://img.shields.io/badge/semantic_uI-✓-blue.svg)
-![](https://img.shields.io/badge/aws_elastic_beanstalk-✓-blueviolet.svg)
 
 [Website](https://www.data4good.center/)
 
