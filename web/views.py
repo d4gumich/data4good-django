@@ -23,43 +23,6 @@ class MainView(TemplateView) :
     def get(self, request):
         return render(request, 'web/home.html')
 
-class ProjectsView(TemplateView) :
-    template_name = "web/projects.html"
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['project_list'] = Project.objects.all();
-
-    #     if context['project_list'] and context['project_list'] == 'cio4good' :
-    #         template_name = "web/project_cio4good.html"
-
-    #     return context
-    def get(self, request):
-        return render(request, 'web/projects.html', context)
-
-# class ProjectDetailView(TemplateView) :
-#     # def get(self, request, project):
-#     #     # project = request.GET.get('project', False)
-#     #     if project and project == 'cio4good' :
-#     #         return render(request, "web/project_cio4good.html")
-#     template_name = "web/projects.html"
-
-#     def get(self, request, pk) :
-#         project = Project.objects.get(id=pk)
-#         context = { 'project' : project}
-
-#         if project.name ==  'CIO4Good':
-#             return render(request, "web/project_cio4good.html")#, context)
-#         if project.name ==  'PDF Parsing':
-#             if request.method == 'GET':
-#                 print(request.GET)
-#                 return render(request, "web/project_pdfparsing.html")#, context)
-
-#             elif request.method == 'POST':
-#                 print(request.POST)
-#                 return render(request, "web/project_pdfparsing.html")
-
-#         return render(request, self.template_name, context)
-
 class CIO4GoodView(TemplateView) :
     def get(self, request) :
         return render(request, "web/project_cio4good.html")#, context)
@@ -70,14 +33,14 @@ class ChetahView(TemplateView) :
     def get(self, request):
         if request.method == 'GET':
             # Debug
-            print(request.GET)
+            #print(request.GET)
             
             return render(request, "web/project_chetah.html")
 
     def post(self, request, **kwargs):
         if request.method == 'POST':
             # Debug
-            print(request.POST)
+            #print(request.POST)
 
             context = {
                 'search_query': "",
@@ -138,13 +101,13 @@ class ChetahView(TemplateView) :
             sorted_top = sorted(weights, key = lambda x: x, reverse = True)[:10]
 
             # Debug
-            print(sorted_top)
+            #print(sorted_top)
 
             sorted_top_i = [np.where(query_sample == i) for i in sorted_top]
             top_indexes = [x[0][0] for x in sorted_top_i]
 
             # Debug
-            print('Query: ' + query + '\n')
+            #print('Query: ' + query + '\n')
 
             for i in top_indexes:
                 # Process the clusters associated with the PDF

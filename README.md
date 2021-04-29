@@ -1,4 +1,4 @@
-# Data4Good Django on Amazon Web Services (Elastic Beanstalk)
+# Data4Good Django Website (Hosted on Python Anywhere)
 
 [![Build Status](https://travis-ci.com/d4gumich/data4good-django.svg?branch=master)](https://travis-ci.com/d4gumich/data4good-django)
 [![Known Vulnerabilities](https://snyk.io/test/github/d4gumich/data4good-django/badge.svg)](https://snyk.io/test/github/d4gumich/data4good-django)
@@ -9,8 +9,7 @@
 ![](https://img.shields.io/badge/semantic_uI-✓-blue.svg)
 ![](https://img.shields.io/badge/aws_elastic_beanstalk-✓-blueviolet.svg)
 
-[Website](http://data4good.fjwji7zqan.us-east-1.elasticbeanstalk.com/)
-_Built in US West Oregon (us-west-2)_
+[Website](https://www.data4good.center/)
 
 
 ## Project Layout
@@ -92,7 +91,14 @@ python manage.py runserver
 
 
 ## Deploy on PythonAnywhere
-(Coming soon.)
+* Commit local changes to forked repository on a feature branch.
+* Make a pull request to merge changes into the master branch of the upstream repo.
+* Ensure automated checks pass and merge the pull request.
+* Log into Python Anywhere and navigate to the console environment running data4good-virtualenv.
+* Ensure you are inside the data4good-django folder and on the master branch.
+* Do a 'git pull' to sync the repo with the latest merged changes on github.
+* Navigate to the Web console and hit the “reload” button. 
+* Navigate to the data4good.center website and refresh the page; changes should be live on the hosted website once the reloading in the Web console is complete.
 
 
 ## Run Locally
@@ -115,7 +121,6 @@ to bump the version
 
 
 ## Troubleshooting
-- https://stackoverflow.com/questions/58373960/wsgi-error-using-django-2-2-on-elastic-beanstalk
 - https://github.com/jiansoung/issues-list/issues/13
 
 # Key Libraries
