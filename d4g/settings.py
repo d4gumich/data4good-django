@@ -127,14 +127,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-#STATICFILES_FINDERS = [
-#    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'sass_processor.finders.CssFinder',
-#]
+STATICFILES_FINDERS = [
+   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+   'sass_processor.finders.CssFinder',
+]
 
 # Django Sass
 #SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
 
 
-#STATICFILES_LOCATION = 'static'
-#STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+# STATICFILES_LOCATION = 'static'
+# STATICFILES_STORAGE = 'custom_storages.StaticStorage'
