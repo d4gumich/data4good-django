@@ -27,6 +27,10 @@ class CIO4GoodView(TemplateView) :
     def get(self, request) :
         return render(request, "web/project_cio4good.html")#, context)
 
+class SimexView(TemplateView) :
+    def get(self, request) :
+        return render(request, "web/project_simex.html")#, context)
+
 class ChetahView(TemplateView) :
     template_name = "web/projects.html"
 
