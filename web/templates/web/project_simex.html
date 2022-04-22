@@ -1,0 +1,180 @@
+{% extends "base_uikit.html" %}
+
+{% block content %}
+
+{% load static %}
+{% load sass_tags %}
+
+<html>
+
+<head>
+    <title>Simex</title>
+    <style>
+        .body-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 2% 0%;
+        }
+
+        .body-header h2 {
+            flex-grow: 2;
+            margin-left: 10%;
+        }
+
+        h2 {
+            font-size: larger;
+        }
+
+        img {
+            max-height: 100px;
+            width: auto;
+            padding-left: 2%;
+        }
+
+        .details-container {
+            padding-left: 2%;
+            padding-bottom: 2%;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: row;
+            padding-bottom: 2%;
+        }
+
+        #about {
+            display: none;
+        }
+
+        .search-bar-container {
+            display: flex;
+            width: 100%;
+            margin-left: 1%;
+            margin-right: 1%;
+            padding-top: 2%;
+            padding-bottom: 2%;
+            padding-left: 1%;
+            padding-right: 1%;
+        }
+
+        #search-bar-label {
+            font-size: larger;
+            padding-right: 1%;
+            padding-top: 15px;
+            font-weight: bold;
+        }
+
+        #search-bar {
+            height: 50px;
+            margin-right: 1%;
+        }
+
+        #search-bar input {
+            font-size: larger;
+        }
+
+        .ui.button {
+            background-color: rgba(173, 216, 219, 1);
+        }
+
+        .ui.secondary.button {
+            margin: 0%;
+            padding: 5px 5px 5px 10px;
+        }
+
+        .ui.button:hover {
+            background-color: rgba(173, 216, 219, 0.6);
+        }
+
+        .ui.modal {
+            padding-bottom: 2%;
+        }
+
+        .ui.form {
+            font-size: large;
+        }
+
+        .search-filters-container {
+            margin: 0% 5% 2% 5%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        .search-results-header-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .search-results-order-container {
+            margin-right: 5%;
+        }
+
+        #search-filters-header {
+            margin-left: 5%;
+            flex-grow: 2;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .search-results-container {
+            margin-left: 1%;
+            margin-right: 1%;
+            width: 100%;
+            background-color: rgba(211, 211, 211, 0.44);
+            margin-bottom: 1%;
+            padding-bottom: 1%;
+        }
+
+        #search-results-header {
+            padding: 1%;
+            background-color: lightgray;
+        }
+
+        .search-results-item {
+            background-color: white;
+            border-radius: 5px;
+            margin-bottom: 2%;
+            padding: 2%;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        .search-results-item:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+    <title>Chetah</title>
+</head>
+
+<body>
+    <div class="pusher">
+        {% include 'web/_nav.html' %}
+        <div class="ui container header hero">
+            <div class="ui text container center aligned">
+                <h1 class="ui header" id="site-title">
+                    Digital Crisis Simulation Exercise (SimEx)
+                </h1>
+                <h3>The digital Crisis Simulation Exercise (SimEx) is the latest iteration of a multi-year training lab
+                    designed to simulate disaster response strategies and actions within a realistic crisis setting. The
+                    COVID-19 Pandemic highlighted the need for remote simulation experiences to enable practicing
+                    team-based collaboration and critical thinking within a controlled, distanced environment. The
+                    SimEx, built in Minecraft, places users directly in the heart of a war-torn country to recreate the
+                    stress and urgency inherent in disaster response situations. Users must effectively demonstrate
+                    situational awareness, communication, and devise a successful plan to safely escape the conflict and
+                    evacuate the team across an international border. </h3>
+            </div>
+        </div>
+    </div>
+    <div class="ui container center aligned">
+        <h2>Simex Prototype</h2>
+        <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450"
+            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2Fde1xcj7C9nA2vIL2SFQexP%2FHow-to-make-this-more-clear-for-Future-Interns%3Fnode-id%3D2%253A7%26starting-point-node-id%3D2%253A7"
+            allowfullscreen></iframe>
+    </div>
+</body>
+
+</html>
+
+{% endblock %}
