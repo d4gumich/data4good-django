@@ -38,7 +38,7 @@ class ChetahView(TemplateView) :
         if request.method == 'GET':
             # Debug
             #print(request.GET)
-            
+
             return render(request, "web/project_chetah.html")
 
     def post(self, request, **kwargs):
@@ -52,13 +52,13 @@ class ChetahView(TemplateView) :
             }
             query = request.POST['search-query']
             context['search_query'] = query
-            
+
             # Prepare dataframe
             #Uncomment in test, comment in prod
             # df_pdfs = pd.read_csv('final_with_cluster.csv')
             #Uncomment in prod, comment in test
             df_pdfs = pd.read_csv('/home/D4GUMSI/data4good-django/final_with_cluster.csv')
-            
+
             # Extract summaries from PDFs and queries from query list
             summaries = [x for x in df_pdfs.summary]
             # queries = [x for x in df_queries.Query]
@@ -90,7 +90,7 @@ class ChetahView(TemplateView) :
                     X = X.tocsc()[:, q.indices]
                     denom = X + (k1 * (1 - b + b * len_X / avdl))[:, None]
                     idf = self.vectorizer._tfidf.idf_[None, q.indices] - 1.
-                    numer = X.multiply(np.broadcast_to(idf, X.shape)) * (k1 + 1)                                                          
+                    numer = X.multiply(np.broadcast_to(idf, X.shape)) * (k1 + 1)
                     return (numer / denom).sum(1).A1
 
             bm25 = BM25()
@@ -126,8 +126,8 @@ class ChetahView(TemplateView) :
                     "summary_short": str(df_pdfs.summary[i])[:450] + "...", # Truncate summary after 450 characters
                     "summary_full": str(df_pdfs.summary[i]),
                 }
-                context['search_results'].append(pdf)       
-            # print(context)         
+                context['search_results'].append(pdf)
+            # print(context)
 
             return render(request, "web/project_chetah.html", context)
 
