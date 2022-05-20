@@ -5,6 +5,7 @@
     <head>
         <!-- Edit samples/settings.py and add APP_NAME = 'DJ4E Samples' or similar -->
         <title>{% block title %}{{ settings.APP_NAME }}{% endblock %}</title>
+
         {% dsu_stylesheet_url %}
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet" />
@@ -33,15 +34,16 @@
         {% load sass_tags %}
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <!-- <link rel="stylesheet" href="{% static 'web/theme.scss' %}"> -->
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 
         <!-- <link href="{% sass_src 'theme.scss' %}" rel="stylesheet" type="text/css" /> -->
 
     </head>
-    
+
     <body>
-    {% block navbar %} 
+    {% block navbar %}
       <header>
-       
+
       </header>
     {% endblock %}
 
