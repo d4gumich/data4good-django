@@ -81,6 +81,7 @@ six==1.13.0
 sqlparse==0.3.1
 threadpoolctl==2.1.0
 ```
+In case of error with the rjsmin and rcssmin packages, follow the solution given in this link https://github.com/django-compressor/django-compressor/issues/807
 
 3. Start running the server and navigate to http://127.0.0.1:8000/ in your browser:
 ```
