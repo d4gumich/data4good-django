@@ -1,0 +1,32 @@
+{% extends "base_uikit.html" %}
+
+{% block content %}
+
+{% load static %}
+{% load sass_tags %}
+
+
+<html>
+
+<body>
+  <div>
+    {% include 'web/_nav.html' %}
+    <form action="" method="post" enctype="multipart/form-data">
+      <div class="ui placeholder segment">
+        {% csrf_token %}
+        <input class="ui primary button" type="file" id="pdf" name="uploaded_pdf" accept=".pdf"/>
+        <input type="submit" />
+      </div>
+    </form>
+    {% if meta_content %}
+    <div style="overflow-y: auto;">
+      <pre>
+        {{ meta_content }}
+      </pre>
+    </div>
+    {% endif %}
+  </div>
+</body>
+
+</html>
+{% endblock %}

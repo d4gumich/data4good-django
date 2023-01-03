@@ -132,6 +132,8 @@ STATICFILES_FINDERS = [
    'sass_processor.finders.CssFinder',
 ]
 
+FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.TemporaryFileUploadHandler"]
+
 # Django Sass
 #SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
 

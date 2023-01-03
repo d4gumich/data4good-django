@@ -1,14 +1,9 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.views import View
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import TemplateView
-from django.urls import reverse_lazy
-from django.http import HttpResponse
-from django.template.loader import render_to_string
 
-from web.models import Task, Project
+from django.shortcuts import render
+from django.views.generic import TemplateView
+import os
+import json
+from .hangul import init,run_hangul
 
 # PDF Parsing
 import pandas as pd
@@ -18,33 +13,37 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy import sparse
 
 
-#class MainView(LoginRequiredMixin, View) :
-class MainView(TemplateView) :
+# class MainView(LoginRequiredMixin, View) :
+class MainView(TemplateView):
     def get(self, request):
         return render(request, 'web/home.html')
 
-class CIO4GoodView(TemplateView) :
-    def get(self, request) :
-        return render(request, "web/project_cio4good.html")#, context)
 
-class SimexView(TemplateView) :
-    def get(self, request) :
-        return render(request, "web/project_simex.html")#, context)
+class CIO4GoodView(TemplateView):
+    def get(self, request):
+        return render(request, "web/project_cio4good.html")  # , context)
 
-class ChetahView(TemplateView) :
+
+class SimexView(TemplateView):
+    def get(self, request):
+        return render(request, "web/project_simex.html")  # , context)
+
+
+class ChetahView(TemplateView):
     template_name = "web/projects.html"
 
     def get(self, request):
+        init()
         if request.method == 'GET':
             # Debug
-            #print(request.GET)
+            # print(request.GET)
 
             return render(request, "web/project_chetah.html")
 
-    def post(self, request, **kwargs):
+    def post(self, request):
         if request.method == 'POST':
             # Debug
-            #print(request.POST)
+            # print(request.POST)
 
             context = {
                 'search_query': "",
@@ -57,16 +56,17 @@ class ChetahView(TemplateView) :
             #Uncomment in test, comment in prod
             # df_pdfs = pd.read_csv('final_with_cluster.csv')
             #Uncomment in prod, comment in test
-            df_pdfs = pd.read_csv('/home/D4GUMSI/data4good-django/final_with_cluster.csv')
+            df_pdfs = pd.read_csv(
+                '/home/D4GUMSI/data4good-django/final_with_cluster.csv')
 
             # Extract summaries from PDFs and queries from query list
             summaries = [x for x in df_pdfs.summary]
             # queries = [x for x in df_queries.Query]
 
-            vectorizer = TfidfVectorizer()
             class BM25(object):
                 def __init__(self, b=0.75, k1=1.6):
-                    self.vectorizer = TfidfVectorizer(norm=None, smooth_idf=False)
+                    self.vectorizer = TfidfVectorizer(
+                        norm=None, smooth_idf=False)
                     self.b = b
                     self.k1 = k1
 
@@ -90,7 +90,8 @@ class ChetahView(TemplateView) :
                     X = X.tocsc()[:, q.indices]
                     denom = X + (k1 * (1 - b + b * len_X / avdl))[:, None]
                     idf = self.vectorizer._tfidf.idf_[None, q.indices] - 1.
-                    numer = X.multiply(np.broadcast_to(idf, X.shape)) * (k1 + 1)
+                    numer = X.multiply(
+                        np.broadcast_to(idf, X.shape)) * (k1 + 1)
                     return (numer / denom).sum(1).A1
 
             bm25 = BM25()
@@ -102,10 +103,10 @@ class ChetahView(TemplateView) :
                 if i > 1:
                     weights.append(i)
 
-            sorted_top = sorted(weights, key = lambda x: x, reverse = True)[:10]
+            sorted_top = sorted(weights, key=lambda x: x, reverse=True)[:10]
 
             # Debug
-            #print(sorted_top)
+            # print(sorted_top)
 
             sorted_top_i = [np.where(query_sample == i) for i in sorted_top]
             top_indexes = [x[0][0] for x in sorted_top_i]
@@ -115,7 +116,6 @@ class ChetahView(TemplateView) :
 
             for i in top_indexes:
                 # Process the clusters associated with the PDF
-                clusters_list = []
 
                 # Create a new PDF dictionary and add it to the list of search results
                 pdf = {
@@ -123,7 +123,8 @@ class ChetahView(TemplateView) :
                     "date": df_pdfs.Date[i],
                     "link": str(df_pdfs.URL[i]),
                     "cluster": str(df_pdfs.cluster[i]),
-                    "summary_short": str(df_pdfs.summary[i])[:450] + "...", # Truncate summary after 450 characters
+                    # Truncate summary after 450 characters
+                    "summary_short": str(df_pdfs.summary[i])[:450] + "...",
                     "summary_full": str(df_pdfs.summary[i]),
                 }
                 context['search_results'].append(pdf)
@@ -143,3 +144,17 @@ class ChetahView(TemplateView) :
 #         context['task_list'] = Task.objects.all()
 #         return context
 
+class HangulView(TemplateView):
+    template_name = "web/project_hangul.html"
+
+    def get(self, request):
+        if request.method == 'GET':
+            return render(request, "web/project_hangul.html")
+    
+    def post(self, request):
+        if request.method == 'POST':
+           temp_path = request.FILES['uploaded_pdf'].temporary_file_path()
+           meta_content = json.dumps(run_hangul(temp_path), indent=2)
+           os.remove(temp_path)
+           return render(request, "web/project_hangul.html", { 'meta_content': meta_content})
+    
