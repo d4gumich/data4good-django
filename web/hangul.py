@@ -1,14 +1,12 @@
 import tika
 from tika import parser
 import spacy
-# import disaster_detection
-# from disaster_detection import get_disasters
+from .disaster_detection import get_disasters
 from collections import Counter
 
 nlp = spacy.load('en_core_web_sm')
 
-# Start running the tika service
-tika.initVM()
+
 
 
 def extract_metadata(pdf_metadata):
@@ -101,6 +99,8 @@ def detect_location(content):
 
 
 def run_hangul(file_path):
+    # Start running the tika service
+    init()
     metadata_of_pdfs = extract_pdf_data(
         [file_path], want_content=True, content_as_pages=False)
     locations = detect_location(metadata_of_pdfs[0]['content'])
@@ -109,7 +109,7 @@ def run_hangul(file_path):
     return {
         'metadata': metadata_of_pdfs,
         'locations': locations,
-        # 'disasters': disasters
+        'disasters': disasters
     }
     # print(metadata_of_pdfs)
     # 	extract_summary(content,text)

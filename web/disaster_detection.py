@@ -4,6 +4,8 @@ def get_disasters(row):
   content = row.lower()
   if any(word in content for word in ['covid', 'coronavirus']):
     disasters.append('COVID-19')
+  if 'pandemic' in content:
+    disasters.append('Hurricane')
   if 'hurricane' in content:
     disasters.append('Hurricane')
   if 'earthquake' in content:
