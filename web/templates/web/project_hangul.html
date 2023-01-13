@@ -120,10 +120,10 @@
         <p><strong>Disasters: </strong>{{disasters}}</p>
         {% endif %}
         <p><strong>Time taken: </strong>{{hangul_time}}</p>
-        <div class="meta-content" hidden>
+        <div id="meta-content" hidden>
           <p><strong>Meta: </strong></p>
           <p>
-            <pre>
+          <pre>
               {{meta_content}}
             </pre>
           </p>
@@ -144,11 +144,11 @@
 <script text="text/javascript">
   function expandMeta() {
     verbose = document.getElementById('verbose-select')
-    if(verbose.checked){
-      document.getElementsByClassName('meta-content')[0].removeAttribute('hidden')
+    if (verbose.checked) {
+      document.getElementById('meta-content').removeAttribute('hidden')
     }
-    else{
-      document.getElementsByClassName('meta-content')[0].setAttribute('hidden')
+    else {
+      document.getElementById('meta-content').setAttribute('hidden',true)
     }
   }
   document.querySelector('#about-btn').addEventListener('click', function () {
