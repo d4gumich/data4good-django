@@ -60,6 +60,7 @@ class HangulView(TemplateView):
                'locations':', '.join([location[0][0] for location in meta_content['locations']]) if meta_content['locations'] else None,
                'disasters':', '.join([disaster for disaster in meta_content['disasters']]) if meta_content['disasters'] else None,
                'file_name': file_name,
+               'pages': meta_content['metadata'][0]['metadata']['No.of Pages'],
                'hangul_time': f'{int(round(time.time()-start_time,3)*1000)} ms'
            }
            os.remove(temp_path)
