@@ -62,7 +62,6 @@ class HangulView(TemplateView):
                'file_name': file_name,
                'hangul_time': f'{int(round(time.time()-start_time,3)*1000)} ms'
            }
-           print(context)
            os.remove(temp_path)
            return render(request, "web/project_hangul.html", context)
     

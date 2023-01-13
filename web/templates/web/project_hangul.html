@@ -68,6 +68,10 @@
     padding: 5px;
     width: 50%;
   }
+
+  .verbose-select {
+    margin: 5px;
+  }
 </style>
 
 <body>
@@ -98,6 +102,13 @@
         {% endif%}
         <button id="hangul-file-button" class="ui button">Upload PDF</button>
         <button id="hangul-submit-button" class="ui button">Analyze PDF</button>
+        <div class='verbose-select'>
+          {% if file_name %}
+          <input type="checkbox" id="verbose-select" onclick="expandMeta()"> Verbose</input>
+          {% else %}
+          <input type="checkbox" id="verbose-select" onclick="expandMeta()" disabled> Verbose</input>
+          {% endif%}
+        </div>
       </div>
       {% if meta_content %}
       <div style="margin: 30px;overflow-y: auto;">
@@ -109,6 +120,14 @@
         <p><strong>Disasters: </strong>{{disasters}}</p>
         {% endif %}
         <p><strong>Time taken: </strong>{{hangul_time}}</p>
+        <div class="meta-content" hidden>
+          <p><strong>Meta: </strong></p>
+          <p>
+            <pre>
+              {{meta_content}}
+            </pre>
+          </p>
+        </div>
       </div>
       {% endif %}
     </div>
@@ -123,13 +142,21 @@
   </div>
 </body>
 <script text="text/javascript">
-  $('#about-btn').on('click', function () {
+  function expandMeta() {
+    verbose = document.getElementById('verbose-select')
+    if(verbose.checked){
+      document.getElementsByClassName('meta-content')[0].removeAttribute('hidden')
+    }
+    else{
+      document.getElementsByClassName('meta-content')[0].setAttribute('hidden')
+    }
+  }
+  document.querySelector('#about-btn').addEventListener('click', function () {
     let display_state = $('#about').css('display');
-    console.log(display_state);
     if (display_state === "none") {
-      $('#about').css('display', 'inline');
+      document.querySelector('#about').display = 'inline';
     } else {
-      $('#about').css('display', 'none');
+      document.querySelector('#about').display = 'none';
     }
   });
   document.querySelector('#hangul-file-button').addEventListener('click', () => {
