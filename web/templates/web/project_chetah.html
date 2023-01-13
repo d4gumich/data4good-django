@@ -183,6 +183,9 @@
           </form>
           <div class="search-results-container">
             <h2 id="search-results-header">Search Results</h2>
+            {% if search_time %}
+            <p style="padding: 1%;"><strong>Time taken: </strong>{{search_time}} ms</p>
+            {% endif %}
             <header class="search-results-header-container">
               <p id="search-filters-header">Please use the filters for specific UN clusters:</p>
                 <div id="orderResultsForm" class="ui form search-results-order-container">
@@ -232,9 +235,9 @@
               <div class="search-results-item">
                 <p><strong>Report Title:</strong> {{search_result.title}}</p>
                 <p><strong>Date Published:</strong> {{search_result.date}}</p>
-                <p><strong>Link:</strong> <a href={{search_result.link}}>{{search_result.link}}</a></p>
+                <p><strong>Link:</strong> <a href={{search_result.link}}>Go to report</a></p>
                 <p><strong>Cluster(s):</strong> {{search_result.cluster}} </p>
-                <p><strong>Summary:</strong> {{search_result.summary_short}} 
+                <p><strong>Summary:</strong> {{search_result.summary_short}}... 
                   <button class="ui secondary button" data="{{search_result.summary_full}}" onclick="toggleModal(this);">
                   <i class="plus icon"></i>More</button>
                 </p>
