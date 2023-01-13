@@ -38,7 +38,7 @@ class ChetahView(TemplateView):
             context = {
                 'search_query': query,
                 'search_results': search(query),
-                'search_time': round(time.time()-start_time,3)
+                'search_time': int(round(time.time()-start_time,3)*1000)
             }
             return render(request, "web/project_chetah.html", context)
 
@@ -51,10 +51,18 @@ class HangulView(TemplateView):
     
     def post(self, request):
         if request.method == 'POST':
+           start_time=time.time()
            temp_path = request.FILES['uploaded_pdf'].temporary_file_path()
            file_name = request.FILES['uploaded_pdf'].name
            meta_content = run_hangul(temp_path)
-           meta_content['file_name'] = file_name
+           context = {
+               'meta_content': json.dumps(meta_content, indent=2),
+               'locations':', '.join([location[0][0] for location in meta_content['locations']]) if meta_content['locations'] else None,
+               'disasters':', '.join([disaster for disaster in meta_content['disasters']]) if meta_content['disasters'] else None,
+               'file_name': file_name,
+               'hangul_time': f'{int(round(time.time()-start_time,3)*1000)} ms'
+           }
+           print(context)
            os.remove(temp_path)
-           return render(request, "web/project_hangul.html", { 'meta_content': json.dumps(meta_content, indent=2)})
+           return render(request, "web/project_hangul.html", context)
     

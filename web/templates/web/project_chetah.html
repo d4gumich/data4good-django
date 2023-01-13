@@ -182,9 +182,10 @@
             </div>
           </form>
           <div class="search-results-container">
-            <h2 id="search-results-header">Search Results</h2>
             {% if search_time %}
-            <p style="padding: 1%;"><strong>Time taken: </strong>{{search_time}} ms</p>
+            <h2 id="search-results-header">Search Results ({{search_time}} ms)</h2>
+            {% else %}
+            <h2 id="search-results-header">Search Results</h2>
             {% endif %}
             <header class="search-results-header-container">
               <p id="search-filters-header">Please use the filters for specific UN clusters:</p>
