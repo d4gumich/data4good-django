@@ -1,19 +1,25 @@
-
 from django.shortcuts import render
 from django.views.generic import TemplateView
 import os
 import json
 from .hangul import init,run_hangul
+=======
+>>>>>>> refs/remotes/origin/hangul
 
-# PDF Parsing
-import pandas as pd
-import numpy as np
+from django.shortcuts import render
+from django.views.generic import TemplateView
+import os
 import json
-from sklearn.feature_extraction.text import TfidfVectorizer
-from scipy import sparse
+import time
 
+#import custom modules here
+from .chetah_v1 import search
+from .hangul import run_hangul
 
+<<<<<<< HEAD
 # class MainView(LoginRequiredMixin, View) :
+=======
+>>>>>>> refs/remotes/origin/hangul
 class MainView(TemplateView):
     def get(self, request):
         return render(request, 'web/home.html')
@@ -35,20 +41,30 @@ class ChetahView(TemplateView):
     def get(self, request):
         init()
         if request.method == 'GET':
+<<<<<<< HEAD
             # Debug
             # print(request.GET)
 
+=======
+>>>>>>> refs/remotes/origin/hangul
             return render(request, "web/project_chetah.html")
 
     def post(self, request):
         if request.method == 'POST':
+<<<<<<< HEAD
             # Debug
             # print(request.POST)
 
+=======
+            start_time=time.time()
+            query = request.POST['search-query']
+>>>>>>> refs/remotes/origin/hangul
             context = {
-                'search_query': "",
-                'search_results': [],
+                'search_query': query,
+                'search_results': search(query),
+                'search_time': int(round(time.time()-start_time,3)*1000)
             }
+<<<<<<< HEAD
             query = request.POST['search-query']
             context['search_query'] = query
 
@@ -130,9 +146,14 @@ class ChetahView(TemplateView):
                 context['search_results'].append(pdf)
             # print(context)
 
+=======
+>>>>>>> refs/remotes/origin/hangul
             return render(request, "web/project_chetah.html", context)
 
+class HangulView(TemplateView):
+    template_name = "web/project_hangul.html"
 
+<<<<<<< HEAD
 # class DataSetsView(TemplateView) :
 #     def get(self, request):
 #         return render(request, 'web/datasets.html')#, ctx)
@@ -147,14 +168,33 @@ class ChetahView(TemplateView):
 class HangulView(TemplateView):
     template_name = "web/project_hangul.html"
 
+=======
+>>>>>>> refs/remotes/origin/hangul
     def get(self, request):
         if request.method == 'GET':
             return render(request, "web/project_hangul.html")
     
     def post(self, request):
         if request.method == 'POST':
+<<<<<<< HEAD
            temp_path = request.FILES['uploaded_pdf'].temporary_file_path()
            meta_content = json.dumps(run_hangul(temp_path), indent=2)
            os.remove(temp_path)
            return render(request, "web/project_hangul.html", { 'meta_content': meta_content})
+=======
+           start_time=time.time()
+           temp_path = request.FILES['uploaded_pdf'].temporary_file_path()
+           file_name = request.FILES['uploaded_pdf'].name
+           meta_content = run_hangul(temp_path)
+           context = {
+               'meta_content': json.dumps(meta_content, indent=2),
+               'locations':', '.join([location[0][0] for location in meta_content['locations']]) if meta_content['locations'] else None,
+               'disasters':', '.join([disaster for disaster in meta_content['disasters']]) if meta_content['disasters'] else None,
+               'file_name': file_name,
+               'pages': meta_content['metadata'][0]['metadata']['No.of Pages'],
+               'hangul_time': f'{int(round(time.time()-start_time,3)*1000)} ms'
+           }
+           os.remove(temp_path)
+           return render(request, "web/project_hangul.html", context)
+>>>>>>> refs/remotes/origin/hangul
     
