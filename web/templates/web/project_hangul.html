@@ -5,12 +5,84 @@
 {% load static %}
 {% load sass_tags %}
 
+<<<<<<< HEAD
 
 <html>
+=======
+<html>
+<style>
+  .body-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2% 0%;
+  }
+
+  .body-header h2 {
+    flex-grow: 2;
+    margin-left: 10%;
+  }
+
+  h2 {
+    font-size: larger;
+  }
+
+  img {
+    max-height: 100px;
+    width: auto;
+    padding-left: 2%;
+  }
+
+  .details-container {
+    padding-left: 2%;
+    padding-bottom: 2%;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 2%;
+  }
+
+  #about {
+    display: none;
+  }
+
+  .ui.button {
+    background-color: rgba(173, 216, 219, 1);
+  }
+
+  .ui.secondary.button {
+    margin: 0%;
+    padding: 5px 5px 5px 10px;
+  }
+
+  .ui.button:hover {
+    background-color: rgba(173, 216, 219, 0.6);
+  }
+
+  #hangul-file-selector {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #file-name-display {
+    border-radius: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    width: 50%;
+  }
+
+  .verbose-select {
+    margin: 5px;
+  }
+</style>
+>>>>>>> refs/remotes/origin/hangul
 
 <body>
   <div>
     {% include 'web/_nav.html' %}
+<<<<<<< HEAD
     <form action="" method="post" enctype="multipart/form-data">
       <div class="ui placeholder segment">
         {% csrf_token %}
@@ -27,6 +99,101 @@
     {% endif %}
   </div>
 </body>
+=======
+    <div class="ui main text container">
+      <div class="body-header">
+        <img src="../../static/hangul.jpg" alt="Product logo placeholder">
+        <h2>Analyze a PDF to find relevant meta details</h2>
+      </div>
+      <div class="details-container">
+        <section class="button-group">
+          <button id="about-btn" class="ui button grey">About Hangul</button>
+          <a href="" target="_blank"><button id="research-btn" class="ui button grey">View Research</button></a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSf7_QWhud_6B41eFydeTADGhZfFAjnF1NnSHeCn2zfatGAGcw/viewform?vc=0&c=0&w=1&flr=0&usp=mail_form_link"
+            target="_blank"><button id="feedback-btn" class="ui button grey">Provide Feedback</button></a>
+        </section>
+        <section id="about">
+          <h3>About</h3>
+          <p>Placeholder for Hangul Project details</p>
+        </section>
+      </div>
+      <div id="hangul-file-selector">
+        {% if file_name %}
+        <input id="file-name-display" type="text" placeholder='{{file_name}}' disabled />
+        {% else %}
+        <input id="file-name-display" type="text" placeholder='Select a file' disabled />
+        {% endif%}
+        <button id="hangul-file-button" class="ui button">Upload PDF</button>
+        <button id="hangul-submit-button" class="ui button">Analyze PDF</button>
+        <div class='verbose-select'>
+          {% if file_name %}
+          <input type="checkbox" id="verbose-select" onclick="expandMeta()"> Verbose</input>
+          {% else %}
+          <input type="checkbox" id="verbose-select" onclick="expandMeta()" disabled> Verbose</input>
+          {% endif%}
+        </div>
+      </div>
+      {% if meta_content %}
+      <div style="margin: 30px;overflow-y: auto;">
+        <p><strong>File name: </strong>{{file_name}}</p>
+        <p><strong>Number of pages: </strong>{{pages}}</p>
+        {% if locations %}
+        <p><strong>Locations: </strong>{{locations}}</p>
+        {% endif %}
+        {% if disasters %}
+        <p><strong>Disasters: </strong>{{disasters}}</p>
+        {% endif %}
+        <p><strong>Time taken: </strong>{{hangul_time}}</p>
+        <div id="meta-content" hidden>
+          <p><strong>Meta: </strong></p>
+          <p>
+          <pre>
+              {{meta_content}}
+            </pre>
+          </p>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <form action="" method="post" enctype="multipart/form-data" hidden>
+      <div class="ui placeholder segment">
+        {% csrf_token %}
+        <input type="file" id="hangul-file-hidden" name="uploaded_pdf" accept=".pdf" />
+        <input type="submit" id="hangul-submit-hidden" />
+      </div>
+    </form>
+  </div>
+  </div>
+</body>
+<script text="text/javascript">
+  function expandMeta() {
+    verbose = document.getElementById('verbose-select')
+    if (verbose.checked) {
+      document.getElementById('meta-content').removeAttribute('hidden')
+    }
+    else {
+      document.getElementById('meta-content').setAttribute('hidden',true)
+    }
+  }
+  document.querySelector('#about-btn').addEventListener('click', function () {
+    let display_state = $('#about').css('display');
+    if (display_state === "none") {
+      document.querySelector('#about').display = 'inline';
+    } else {
+      document.querySelector('#about').display = 'none';
+    }
+  });
+  document.querySelector('#hangul-file-button').addEventListener('click', () => {
+    document.querySelector('#hangul-file-hidden').click()
+  })
+  document.querySelector('#hangul-submit-button').addEventListener('click', () => {
+    document.querySelector('#hangul-submit-hidden').click()
+  })
+  document.querySelector('#hangul-file-hidden').addEventListener('change', (event) => {
+    document.querySelector('#file-name-display').placeholder = event.target.files[0].name
+  })
+</script>
+>>>>>>> refs/remotes/origin/hangul
 
 </html>
 {% endblock %}
