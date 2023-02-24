@@ -13,7 +13,6 @@ django-appconf==1.0.4
 django-compressor==2.4
 django-sass-processor==0.7.4
 django-storages==1.9.1
-django2-semantic-ui==1.2.2
 docutils==0.15.2
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.4.1/en_core_web_sm-3.4.1-py3-none-any.whl
 idna==2.8

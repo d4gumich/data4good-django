@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'sass_processor',
     'home.apps.HomeConfig',
     'web.apps.WebConfig',
-    'django_semantic_ui',
     'storages',
 ]
 
