@@ -5,6 +5,8 @@ import spacy
 from .disaster_detection import get_disasters
 from collections import Counter
 from .get_file_metadata import extract_metadata
+# from location_detection import detected_potential_countries,pretty_print_dict
+# from .report_type import detect_report_type
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -126,11 +128,15 @@ def run_hangul(file_path):
     # print(metadata_of_pdfs[0]['metadata'])
     locations = detect_location(metadata_of_pdfs[0]['content'])
     disasters = get_disasters(metadata_of_pdfs[0]['content'])
+    # doc_report_type = detect_report_type(metadata_of_pdfs[0]['metadata']['File name'])
+    # doc_report_type = detect_report_type(file_path)
 
     return {
         'metadata': metadata_of_pdfs,
         'locations': locations,
-        'disasters': disasters
+        'disasters': disasters,
+        # 'report_type':doc_report_type,
+
     }
     # print(metadata_of_pdfs)
     # 	extract_summary(content,text)
