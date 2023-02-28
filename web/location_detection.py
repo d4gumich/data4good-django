@@ -14,7 +14,7 @@ def pretty_print_dict(dict_to_print, sort_keys=False):
   #check dict is not empty
   assert bool(dict_to_print) is True
 
-  print(json.dumps(dict_to_print,sort_keys=sort_keys, indent=4))
+  #print(json.dumps(dict_to_print,sort_keys=sort_keys, indent=4))
 
   return
 
@@ -67,18 +67,14 @@ def replace_dict_key_name(key_map, dict_with_keys_to_replace):
 
 def detected_potential_countries(content):
   # extract the countries spacy detects
-  print('Detecting potential locations in the document.....')
   loc_list = extract_locations(content)
   #count location instance 
   count_of_locations = dict(Counter(loc_list))
 
-  #for 1st demo
-  print('Locations as spacy library detected:')
-  capitalized_loc_list = [x.capitalize() for x in loc_list] #can be deleted later
-  pretty_print_dict(dict(Counter(capitalized_loc_list)))
+  #for test demo
+  #capitalized_loc_list = [x.capitalize() for x in loc_list] #can be deleted later
+  #pretty_print_dict(dict(Counter(capitalized_loc_list)))
 
-  
-  print('Replacing given key names for proper country detection.....')
 
   #some of the location names are not in accordance with current ISO names 
     #replacing them with ISO code enables proper detection
@@ -90,10 +86,8 @@ def detected_potential_countries(content):
 
   #get valid country information
   valid_countries_dict = get_valid_countries(clean_loc_dict)
-  print('valid locations detected including substrings:')
-  pretty_print_dict(valid_countries_dict)
 
-  return valid_countries_dict.keys()
+  return valid_countries_dict
 
 
 def tuple_to_dict(tuple_to_con, occurence_count):
@@ -144,8 +138,6 @@ def get_valid_countries(locations_dict):
   new_tuple={}
 
   for key_name in locations_dict.keys():
-    # new_dict={}
-    # dict_with_count={}
     try:
       country_info = countries.get(key_name)
       country_name = country_info.name
@@ -157,17 +149,14 @@ def get_valid_countries(locations_dict):
     except:
       try:
         #check if it is a substring
-        # print('checking substring:', key_name)
-        # print(sub_get(key_name))
         country_info_sub = countries.get(sub_get(key_name).name)
-        # print(country_info_sub)
         country_name_sub = country_info_sub.name
         if country_name_sub in with_count_dict:
           with_count_dict[country_name_sub]['no_of_occurences'] = with_count_dict[country_name_sub]['no_of_occurences'] + locations_dict[key_name]
         else:
           new_dict = tuple_to_dict(country_info_sub, locations_dict[key_name])
           with_count_dict[country_name_sub] = new_dict
-          # new_dict={}
+          
       except:
         pass
 

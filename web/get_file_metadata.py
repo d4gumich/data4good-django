@@ -58,7 +58,6 @@ def get_val_for_any_in_key_list(list_of_key_names, pdf_metadata):
 	for key_name in list_of_key_names:
 		if check_key_exists(key_name,pdf_metadata):
 			key_value = get_key_val(key_name, pdf_metadata)
-			print(key_name,key_value)
 			break #we found a value and don't need to look for other key values
 
 	return key_value
@@ -82,7 +81,7 @@ def extract_metadata(pdf_metadata, debug=True):
     author_list = ['Author','meta:author','pdf:docinfo:creator','dc:creator']
     author_name = get_val_for_any_in_key_list(author_list, pdf_metadata)
     metadata_final['Author'] = author_name
-  	# print('author_name')
+  	
 
 	#get doc type if extracted by tika
     doc_type_list = ['title', 'dc:title', 'pdf:docinfo:title']
