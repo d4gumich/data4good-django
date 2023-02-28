@@ -1,11 +1,15 @@
 # DISASTER DETECTION
-def get_disasters(row):
+#@author: Sidra Effendi
+#library for inspiration https://github.com/glrn/nlp-disaster-analysis
+#probably under EVENT NER https://newscatcherapi.com/blog/named-entity-recognition-with-spacy
+
+from collections import Counter
+def get_disasters(content):
   disasters = []
-  content = row.lower()
+  content = content.lower()
   if any(word in content for word in ['covid', 'coronavirus']):
-    disasters.append('COVID-19')
-  if 'pandemic' in content:
-    disasters.append('Hurricane')
+    # disasters.append('COVID-19')
+    disasters.append('Pandemic')
   if 'hurricane' in content:
     disasters.append('Hurricane')
   if 'earthquake' in content:
@@ -29,16 +33,15 @@ def get_disasters(row):
   if len(disasters) == 0:
     return None
   else:
+    # return dict(Counter(disasters)) #no point counting it because it is only added to list once
     return disasters
 
 #count the no.of times each disaster type shows and show the top 2
 
-from collections import Counter
- 
+
 def count_letters(filename):
   letter_counter = Counter()
   with open(filename) as file:
     for line in file:
       line_letters = [char for char in line.lower() if char.isalpha()]
-      letter_counter.update(Counter(line_letters))
-  return letter_counter
+      letter_counter.upd
