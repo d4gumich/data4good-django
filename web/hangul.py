@@ -5,7 +5,7 @@ import spacy
 from .disaster_detection import get_disasters
 from collections import Counter
 from .get_file_metadata import extract_metadata
-# from location_detection import detected_potential_countries,pretty_print_dict
+from .location_detection import detected_potential_countries
 # from .report_type import detect_report_type
 
 nlp = spacy.load('en_core_web_sm')
@@ -109,14 +109,14 @@ def extract_pdf_data(file_paths, want_metadata=True, want_content=False, content
 # def extract_summary(content,text):
 
 
-def detect_location(content):
-    nlped = nlp(content)
+# def detect_location(content):
+#     nlped = nlp(content)
 	
-    locations = [(x.text.replace('\n', ''), x.label_)
-                 for x in nlped.ents if x.label_ == 'GPE']
-    # most_common = [(x, z) for ((x, y), z) in Counter(locations).most_common()]
-    most_common_location = Counter(locations).most_common(3)
-    return most_common_location
+#     locations = [(x.text.replace('\n', ''), x.label_)
+#                  for x in nlped.ents if x.label_ == 'GPE']
+#     # most_common = [(x, z) for ((x, y), z) in Counter(locations).most_common()]
+#     most_common_location = Counter(locations).most_common(3)
+#     return most_common_location
 
 
 def run_hangul(file_path):
@@ -126,7 +126,7 @@ def run_hangul(file_path):
     metadata_of_pdfs = extract_pdf_data(
         [file_path], want_content=True, content_as_pages=False)
     # print(metadata_of_pdfs[0]['metadata'])
-    locations = detect_location(metadata_of_pdfs[0]['content'])
+    locations = detected_potential_countries(metadata_of_pdfs[0]['content'])
     disasters = get_disasters(metadata_of_pdfs[0]['content'])
     # doc_report_type = detect_report_type(metadata_of_pdfs[0]['metadata']['File name'])
     # doc_report_type = detect_report_type(file_path)
