@@ -1,33 +1,34 @@
+#@author- SIdra Effendi
 import tika
 from tika import parser
 import spacy
 from .disaster_detection import get_disasters
 from collections import Counter
+from .get_file_metadata import extract_metadata
 
 nlp = spacy.load('en_core_web_sm')
 
 
 
-
-def extract_metadata(pdf_metadata):
-    metadata_final = {}
-    for my_key, my_value in pdf_metadata.items():
-        if my_key in ['Author', 'creator']:
-            metadata_final['Author'] = my_value
-        elif my_key in ['xmpTPg:NPages']:
-            metadata_final['No.of Pages'] = my_value
-        elif my_key in ['resourceName']:
-            metadata_final['Document Title'] = my_value.replace(
-                "b'", '').replace(".pdf'", "")  # create contenders for titles
-        elif my_key in ['Keywords', 'subject']:
-            metadata_final['Subject'] = my_value
-        elif my_key in ['dc:title', 'title']:
-            metadata_final[my_key] = my_value
-        elif my_key in ['Content-Type', 'Creation-Date', 'producer']:
-            metadata_final[my_key] = my_value
-        # else:
-        # 	metadata_final[my_key] = my_value
-    return metadata_final
+# def extract_metadata(pdf_metadata):
+#     metadata_final = {}
+#     for my_key, my_value in pdf_metadata.items():
+#         if my_key in ['Author', 'creator']:
+#             metadata_final['Author'] = my_value
+#         elif my_key in ['xmpTPg:NPages']:
+#             metadata_final['No.of Pages'] = my_value
+#         elif my_key in ['resourceName']:
+#             metadata_final['Document Title'] = my_value.replace(
+#                 "b'", '').replace(".pdf'", "")  # create contenders for titles
+#         elif my_key in ['Keywords', 'subject']:
+#             metadata_final['Subject'] = my_value
+#         elif my_key in ['dc:title', 'title']:
+#             metadata_final[my_key] = my_value
+#         elif my_key in ['Content-Type', 'Creation-Date', 'producer']:
+#             metadata_final[my_key] = my_value
+#         # else:
+#         # 	metadata_final[my_key] = my_value
+#     return metadata_final
 
 
 def extract_pdf_content(pdf_path, content_as_pages):
@@ -61,8 +62,26 @@ def extract_pdf_data(file_paths, want_metadata=True, want_content=False, content
     '''Given a list of path to PDFs, iterate over the list,
      and for each string, read in the PDF form its path and 
      return extracted text.
-     Input: list of string ; [str1, str2]
-     Output: content, metadata
+
+     The flags might be changed during further development. 
+     Right now they are designed to help in the process of 
+     development and debugging.
+     Developing what details about the document we want to 
+     look at closely - metadata or content or both.
+     It also returns content as pages so that we can decide 
+     which pages to target going forward for information.
+
+     @type list_of_path_to_pdf: list of string - [str1, str2]
+     @param list_of_path_to_pdf: path of the pdf file to be read
+     @type want_metadata: boolean
+     @param want_metadata: Gets metadata about a document - default value True
+     @type want_content: boolean
+     @param want_content: Gets all the content of the document - default value False
+     @type content_as_pages: boolean
+     @param content_as_pages: Gets the content of the documents as pages else as a single text blob- default value True
+     @rtype: List of dictionaries - [{metadata:'', 'content: ''}, {metadata:'', 'content: ''}, {metadata:'', 'content: ''}]
+     @return:  For each document we get its metadata or content or both
+
     '''
     data_of_pdfs = []
     for file_path in file_paths:
@@ -101,8 +120,10 @@ def detect_location(content):
 def run_hangul(file_path):
     # Start running the tika service
     init()
+    # file_path ='./1.pdf'
     metadata_of_pdfs = extract_pdf_data(
         [file_path], want_content=True, content_as_pages=False)
+    # print(metadata_of_pdfs[0]['metadata'])
     locations = detect_location(metadata_of_pdfs[0]['content'])
     disasters = get_disasters(metadata_of_pdfs[0]['content'])
 
@@ -122,3 +143,5 @@ def run_hangul(file_path):
 def init():
     # Start running the tika service
     tika.initVM()
+
+# print(run_hangul('a'))
