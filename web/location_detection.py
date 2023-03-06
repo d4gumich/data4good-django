@@ -69,7 +69,7 @@ def detected_potential_countries(content):
   # extract the countries spacy detects
   loc_list = extract_locations(content)
   #count location instance 
-  count_of_locations = dict(Counter(loc_list))
+  count_of_locations = dict(Counter(loc_list).most_common())
 
   #for test demo
   #capitalized_loc_list = [x.capitalize() for x in loc_list] #can be deleted later

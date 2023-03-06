@@ -64,8 +64,10 @@ def get_val_for_any_in_key_list(list_of_key_names, pdf_metadata):
 
 def change_date_format(str_date, new_format = "%Y-%m-%d"):
 	#given a date format it converts it to another format which can be specified 
-
-	return datetime.datetime.strptime(str_date,"%Y-%m-%dT%H:%M:%SZ").strftime(new_format)
+	try:
+		return datetime.datetime.strptime(str_date,"%Y-%m-%dT%H:%M:%SZ").strftime(new_format)
+	except:
+		return None
 
 
 def extract_metadata(pdf_metadata, debug=True):
@@ -99,8 +101,8 @@ def extract_metadata(pdf_metadata, debug=True):
     metadata_final['doc_saved_date'] = change_date_format(doc_saved_date)
 
   	#get the dates for document modification
-    modeified_date_list = ['Last-Modified', 'modified', 'dcterms:modified']
-    doc_modified_date = get_val_for_any_in_key_list(modeified_date_list, pdf_metadata)
+    modified_date_list = ['Last-Modified', 'modified', 'dcterms:modified']
+    doc_modified_date = get_val_for_any_in_key_list(modified_date_list, pdf_metadata)
     metadata_final['doc_modified_date'] = change_date_format(doc_modified_date)
 
   	#get doc title if extracted by tika, 

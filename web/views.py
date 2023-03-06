@@ -56,17 +56,22 @@ class HangulView(TemplateView):
            start_time=time.time()
            temp_path = request.FILES['uploaded_pdf'].temporary_file_path()
            file_name = request.FILES['uploaded_pdf'].name
-           print(request.POST)
            kp = request.POST.get('keyphrase_num', 5)
            meta_content = run_hangul(temp_path)
            meta_content['keywords'] = generate_keywords(meta_content['metadata'][0]['content'], int(kp))
            context = {
                'meta_content': json.dumps(meta_content, indent=2),
-               'locations':', '.join([location[0][0] for location in meta_content['locations']]) if meta_content['locations'] else None,
+               'locations':' | '.join([location for location in meta_content['locations']]) if meta_content['locations'] else None,
                'disasters':', '.join([disaster for disaster in meta_content['disasters']]) if meta_content['disasters'] else None,
                'file_name': file_name,
                'pages': meta_content['metadata'][0]['metadata']['No.of Pages'],
-               'keywords': ', '.join(meta_content['keywords']),
+               'keywords': ',\n'.join(meta_content['keywords']),
+               'author': meta_content['metadata'][0]['metadata']['Author'],
+               'doc_type': meta_content['metadata'][0]['metadata']['doc_type'],
+               'doc_created_date': meta_content['metadata'][0]['metadata']['doc_created_date'],
+               'doc_saved_date': meta_content['metadata'][0]['metadata']['doc_saved_date'],
+               'doc_modified_date': meta_content['metadata'][0]['metadata']['doc_modified_date'],
+               'doc_title': meta_content['metadata'][0]['metadata']['doc_title'],
                'hangul_time': f'{int(round(time.time()-start_time,3)*1000)} ms'
            }
            return render(request, "web/project_hangul.html", context)

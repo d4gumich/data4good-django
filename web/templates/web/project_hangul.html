@@ -102,6 +102,10 @@
   .selectable-content:hover {
     border-color: blue;
   }
+
+  .row-field {
+    margin-top: .5rem;
+  }
 </style>
 
 <body>
@@ -158,8 +162,10 @@
         </div>
       </div>
       {% if meta_content %}
-      <div style="margin: 30px; display: flex; flex-direction: column; overflow-wrap:break-word ;">
+      <div
+        style="margin: 30px; padding-bottom: 10rem; display: flex; flex-direction: column; overflow-wrap:break-word ;">
         <p><strong>Time taken: </strong>{{hangul_time}}</p>
+        <h3><u>METADATA</u></h3>
         <div class="row-field">
           <p><strong>File name:</strong></p>
           <div class="selectable-content">
@@ -170,6 +176,45 @@
           <p><strong>Number of pages: </strong></p>
           <div class="selectable-content">
             <p>{{pages}}</p>
+          </div>
+        </div>
+        <div class="row-field">
+          <p><strong>Document Creation Date: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_created_date}}</p>
+          </div>
+        </div>
+        {% if doc_saved_date %}
+        <div class="row-field">
+          <p><strong>Document Saved Date: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_saved_date}}</p>
+          </div>
+        </div>
+        {% endif %}
+        <div class="row-field">
+          <p><strong>Document Modified Date: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_modified_date}}</p>
+          </div>
+        </div>
+        <h3><u>CONTENT-BASED INFORMATION</u></h3>
+        <div class="row-field">
+          <p><strong>Author: </strong></p>
+          <div class="selectable-content">
+            <p>{{author}}</p>
+          </div>
+        </div>
+        <div class="row-field">
+          <p><strong>Document Type: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_type}}</p>
+          </div>
+        </div>
+        <div class="row-field">
+          <p><strong>Document Title: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_title}}</p>
           </div>
         </div>
         {% if locations %}
@@ -191,13 +236,12 @@
         <div class="row-field">
           <p><strong>Identified Key Phrase Sequences: </strong></p>
           <div class="selectable-content">
-            <p>{{keywords}}</p>
+            <p style="white-space: pre-line">{{keywords}}</p>
           </div>
         </div>
         <div class="row-field">
           <div id="meta-content" hidden>
-            <p><strong>Meta: </strong></p>
-            <p>
+            <h3><u>VERBOSE OUTPUT </u></h3>
             <pre class="prettyprint">
               {{meta_content}}
             </pre>
@@ -211,7 +255,7 @@
       <div class="ui placeholder segment">
         {% csrf_token %}
         <input type="file" id="hangul-file-hidden" name="uploaded_pdf" accept=".pdf" />
-        <input type="number" id="hangul-keyword-phrase-number" name="keyphrase_num" value="5"/>
+        <input type="number" id="hangul-keyword-phrase-number" name="keyphrase_num" value="5" />
         <input type="submit" id="hangul-submit-hidden" />
       </div>
     </form>
@@ -220,7 +264,7 @@
 </body>
 <script text="text/javascript">
   function expandMeta() {
-    verbose = document.getElementById('kp')
+    verbose = document.getElementById('verbose-select')
     if (verbose.checked) {
       document.getElementById('meta-content').removeAttribute('hidden')
     }
