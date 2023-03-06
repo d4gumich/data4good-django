@@ -16,6 +16,7 @@ def detect_report_type(doc_title):
 	financial_pattern = ["financial","finance ","budget", "tax"]
 	annual_pattern = ['annual']
 
+	doc_title = doc_title.replace(' ', '')
 
 	# True if pattern in doc_title.lower() for pattern in sitrep_pattern
 	if  check_pattern_present(sitrep_pattern, doc_title):
@@ -27,7 +28,7 @@ def detect_report_type(doc_title):
 	elif check_pattern_present(annual_pattern, doc_title):
 		report_type = 'Annual Report'
 	else:
-		report_type = None
+		report_type = 'N/A'
 
 	return report_type
 

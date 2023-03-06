@@ -6,33 +6,34 @@ from .disaster_detection import get_disasters
 from collections import Counter
 from .get_file_metadata import extract_metadata
 from .location_detection import detected_potential_countries
+from .report_type import detect_report_type
 import re
 import html2text
-# from spacy_langdetect import LanguageDetector
-# from .report_type import detect_report_type
+from spacy_langdetect import LanguageDetector
+from spacy.language import Language
 
 nlp = spacy.load('en_core_web_sm')
 
-def extract_pdf_content(pdf_path, content_as_pages):
+# def extract_pdf_content(pdf_path, content_as_pages):
 
-    if content_as_pages:
-        raw_xml = parser.from_file(pdf_path, xmlContent=True)
-        body = raw_xml['content'].split('<body>')[1].split('</body>')[0]
-        body_without_tag = body.replace("<p>", "").replace("</p>", "\n").replace("<div>", "").replace("</div>","\n").replace("<p />","\n")
-        text_pages = body_without_tag.split("""<div class="page">""")[1:]
-        num_pages = len(text_pages)
-        print(num_pages)
-        if num_pages==int(raw_xml['metadata']['xmpTPg:NPages']) : 
-            for i in range(3):
-            # for i in range(num_pages):
-                print('page number: '+ str(i+1))
-                print(text_pages[i].replace("\n", ""))
-                print('\n')
-        pdf_content = body_without_tag
-    else:
-        parsed_pdf = parser.from_file(pdf_path)
-        pdf_content= parsed_pdf["content"].replace("\n", "")
-    return pdf_content
+#     if content_as_pages:
+#         raw_xml = parser.from_file(pdf_path, xmlContent=True)
+#         body = raw_xml['content'].split('<body>')[1].split('</body>')[0]
+#         body_without_tag = body.replace("<p>", "").replace("</p>", "\n").replace("<div>", "").replace("</div>","\n").replace("<p />","\n")
+#         text_pages = body_without_tag.split("""<div class="page">""")[1:]
+#         num_pages = len(text_pages)
+#         print(num_pages)
+#         if num_pages==int(raw_xml['metadata']['xmpTPg:NPages']) : 
+#             for i in range(3):
+#             # for i in range(num_pages):
+#                 print('page number: '+ str(i+1))
+#                 print(text_pages[i].replace("\n", ""))
+#                 print('\n')
+#         pdf_content = body_without_tag
+#     else:
+#         parsed_pdf = parser.from_file(pdf_path)
+#         pdf_content= parsed_pdf["content"].replace("\n", "")
+#     return pdf_content
 
 def get_content_pages(pdf_path):
     raw_xml = parser.from_file(pdf_path, xmlContent=True)
@@ -50,15 +51,9 @@ def get_content_pages(pdf_path):
             # h.escape_all = True
             text_pages[i]= h.handle(text_pages[i].replace("\n", " "))
             text_pages[i] = re.sub(r'\s*(?:https?://)?www\.\S*\.[A-Za-z]{2,5}\s*', ' ', text_pages[i].replace("\n", " ")).strip()
-    #         text_pages[i] =re.sub(r'(<a href)(.+?)(/a&gt;)','',text_pages[i].replace("\n", ""))
-    #         # text_pages[i] = ''.join(re.findall('(<a href)(.+?)(/a&gt;)', ))
             pages_content.append(text_pages[i])
         pdf_content = pages_content
     return pdf_content
-    # h = html2text.HTML2Text()
-    # h.ignore_links = True
-    # h.escape_all = True
-    # return h.handle(body)
 
 
 def get_doc_title(first_three_pages, metadata):
@@ -170,16 +165,17 @@ def extract_pdf_data(file_paths, want_metadata=True, want_content=False):
 #     return data_of_pdfs
 
     # return metadata,results
+@Language.factory("language_detector")
+def get_lang_detector(nlp, name):
+   return LanguageDetector()
 
-# def detect_language(content):
+def detect_language(content):
     
-# nlp.add_pipe("language_detector")
-# nlp = spacy.load("en")
-# nlp.add_pipe(LanguageDetector(), name="language_detector", last=True)
-# nlp.max_length = 1500000
-# df_lang['lang'] = df_lang['Content'].apply(lambda x: nlp(x)._.language)
-# df_lang['lang1'] = df_lang.lang.apply(lambda x: x.get('language'))
-# final_df = df_lang[df_lang["lang1"] == 'en']
+    # nlp = spacy.load("en")
+    nlp.add_pipe('language_detector', last=True)
+    doc = nlp(content)
+
+    return doc._.language
 
 
 
@@ -203,7 +199,8 @@ def run_hangul(file_path):
 
     locations = detected_potential_countries(clean_doc_content)
     disasters = get_disasters(clean_doc_content)
-    # doc_report_type = detect_report_type(doc_title)
+    doc_language = detect_language(clean_doc_content)
+    doc_report_type = detect_report_type(doc_title)
     # doc_report_type = detect_report_type(file_path)
     if len(content_as_pages) <4:
         display_content =content_as_pages
@@ -212,24 +209,19 @@ def run_hangul(file_path):
 
     return {
         'metadata': metadata_of_pdfs[0]['metadata'],
+        'Document Language': doc_language,
         'Document Title':doc_title,
         'Document Summary':doc_summary,
         'content': display_content,
+        'report_type':doc_report_type,
         'locations': locations,
         'disasters': disasters,
-        # 'report_type':doc_report_type,
 
     }
     
-    # 	extract_summary(content,text)
-    #
-    # separate the content and metadat and process accordingly
-    # display the metadata
-    # use the content for language detection
 
 
 def init():
     # Start running the tika service
     tika.initVM()
 
-# print(run_hangul(''))
