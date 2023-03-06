@@ -72,6 +72,6 @@ class HangulView(TemplateView):
                'doc_saved_date': meta_content['metadata'][0]['metadata']['doc_saved_date'],
                'doc_modified_date': meta_content['metadata'][0]['metadata']['doc_modified_date'],
                'doc_title': meta_content['metadata'][0]['metadata']['doc_title'],
-               'hangul_time': f'{int(round(time.time()-start_time,3)*1000)} ms'
+               'hangul_time': f'{round(time.time()-start_time, 3)} seconds'
            }
            return render(request, "web/project_hangul.html", context)

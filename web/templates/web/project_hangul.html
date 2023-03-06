@@ -199,24 +199,30 @@
           </div>
         </div>
         <h3><u>CONTENT-BASED INFORMATION</u></h3>
+        {% if author %}
         <div class="row-field">
           <p><strong>Author: </strong></p>
           <div class="selectable-content">
             <p>{{author}}</p>
           </div>
         </div>
+        {% endif %}
+        {% if doc_type %}
         <div class="row-field">
           <p><strong>Document Type: </strong></p>
           <div class="selectable-content">
             <p>{{doc_type}}</p>
           </div>
         </div>
+        {% endif %}
+        {% if doc_title %}
         <div class="row-field">
           <p><strong>Document Title: </strong></p>
           <div class="selectable-content">
             <p>{{doc_title}}</p>
           </div>
         </div>
+        {% endif %}
         {% if locations %}
         <div class="row-field">
           <p><strong>Locations: </strong></p>
