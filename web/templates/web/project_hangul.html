@@ -215,6 +215,22 @@
           </div>
         </div>
         {% endif %}
+        {% if report_type %}
+        <div class="row-field">
+          <p><strong>Report Type: </strong></p>
+          <div class="selectable-content">
+            <p>{{report_type}}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if language %}
+        <div class="row-field">
+          <p><strong>Language: </strong></p>
+          <div class="selectable-content">
+            <p>{{language}}</p>
+          </div>
+        </div>
+        {% endif %}
         {% if doc_title %}
         <div class="row-field">
           <p><strong>Document Title: </strong></p>

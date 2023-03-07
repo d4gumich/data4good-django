@@ -67,7 +67,7 @@ def get_doc_title(first_three_pages, metadata):
 def get_doc_summary(first_six_pages):
     # char_per_page_list = list(map(int, metadata['charsPerPage'][:6]))
     check_str = 'summary'
-    summary = 'N/A'
+    summary = None
     for page_content in first_six_pages:
         if check_str in page_content.lower():
             summary=  page_content
@@ -172,12 +172,11 @@ def get_lang_detector(nlp, name):
 def detect_language(content):
     
     # nlp = spacy.load("en")
-    nlp.add_pipe('language_detector', last=True)
     doc = nlp(content)
 
     return doc._.language
 
-
+nlp.add_pipe('language_detector', last=True)
 
 def run_hangul(file_path):
     # Start running the tika service
@@ -187,7 +186,7 @@ def run_hangul(file_path):
         [file_path], want_content=True)
     # print(metadata_of_pdfs[0]['metadata'])
     # print(metadata_of_pdfs[0]['content'])
-    clean_doc_content = metadata_of_pdfs[0]['content'] #This is what was used throughout the document
+    cleaned_content = clean_doc_content(metadata_of_pdfs[0]['content']) #This is what was used throughout the document
     # print(clean_doc_content, metadata_of_pdfs[0]['metadata'])
     content_as_pages = get_content_pages(file_path)
     if len(content_as_pages) <6:
@@ -197,9 +196,9 @@ def run_hangul(file_path):
         doc_title  =  get_doc_title(content_as_pages[:3],metadata_of_pdfs[0]['metadata'])
         doc_summary = get_doc_summary(content_as_pages[:6])
 
-    locations = detected_potential_countries(clean_doc_content)
-    disasters = get_disasters(clean_doc_content)
-    doc_language = detect_language(clean_doc_content)
+    locations = detected_potential_countries(cleaned_content)
+    disasters = get_disasters(cleaned_content)
+    doc_language = detect_language(cleaned_content)
     doc_report_type = detect_report_type(doc_title)
     # doc_report_type = detect_report_type(file_path)
     if len(content_as_pages) <4:
@@ -209,14 +208,14 @@ def run_hangul(file_path):
 
     return {
         'metadata': metadata_of_pdfs[0]['metadata'],
-        'Document Language': doc_language,
-        'Document Title':doc_title,
-        'Document Summary':doc_summary,
+        'document_language': doc_language,
+        'document_title':doc_title,
+        'document_summary':doc_summary,
         'content': display_content,
         'report_type':doc_report_type,
         'locations': locations,
         'disasters': disasters,
-
+        'full_content': cleaned_content
     }
     
 

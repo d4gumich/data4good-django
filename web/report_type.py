@@ -28,7 +28,7 @@ def detect_report_type(doc_title):
 	elif check_pattern_present(annual_pattern, doc_title):
 		report_type = 'Annual Report'
 	else:
-		report_type = 'N/A'
+		report_type = None
 
 	return report_type
 
