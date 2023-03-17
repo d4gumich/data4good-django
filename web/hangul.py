@@ -51,6 +51,7 @@ def get_content_pages(pdf_path):
             # h.escape_all = True
             text_pages[i]= h.handle(text_pages[i].replace("\n", " "))
             text_pages[i] = re.sub(r'\s*(?:https?://)?www\.\S*\.[A-Za-z]{2,5}\s*', ' ', text_pages[i].replace("\n", " ")).strip()
+            text_pages[i]= re.sub(u"(\u2018|\u2019|\u201c|\u201d|\u2013|\u2020)", "'", text_pages[i])
             pages_content.append(text_pages[i])
         pdf_content = pages_content
     return pdf_content
