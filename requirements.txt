@@ -14,7 +14,7 @@ jmespath==0.10.0
 joblib==0.17.0
 libsass==0.19.4
 numpy==1.19.4
-pandas==1.1.4
+pandas==1.5.3
 python-dateutil==2.8.1
 python-dotenv==0.14.0
 pytz==2019.3
