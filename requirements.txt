@@ -6,7 +6,7 @@ Django==2.1.1
 django-appconf==1.0.4
 django-compressor==2.4
 django-sass-processor==0.7.4
-django-storages==1.9.1
+django-storages==1.13.2
 django2-semantic-ui==1.2.2
 docutils==0.15.2
 idna==2.8
