@@ -27,4 +27,4 @@ scipy==1.5.4
 six==1.13.0
 sqlparse==0.3.1
 threadpoolctl==2.1.0
-urllib3==1.25.7
+urllib3==1.26.15
