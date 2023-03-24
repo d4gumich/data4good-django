@@ -1,6 +1,6 @@
 # @author - Sidra Effendi
 import spacy 
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_md')
 from iso3166 import countries, Country
 from collections import Counter
 import json

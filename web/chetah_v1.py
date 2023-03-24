@@ -5,9 +5,9 @@ from scipy import sparse
 
 # Prepare dataframe
 #Uncomment in test, comment in prod
-df_pdfs = pd.read_csv('final_with_cluster.csv')
+# df_pdfs = pd.read_csv('final_with_cluster.csv')
 #Uncomment in prod, comment in test
-# df_pdfs = pd.read_csv('/home/D4GUMSI/data4good-django/final_with_cluster.csv')
+df_pdfs = pd.read_csv('/home/D4GUMSI/data4good-django/final_with_cluster.csv')
 
 # Extract summaries from PDFs
 summaries = [x for x in df_pdfs.summary]

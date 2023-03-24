@@ -36,7 +36,7 @@ def df_pdfs(meta, keywords):
 
  import spacy
 from spacy_langdetect import LanguageDetector
-nlp = spacy.load("en")
+nlp = spacy.load("en_core_web_md")
 nlp.add_pipe(LanguageDetector(), name="language_detector", last=True)
 nlp.max_length = 1500000
 df_lang['lang'] = df_lang['Content'].apply(lambda x: nlp(x)._.language)

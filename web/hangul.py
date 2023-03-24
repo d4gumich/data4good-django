@@ -12,7 +12,7 @@ import html2text
 from spacy_langdetect import LanguageDetector
 from spacy.language import Language
 
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_md')
 
 # def extract_pdf_content(pdf_path, content_as_pages):
 
