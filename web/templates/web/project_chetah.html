@@ -160,7 +160,7 @@
             <section class="button-group">
               <button id="about-btn" class="ui button grey">About Chetah</button>
               <a href="https://drive.google.com/file/d/13Jij3MG6P_P5OGGMLNIbGdgpCUaDVGce/view?usp=sharing" target="_blank"><button id="research-btn" class="ui button grey">View Research</button></a>
-              <a href="https://forms.gle/YHT9biBSnzCHePUB8" target="_blank"><button id="feedback-btn" class="ui button grey">Provide Feedback</button></a>
+              <a href="https://forms.gle/FEHk8Huco6HjXg1i6" target="_blank"><button id="feedback-btn" class="ui button grey">Provide Feedback</button></a>
             </section>
             <section id="about">
               <h3>About</h3>
@@ -182,7 +182,11 @@
             </div>
           </form>
           <div class="search-results-container">
+            {% if search_time %}
+            <h2 id="search-results-header">Search Results ({{result_size}} results in {{search_time}} ms)</h2>
+            {% else %}
             <h2 id="search-results-header">Search Results</h2>
+            {% endif %}
             <header class="search-results-header-container">
               <p id="search-filters-header">Please use the filters for specific UN clusters:</p>
                 <div id="orderResultsForm" class="ui form search-results-order-container">
@@ -232,9 +236,9 @@
               <div class="search-results-item">
                 <p><strong>Report Title:</strong> {{search_result.title}}</p>
                 <p><strong>Date Published:</strong> {{search_result.date}}</p>
-                <p><strong>Link:</strong> <a href={{search_result.link}}>{{search_result.link}}</a></p>
+                <p><strong>Link:</strong> <a href={{search_result.link}}>Go to report</a></p>
                 <p><strong>Cluster(s):</strong> {{search_result.cluster}} </p>
-                <p><strong>Summary:</strong> {{search_result.summary_short}} 
+                <p><strong>Summary:</strong> {{search_result.summary_short}}... 
                   <button class="ui secondary button" data="{{search_result.summary_full}}" onclick="toggleModal(this);">
                   <i class="plus icon"></i>More</button>
                 </p>
@@ -264,7 +268,6 @@
 
     $('#about-btn').on('click', function() {
       let display_state = $('#about').css('display');
-      console.log(display_state);
       if (display_state === "none"){
         $('#about').css('display', 'inline');
       } else {

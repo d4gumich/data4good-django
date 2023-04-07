@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0^d9%w!skz_+nky-v3p!)1*l=d83p!n6u)#6a-(k&him#*qha7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', '*']
 
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'sass_processor',
     'home.apps.HomeConfig',
     'web.apps.WebConfig',
-    'django_semantic_ui',
     'storages',
 ]
 
@@ -127,14 +126,16 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-#STATICFILES_FINDERS = [
-#    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'sass_processor.finders.CssFinder',
-#]
+STATICFILES_FINDERS = [
+   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+   'sass_processor.finders.CssFinder',
+]
+
+FILE_UPLOAD_HANDLERS = ["django.core.files.uploadhandler.TemporaryFileUploadHandler"]
 
 # Django Sass
 #SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
 
 
-#STATICFILES_LOCATION = 'static'
-#STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+# STATICFILES_LOCATION = 'static'
+# STATICFILES_STORAGE = 'custom_storages.StaticStorage'

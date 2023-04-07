@@ -1,0 +1,321 @@
+{% extends "base_uikit.html" %}
+
+{% block content %}
+
+{% load static %}
+{% load sass_tags %}
+
+<html>
+<style>
+  .body-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2% 0%;
+  }
+
+  .body-header h2 {
+    flex-grow: 2;
+    margin-left: 10%;
+  }
+
+  h2 {
+    font-size: larger;
+  }
+
+  img {
+    max-height: 200px;
+    width: auto;
+    padding-left: 2%;
+  }
+
+  .details-container {
+    padding-left: 2%;
+    padding-bottom: 2%;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 2%;
+  }
+
+  .ui.button {
+    background-color: rgba(173, 216, 219, 1);
+  }
+
+  .ui.secondary.button {
+    margin: 0%;
+    padding: 5px 5px 5px 10px;
+  }
+
+  .ui.button:hover {
+    background-color: rgba(173, 216, 219, 0.6);
+  }
+
+  #hangul-file-selector {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #file-name-display {
+    border-radius: 5px;
+    margin-right: 5px;
+    padding: 5px;
+    width: 50%;
+  }
+
+  .settings {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  p {
+    margin-bottom: 5px;
+    padding-top: 2px;
+  }
+
+  .meta-content {
+    word-wrap: break-word;
+    width: auto;
+    height: 100px
+  }
+
+  pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    height: 400px;
+    overflow-x: auto;
+  }
+
+  .selectable-content {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+  }
+
+  .selectable-content:hover {
+    border-color: blue;
+  }
+
+  .row-field {
+    margin-top: .5rem;
+  }
+</style>
+
+<body>
+  <div>
+    {% include 'web/_nav.html' %}
+    <div class="ui main text container">
+      <div class="body-header">
+        <img src="../../static/hangul2.png" alt="Product logo placeholder">
+        <h2>Analyze a PDF to find relevant meta details</h2>
+      </div>
+      <div class="details-container">
+        <section class="button-group">
+          <button id="about-btn" class="ui button grey">About Hangul</button>
+          <!-- <a href="" target="_blank"><button id="research-btn" class="ui button grey">View Research</button></a> -->
+          <a href="https://forms.gle/FEHk8Huco6HjXg1i6" target="_blank"><button id="feedback-btn"
+              class="ui button grey">Provide Feedback</button></a>
+        </section>
+        <section id="about" hidden>
+          <h3>About</h3>
+          <p>Hangul is an NLP-based assistant for digital curators at ReliefWeb envisioned to enable curators to handle
+            three times, four times the number of documents that they're processing. Once a text PDF is uploaded to the
+            platform, relevant metadata is extracted from it. Current metadata includes the Document Title, the date the
+            document is published, the number of pages in the document, the word length of the document, the language of
+            the document, and the entities in the document. More complex features like extraction of abstract,
+            conclusion, executive summary, and recognizing the theme(cluster) of the document are also in scope.</p>
+        </section>
+      </div>
+      <div id="hangul-file-selector">
+        {% if file_name %}
+        <input id="file-name-display" type="text" placeholder='{{file_name}}' disabled />
+        {% else %}
+        <input id="file-name-display" type="text" placeholder='Select a file' disabled />
+        {% endif%}
+        <button id="hangul-file-button" class="ui button">Upload PDF</button>
+        <button id="hangul-submit-button" class="ui button">Analyze PDF</button>
+        <div class='settings'>
+          {% if file_name %}
+          <div class="verbose-select">
+            <label for="verbose-select">Verbose:</label>
+            <input type="checkbox" id="verbose-select" onclick="expandMeta()" />
+          </div>
+          {% else %}
+          <div class="verbose-select">
+            <label for="verbose-select">Verbose:</label>
+            <input type="checkbox" id="verbose-select" onclick="expandMeta()" disabled />
+          </div>
+          {% endif%}
+          <label for="kp">Number of keyphrases:</label>
+          <select id="kp" name="kp">
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+      </div>
+      {% if meta_content %}
+      <div
+        style="margin: 30px; padding-bottom: 10rem; display: flex; flex-direction: column; overflow-wrap:break-word ;">
+        <p><strong>Time taken: </strong>{{hangul_time}}</p>
+        <h3><u>METADATA</u></h3>
+        <div class="row-field">
+          <p><strong>File name:</strong></p>
+          <div class="selectable-content">
+            <p>{{file_name}}</p>
+          </div>
+        </div>
+        <div class="row-field">
+          <p><strong>Number of pages: </strong></p>
+          <div class="selectable-content">
+            <p>{{pages}}</p>
+          </div>
+        </div>
+        <div class="row-field">
+          <p><strong>Document Creation Date: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_created_date}}</p>
+          </div>
+        </div>
+        {% if doc_saved_date %}
+        <div class="row-field">
+          <p><strong>Document Saved Date: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_saved_date}}</p>
+          </div>
+        </div>
+        {% endif %}
+        <div class="row-field">
+          <p><strong>Document Modified Date: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_modified_date}}</p>
+          </div>
+        </div>
+        <h3><u>CONTENT-BASED INFORMATION</u></h3>
+        {% if author %}
+        <div class="row-field">
+          <p><strong>Author: </strong></p>
+          <div class="selectable-content">
+            <p>{{author}}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if doc_type %}
+        <div class="row-field">
+          <p><strong>Document Type: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_type}}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if report_type %}
+        <div class="row-field">
+          <p><strong>Report Type: </strong></p>
+          <div class="selectable-content">
+            <p>{{report_type}}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if language %}
+        <div class="row-field">
+          <p><strong>Language: </strong></p>
+          <div class="selectable-content">
+            <p>{{language}}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if doc_title %}
+        <div class="row-field">
+          <p><strong>Document Title: </strong></p>
+          <div class="selectable-content">
+            <p>{{doc_title}}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if locations %}
+        <div class="row-field">
+          <p><strong>Locations: </strong></p>
+          <div class="selectable-content">
+            <p>{{locations}}</p>
+          </div>
+        </div>
+        {% endif %}
+        {% if disasters %}
+        <div class="row-field">
+          <p><strong>Disasters: </strong></p>
+          <div class="selectable-content">
+            <p>{{disasters}}</p>
+          </div>
+        </div>
+        {% endif %}
+        <div class="row-field">
+          <p><strong>Identified Key Phrase Sequences: </strong></p>
+          <div class="selectable-content">
+            <p style="white-space: pre-line">{{keywords}}</p>
+          </div>
+        </div>
+        <div class="row-field">
+          <div id="meta-content" hidden>
+            <h3><u>VERBOSE OUTPUT </u></h3>
+            <pre class="prettyprint">
+              {{meta_content}}
+            </pre>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <form action="" method="post" enctype="multipart/form-data" hidden>
+      <div class="ui placeholder segment">
+        {% csrf_token %}
+        <input type="file" id="hangul-file-hidden" name="uploaded_pdf" accept=".pdf" />
+        <input type="number" id="hangul-keyword-phrase-number" name="keyphrase_num" value="5" />
+        <input type="submit" id="hangul-submit-hidden" />
+      </div>
+    </form>
+  </div>
+  </div>
+</body>
+<script text="text/javascript">
+  function expandMeta() {
+    verbose = document.getElementById('verbose-select')
+    if (verbose.checked) {
+      document.getElementById('meta-content').removeAttribute('hidden')
+    }
+    else {
+      document.getElementById('meta-content').setAttribute('hidden', true)
+    }
+  }
+  document.querySelector('#about-btn').addEventListener('click', function () {
+    let about = document.getElementById('about');
+    let display_state = window.getComputedStyle(about).display
+    if (display_state === "none") {
+      about.removeAttribute('hidden')
+    } else {
+      about.setAttribute('hidden', true)
+    }
+  });
+  document.querySelector('#hangul-file-button').addEventListener('click', () => {
+    document.querySelector('#hangul-file-hidden').click()
+  })
+  document.querySelector('#hangul-submit-button').addEventListener('click', () => {
+    const kp = document.getElementById('kp')
+    const kp_num = Number(kp.options[kp.selectedIndex].text);
+    document.querySelector('#hangul-keyword-phrase-number').setAttribute('value', kp_num)
+    document.querySelector('#hangul-submit-hidden').click()
+  })
+  document.querySelector('#hangul-file-hidden').addEventListener('change', (event) => {
+    document.querySelector('#file-name-display').placeholder = event.target.files[0].name
+  })
+</script>
+
+</html>
+{% endblock %}
