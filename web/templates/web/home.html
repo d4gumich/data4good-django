@@ -1,10 +1,10 @@
-
 {% extends "base_uikit.html" %}
 
 {% block content %}
 
 {% load static %}
 {% load sass_tags %}
+
 <head>
   <title>Data4Good Center</title>
   <style>
@@ -26,20 +26,21 @@
       flex-direction: row;
     }
 
-    .pusher{
-    background-image: url("/static/images/landing-hero.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 0 !important;
-    padding-bottom: 15%;
-  }
+    .pusher {
+      background-image: url("/static/images/landing-hero.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0 !important;
+      padding-bottom: 15%;
+    }
 
-  .bios {
-    display: flex;
-    flex-grow: 2;
-  }
-</style>
+    .bios {
+      display: flex;
+      flex-grow: 2;
+    }
+  </style>
 </head>
+
 <body>
   <div class="pusher">
     {% include 'web/_nav.html' %}
@@ -53,116 +54,166 @@
     </div>
   </div>
   <div class="ui vertical container" id="projects">
-      <div class="ui vertical stripe segment">
-        <h2 class="ui header horizontal divider">Projects</h2>
-        <div class="ui divided items projects-container">
-          <div class="item">
-            <div class="image">
-              <img src="/static/images/cio4good_thumb.png" alt="Screenshot of Tabelau benchmarking dashboard">
+    <div class="ui vertical stripe segment">
+      <h2 class="ui header horizontal divider">Projects</h2>
+      <div class="ui divided items projects-container">
+        <div class="item">
+          <div class="image">
+            <img src="/static/hangul2.png" alt="Hangul icon">
+          </div>
+          <div class="content">
+            <a class="header" href="{% url 'web:hangul'%}">Project Hangul</a>
+            <div class="meta">
             </div>
-            <div class="content">
-              <a class="header" href="{% url 'web:cio4good'%}">Trends in the IT Sector of Non-Profit Organizations</a>
-              <div class="meta">
+            <div class="description">
+              <p>Hangul is an NLP-based assistant for digital curators at ReliefWeb envisioned to enable curators to
+                handle
+                three times, four times the number of documents that they're processing. Once a text PDF is uploaded to
+                the
+                platform, relevant metadata is extracted from it. Current metadata includes the Document Title, the date
+                the
+                document is published, the number of pages in the document, the word length of the document, the
+                language of
+                the document, and the entities in the document. More complex features like extraction of abstract,
+                conclusion, executive summary, and recognizing the theme(cluster) of the document are also in scope.</p>
+              <div class="extra">
+                <a href="{% url 'web:hangul'%}">
+                  <div class="ui right floated primary button">
+                    Use Hangul
+                    <i class="right chevron icon"></i>
+                  </div>
+                </a>
               </div>
-              <div class="description">
-                <p>What do NPO IT leaders say about IT investment over the past 17 years? Visualize CIO4Good survey trends.</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="image">
+            <img src="/static/images/chetah_thumb.png" alt="Research poster for the Chetah Search Engine">
+          </div>
+          <div class="content">
+            <a class="header" href="{% url 'web:chetah'%}">Chetah Search Engine</a>
+            <div class="meta">
+            </div>
+            <div class="description">
+              <p>Chetah is a search engine for UN and NGOs reports and it summarizes reports with the state of the art
+                deep learning algorithm, BERT. Users can search by applying filters of UN Clusters. This phase 1 product
+                has reports from IFRC, IWA and UNICEF. It retrieves evidence-based program reports and annual reports.
+                The results have been proven better than the Google and Bing for Non-profit sector, with an F1-score of
+                0.78. It is developed to help NGO program managers and policy makers to design programs and grant funds.
+                This tool aims to provide better answers for nonprofit work and eventually to help solve the crucial
+                real problems that NGO and UN are facing.</p>
+              <div class="extra">
+                <a href="{% url 'web:chetah'%}">
+                  <div class="ui right floated primary button">
+                    Search
+                    <i class="right chevron icon"></i>
+                  </div>
+                </a>
+                <a href="https://drive.google.com/file/d/13Jij3MG6P_P5OGGMLNIbGdgpCUaDVGce/view?usp=sharing"
+                  target="_blank">
+                  <div class="ui right floated primary button">
+                    View Research
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="image">
+            <img src="/static/images/cio4good_thumb.png" alt="Screenshot of Tabelau benchmarking dashboard">
+          </div>
+          <div class="content">
+            <a class="header" href="{% url 'web:cio4good'%}">Trends in the IT Sector of Non-Profit Organizations</a>
+            <div class="meta">
+            </div>
+            <div class="description">
+              <p>What do NPO IT leaders say about IT investment over the past 17 years? Visualize CIO4Good survey
+                trends.</p>
 
-                <div class="extra">
-                  <a href="{% url 'web:cio4good'%}">
-                    <div class="ui right floated primary button">
-                      Explore
-                      <i class="right chevron icon"></i>
-                    </div>
-                  </a>
+              <div class="extra">
+                <a href="{% url 'web:cio4good'%}">
+                  <div class="ui right floated primary button">
+                    Explore
+                    <i class="right chevron icon"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="image">
+            <img src="/static/images/digital_identification_thumb.png"
+              alt="Research poster for IFRC S2030 Think Paper on Digital Identification">
+          </div>
+          <div class="content">
+            <a class="header" href="https://drive.google.com/file/d/17sz0ih_1RQ91IcyMTRn3Tmb4LUgw65wt/view">Think Paper
+              on Digital Identification</a>
+            <div class="meta">
+            </div>
+            <div class="description">
+              <p>Digital identification and biometric data has become increasingly popular in the private sector and
+                have slowly been introduced and piloted in governmental and non-governmental organizations in the
+                emerging world.</p>
+              <p>The IFRC S2030 Think Piece on Digital Identification summarizes research into how biometric data,
+                digital identification, and blockchain technology have and will take part in the lives of vulnerable
+                populations in refugee camps.</p>
+            </div>
+            <div class="extra">
+              <a href="https://drive.google.com/file/d/17sz0ih_1RQ91IcyMTRn3Tmb4LUgw65wt/view">
+                <div class="ui right floated primary button">
+                  View Research
                 </div>
-              </div>
-              </div>
-          </div>
-          <div class="item">
-            <div class="image">
-              <img src="/static/images/chetah_thumb.png" alt="Research poster for the Chetah Search Engine">
+              </a>
             </div>
-            <div class="content">
-              <a class="header" href="{% url 'web:chetah'%}">Chetah Search Engine</a>
-              <div class="meta">
-              </div>
-              <div class="description">
-                <p>Chetah is a search engine for UN and NGOs reports and it summarizes reports with the state of the art deep learning algorithm, BERT. Users can search by applying filters of UN Clusters. This phase 1 product has reports from IFRC, IWA and UNICEF. It retrieves evidence-based program reports and annual reports. The results have been proven better than the Google and Bing for Non-profit sector, with an F1-score of 0.78. It is developed to help NGO program managers and policy makers to design programs and grant funds. This tool aims to provide better answers for nonprofit work and eventually to help solve the crucial real problems that NGO and UN are facing.</p>
-                <div class="extra">
-                  <a href="{% url 'web:chetah'%}">
-                    <div class="ui right floated primary button">
-                      Search
-                      <i class="right chevron icon"></i>
-                    </div>
-                  </a>
-                  <a href="https://drive.google.com/file/d/13Jij3MG6P_P5OGGMLNIbGdgpCUaDVGce/view?usp=sharing" target="_blank">
-                    <div class="ui right floated primary button">
-                      View Research
-                    </div>
-                  </a>
+          </div>
+        </div>
+        <div class="item">
+          <div class="image">
+            <img src="/static/images/refugee_thumb.png"
+              alt="Research poster for Refugee Demographic & Connectivity Trends in Greece and Serbia">
+          </div>
+          <div class="content">
+            <a class="header" href="https://drive.google.com/file/d/1k5KTfw5x5wjicFecdyaE0qWkXwsbbNgY/view">Refugee
+              Demographic & Connectitivity Trends in Greece and Serbia</a>
+            <div class="meta">
+            </div>
+            <div class="description">
+              <p>What can we learn about refugees' access to the internet and mobile device ownership from a high level
+                perspective?</p>
+            </div>
+            <div class="extra">
+              <a href="https://drive.google.com/file/d/1k5KTfw5x5wjicFecdyaE0qWkXwsbbNgY/view">
+                <div class="ui right floated primary button">
+                  View Research
                 </div>
-              </div>
+              </a>
             </div>
           </div>
-          <div class="item">
-            <div class="image">
-              <img src="/static/images/digital_identification_thumb.png" alt="Research poster for IFRC S2030 Think Paper on Digital Identification">
+        </div>
+        <div class="item">
+          <div class="image">
+            <img src="/static/images/topic_extraction_thumb.PNG" alt="Topic Extraction from Unstructured NGO Documents">
+          </div>
+          <div class="content">
+            <a class="header"
+              href="https://drive.google.com/file/d/1e3EYJDc6IuXzD7b16Q4lkxmTo0zcW-dW/view?usp=sharing">Topic Extraction
+              from Unstructured NGO Documents</a>
+            <div class="meta">
             </div>
-            <div class="content">
-              <a class="header" href="https://drive.google.com/file/d/17sz0ih_1RQ91IcyMTRn3Tmb4LUgw65wt/view">Think Paper on Digital Identification</a>
-              <div class="meta">
-              </div>
-              <div class="description">
-                <p>Digital identification and biometric data has become increasingly popular in the private sector and have slowly been introduced and piloted in governmental and non-governmental organizations in the emerging world.</p>
-                <p>The IFRC S2030 Think Piece on Digital Identification summarizes research into how biometric data, digital identification, and blockchain technology have and will take part in the lives of vulnerable populations in refugee camps.</p>              </div>
-                <div class="extra">
-                  <a href="https://drive.google.com/file/d/17sz0ih_1RQ91IcyMTRn3Tmb4LUgw65wt/view">
-                    <div class="ui right floated primary button">
-                      View Research
-                    </div>
-                  </a>
+            <div class="description">
+              <p>Insights about the different reports produced by NGOs.</p>
+            </div>
+            <div class="extra">
+              <a href="https://drive.google.com/file/d/1e3EYJDc6IuXzD7b16Q4lkxmTo0zcW-dW/view?usp=sharing">
+                <div class="ui right floated primary button">
+                  View Research
                 </div>
+              </a>
             </div>
           </div>
-          <div class="item">
-            <div class="image">
-              <img src="/static/images/refugee_thumb.png" alt="Research poster for Refugee Demographic & Connectivity Trends in Greece and Serbia">
-            </div>
-            <div class="content">
-              <a class="header" href="https://drive.google.com/file/d/1k5KTfw5x5wjicFecdyaE0qWkXwsbbNgY/view">Refugee Demographic & Connectitivity Trends in Greece and Serbia</a>
-              <div class="meta">
-              </div>
-              <div class="description">
-                <p>What can we learn about refugees' access to the internet and mobile device ownership from a high level perspective?</p>
-              </div>
-                <div class="extra">
-                  <a href="https://drive.google.com/file/d/1k5KTfw5x5wjicFecdyaE0qWkXwsbbNgY/view">
-                    <div class="ui right floated primary button">
-                      View Research
-                    </div>
-                  </a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="image">
-              <img src="/static/images/topic_extraction_thumb.PNG" alt="Topic Extraction from Unstructured NGO Documents">
-            </div>
-            <div class="content">
-              <a class="header" href="https://drive.google.com/file/d/1e3EYJDc6IuXzD7b16Q4lkxmTo0zcW-dW/view?usp=sharing">Topic Extraction from Unstructured NGO Documents</a>
-              <div class="meta">
-              </div>
-              <div class="description">
-                <p>Insights about the different reports produced by NGOs.</p>
-              </div>
-                <div class="extra">
-                  <a href="https://drive.google.com/file/d/1e3EYJDc6IuXzD7b16Q4lkxmTo0zcW-dW/view?usp=sharing">
-                    <div class="ui right floated primary button">
-                      View Research
-                    </div>
-                  </a>
-              </div>
-            </div>
         </div>
         <div class="item">
           <div class="image">
@@ -173,119 +224,120 @@
             <div class="meta">
             </div>
             <div class="description">
-              <p>The digital Crisis Simulation Exercise (SimEx) is the latest iteration of a multi-year training lab designed to simulate disaster response strategies and actions within a realistic crisis setting.</p>
+              <p>The digital Crisis Simulation Exercise (SimEx) is the latest iteration of a multi-year training lab
+                designed to simulate disaster response strategies and actions within a realistic crisis setting.</p>
             </div>
-              <div class="extra">
-                <a href="{% url 'web:simex'%}">
-                  <div class="ui right floated primary button">
-                    View Project
-                  </div>
-                </a>
+            <div class="extra">
+              <a href="{% url 'web:simex'%}">
+                <div class="ui right floated primary button">
+                  View Project
+                </div>
+              </a>
             </div>
           </div>
-      </div>
+        </div>
       </div>
     </div>
 
     <div class="ui vertical container" id="about">
       <div class="ui vertical stripe segment">
         <h2 class="ui header horizontal divider">About</h2>
-      <div class="ui vertical container">
-            <h3 class="ui header">Data4Good's Mission</h3>
-            <p>The UMSI Data4Good center brings together non-profit organizations'
-              data into larger datasets for benchmarking and trend analysis.
-              Putting data in the hands of nonprofits contributes to the body of knowledge
-              about a broad scope of development and relief programs, which in turn will lead
-              to better decision-making in nonprofit work.</p>
-            <h3 class="ui header">Data4Good's Values</h3>
-            <p>The Data4Good center values transparency and equal access to information and data analysis
-              that has the potential to impact lives through nonprofit organizations.</p>
-            <h3 class="ui header">Data4Good's Team</h3>
-            <div class="ui five cards bios">
-                <div class="ui card">
-                  <div class="content">
-                    <!-- <img src="{% static 'web/team/Ed-Headshot.jpg' %}" alt="Headshot of Ed Happ" width=100%> -->
-                    <h3><a href="https://www.linkedin.com/in/edward-g-happ/">Ed Happ</a></h3>
-                    <h4>Executive Fellow</h4>
-                    <p>Edward G. Happ is an Executive Fellow at the University of Michigan School of Information, where he is teaching and conducting research.
-                      His 40 years of professional experience include all facets of managing information services and high technology businesses,
-                      including general management with P&L responsibility, operations, product management, sales, marketing, customer service,
-                      human resources management, technical consulting, manufacturing, and both software and hardware development.</p>
-                  </div>
-                </div>
-                <div class="ui card">
-                  <div class="content">
-                    <h3><a href="https://www.linkedin.com/in/harrison-joseph-hall/">Harrison Hall</a></h3>
-                    <h4>Project Manager & Data Scientist</h4>
-                <p> Harrison is a Master's student at the University of Michigan - School of Information, specializing in Big Data analytics. He has professional experience in a wide array of data science disciplines,
-                    such as machine learning, data engineering and data analysis. He currently teaches website development to undergraduate students at the University of Michigan while working with Data4Good.
-                    Harrison also has 10 years of experience competing on the national level in Policy debate.</p>
-                    </div>
-                </div><div class="ui card">
-                  <div class="content">
-                    <h3><a href="https://www.linkedin.com/in/sidraeffendi/">Sidra Effendi</a></h3>
-                    <h4> Consultant and Data Scientist</h4>
-                    <p>
-                        Sidra is a Master's student at the University of Michigan - School of Information, specializing in Data Science. She has an undergraduate degree in Computer Engineering. Her has previously worked as an Edge Hacker for Zenatix Solutions and
-                        also co-founded a company called Pixli, where she worked on Software Development, UX/UI and Marketing.
-                    </p>
-                    </div>
-                </div><div class="ui card">
-                  <div class="content">
-                    <h3><a href="https://www.linkedin.com/in/kensukesuzuki/">Kensuke Suzuki</a></h3>
-                    <h4>Consultant</h4>
-                <p> Kensuke is a Master's student at the University of Michigan - School of Information.
-                    Kensuke is currently pursuing the field of applied data science at the intersection of people and technology. He has an undergraduate degree in Marketing and previously worked in the realm of socially conscious non-profit organizations.
-                    He seeks challenges that bring growth, learning, and continuous to himself and society.</p>
-                    </div>
-                </div>
-                </div><div class="ui card">
-                  <div class="content">
-                    <h3><a href="https://www.linkedin.com/in/anuya-karnik/">Anuya Karnik</a></h3>
-                    <h4>Web Developer</h4>
-                    <p>
-                        Anuya is a master's student at the University of Michigan - School of Information.
-                        She is currently pursuing the field of human-computer interaction and her goal is to combine design principles with technology to help develop innovative, human-centric solutions.
-                        She has an undergraduate background in computer science and graphic design and has previously worked in the areas of software development and computational physics research.
-                    </p>
-                    </div>
-                </div>
-                <!--<h3 class="ui header">Data4Good's Team (2020-21)</h3>-->
-                <!--<div class="ui card">-->
-                <!--  <div class="content">-->
-                <!--    <h3><a href="https://www.linkedin.com/in/hojoon-kim-88ba17aa/">HoJoon Kim</a></h3>-->
-                <!--    <h4>Project Manager & Data Scientist</h4>-->
-                <!--    <p>HoJoon is a master’s student at University of Michigan - School of Information, where he is pursuing specialization in data science and analytics.-->
-                <!--      His previous professional experience comes from supply chain management in the automotive industry. With understanding in economics, various international relations,-->
-                <!--      and specialty in supply chain management, he focuses on leveraging data science analytics to provide practical insight on business operations, products, and innovations.</p>-->
-                <!--  </div>-->
-                <!--</div>-->
-                <!--<div class="ui card">-->
-                <!--  <div class="content">-->
-                <!--    <h3><a href="https://www.linkedin.com/in/mariah-jacobs/">Mariah Jacobs</a></h3>-->
-                <!--    <h4>Web Developer</h4>-->
-                <!--    <p>Mariah is a second year M.S. student studying UX research, design, and development at the University of Michigan - School of Information. With a previous educational background in Computer Science,-->
-                <!--      Mariah is interested in UI and web development projects for efforts that help improve people's lives, and rely on factual data to do so. She maintains the Data4Good center website and has contributed to the development of the Chetah search engine's UI.-->
-                <!--    </p>-->
-                <!--  </div>-->
-                <!--</div>-->
-                <!--<div class="ui card">-->
-                <!--  <div class="content">-->
-                <!--    <h3><a href="https://www.linkedin.com/in/shivika-k-bisen/">Shivika Bisen</a></h3>-->
-                <!--    <h4>Data Scientist</h4>-->
-                <!--    <p>Shivika is a Data Science professional with 3 years of experience in the domain of machine learning, including NLP, information retrieval, and software engineering.-->
-                <!--      She is a M.S. Data Science graduate from the University of Michigan - College of Engineering. Presently, she is a Data Scientist lead for the Chetah search engine for NGO and UN-->
-                <!--      reports. She also serves as the MECC project coordinator with the Michigan Broadband Initiaitve to improve broadband connectivity in Michigan.</p>-->
-                <!--  </div>-->
-                <!--</div>-->
-                <!--<div class="ui card">-->
-                <!--  <div class="content">-->
-                <!--    <h3><a href="https://www.linkedin.com/in/gordon-nenadovic-4281b61a3/">Gordon Nenadovic</a></h3>-->
-                <!--    <h4>UX Designer & Game Designer</h4>-->
-                <!--    <p>Gordon is a UX Designer and Researcher interested in understand users' experiences and telling stories. He is studying Human-Computer Interaction at the University of Michigan - School of Information in Ann Arbor.</p>-->
-                <!--  </div>-->
-                <!--</div>-->
+        <div class="ui vertical container">
+          <h3 class="ui header">Data4Good's Mission</h3>
+          <p>The UMSI Data4Good center brings together non-profit organizations'
+            data into larger datasets for benchmarking and trend analysis.
+            Putting data in the hands of nonprofits contributes to the body of knowledge
+            about a broad scope of development and relief programs, which in turn will lead
+            to better decision-making in nonprofit work.</p>
+          <h3 class="ui header">Data4Good's Values</h3>
+          <p>The Data4Good center values transparency and equal access to information and data analysis
+            that has the potential to impact lives through nonprofit organizations.</p>
+          <h3 class="ui header">Data4Good's Team</h3>
+          <div class="ui five cards bios">
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/edward-g-happ/">Ed Happ</a></h3>
+                <h4>Executive Fellow</h4>
+                <p>Edward G. Happ is an Executive Fellow at the University of Michigan School of Information, where he
+                  is teaching and conducting research.
+                  His 40 years of professional experience include all facets of managing information services and high
+                  technology businesses,
+                  including general management with P&L responsibility, operations, product management, sales,
+                  marketing, customer service,
+                  human resources management, technical consulting, manufacturing, and both software and hardware
+                  development.</p>
               </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/sidraeffendi/">Sidra Effendi</a></h3>
+                <h4> Consultant and Data Scientist</h4>
+                <p>
+                  Sidra is a Master's student at the University of Michigan - School of Information, specializing in
+                  Data Science. She has an undergraduate degree in Computer Engineering. Her has previously worked as an
+                  Edge Hacker for Zenatix Solutions and
+                  also co-founded a company called Pixli, where she worked on Software Development, UX/UI and Marketing.
+                </p>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/prithvijit-dasgupta/">Prithvijit Dasgupta</a></h3>
+                <h4>Web Developer and Systems Specialist</h4>
+                <p>
+                  Prithvijit is a current Master's student in the University of Michigan-School of Information
+                  aiming to specialize in the Big Data Analytics track. He has experience working on distributed cloud
+                  Systems
+                  and building RESTful APIs. He has an undergraduate degree in Mechanical Engineering.
+                </p>
+              </div>
+            </div>
+          </div>
+          <h3 class="ui header">Alumni</h3>
+          <div class="ui five cards bios">
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/harrison-joseph-hall/">Harrison Hall</a></h3>
+                <h4>Project Manager & Data Scientist</h4>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/kensukesuzuki/">Kensuke Suzuki</a></h3>
+                <h4>Consultant</h4>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/anuya-karnik/">Anuya Karnik</a></h3>
+                <h4>Web Developer</h4>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/hojoon-kim-88ba17aa/">HoJoon Kim</a></h3>
+                <h4>Project Manager & Data Scientist</h4>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/mariah-jacobs/">Mariah Jacobs</a></h3>
+                <h4>Web Developer</h4>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/shivika-k-bisen/">Shivika Bisen</a></h3>
+                <h4>Data Scientist</h4>
+              </div>
+            </div>
+            <div class="ui card">
+              <div class="content">
+                <h3><a href="https://www.linkedin.com/in/gordon-nenadovic-4281b61a3/">Gordon Nenadovic</a></h3>
+                <h4>UX Designer & Game Designer</h4>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -294,53 +346,56 @@
       <div class="ui vertical stripe segment">
         <h2 class="ui header horizontal divider">FAQ</h2>
         <div class="ui items faq">
-            <div class="item">
-              <div class="content">
-                <a class="header">What is Data4Good?</a>
-                <div class="meta">
-                  <span>UMSI Data4Good center brings together non-profit organizations' data into larger datasets for benchmarking and trend analysis.</span>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-                <div class="content">
-                  <a class="header">What projects are we working on at Data4Good?</a>
-                  <div class="meta">
-                    <span>Find our most recent work on the Projects page, and click on each project listed for more details.</span>
-                  </div>
-                </div>
-            </div>
-            <div class="item">
-              <div class="content">
-                <a class="header">How can I provide feedback on Data4Good's website or projects?</a>
-                <div class="meta">
-                  <span>Fill out our <a href="https://forms.gle/YHT9biBSnzCHePUB8">Google Feedback form</a> with any suggestions. We'd be happy to hear from you!</span>
-                </div>
-              </div>
-          </div>
-            <div class="item">
-              <div class="content">
-                <a class="header">How else can I get in touch with Data4Good?</a>
-                <div class="meta">
-                  <span>Reach us at:
-                    <br><br>
-                    ehapp@umich.edu
-                    <br><br>
-                    Data4Good Center
-                    <br>
-                    School of Information
-                    <br>
-                    4322 North Quad
-                    <br>
-                    105 S. State Street
-                    <br>
-                    Ann Arbor, MI 48109-1285 </span>
-                </div>
+          <div class="item">
+            <div class="content">
+              <a class="header">What is Data4Good?</a>
+              <div class="meta">
+                <span>UMSI Data4Good center brings together non-profit organizations' data into larger datasets for
+                  benchmarking and trend analysis.</span>
               </div>
             </div>
           </div>
+          <div class="item">
+            <div class="content">
+              <a class="header">What projects are we working on at Data4Good?</a>
+              <div class="meta">
+                <span>Find our most recent work on the Projects page, and click on each project listed for more
+                  details.</span>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="content">
+              <a class="header">How can I provide feedback on Data4Good's website or projects?</a>
+              <div class="meta">
+                <span>Fill out our <a href="https://forms.gle/YHT9biBSnzCHePUB8">Google Feedback form</a> with any
+                  suggestions. We'd be happy to hear from you!</span>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="content">
+              <a class="header">How else can I get in touch with Data4Good?</a>
+              <div class="meta">
+                <span>Reach us at:
+                  <br><br>
+                  ehapp@umich.edu
+                  <br><br>
+                  Data4Good Center
+                  <br>
+                  School of Information
+                  <br>
+                  4322 North Quad
+                  <br>
+                  105 S. State Street
+                  <br>
+                  Ann Arbor, MI 48109-1285 </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-    </div>
-    </body>
+  </div>
+</body>
 {% endblock %}

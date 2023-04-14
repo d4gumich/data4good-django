@@ -106,6 +106,11 @@
   .row-field {
     margin-top: .5rem;
   }
+
+  .header-text {
+    display: flex;
+    flex-direction: column;
+  }
 </style>
 
 <body>
@@ -114,14 +119,18 @@
     <div class="ui main text container">
       <div class="body-header">
         <img src="../../static/hangul2.png" alt="Product logo placeholder">
-        <h2>Analyze a PDF to find relevant meta details</h2>
+        <div class="header-text">
+          <h2>Analyze a PDF to find relevant meta and content details</h2>
+          <p style="color:lightskyblue">This product is currently in its <strong>beta</strong> release (v0.2.0).</p>
+          <p>For best performance, please test with a PDF less than 25 pages.</p>
+        </div>
       </div>
       <div class="details-container">
         <section class="button-group">
           <button id="about-btn" class="ui button grey">About Hangul</button>
-          <!-- <a href="" target="_blank"><button id="research-btn" class="ui button grey">View Research</button></a> -->
           <a href="https://forms.gle/FEHk8Huco6HjXg1i6" target="_blank"><button id="feedback-btn"
               class="ui button grey">Provide Feedback</button></a>
+          <button id="help-btn" class="ui button grey">Help</button>
         </section>
         <section id="about" hidden>
           <h3>About</h3>
@@ -131,6 +140,25 @@
             document is published, the number of pages in the document, the word length of the document, the language of
             the document, and the entities in the document. More complex features like extraction of abstract,
             conclusion, executive summary, and recognizing the theme(cluster) of the document are also in scope.</p>
+        </section>
+        <section id="help" hidden>
+          <h3>Help</h3>
+          <p>Please view this video for a brief demonstration of the tool.</p>
+          <iframe src="https://drive.google.com/file/d/1XkQfqJlWl3UlRTeUi61RPibBkKyuXLuW/preview" width="800"
+            height="480" allow="autoplay"></iframe>
+          <section>
+            <h4>Steps:</h4>
+            <ol>
+              <li>Use the Upload PDF button to upload a single PDF file</li>
+              <li>Use the Analyze PDF button to start the analysis</li>
+            </ol>
+            <h4>Optional settings:</h4>
+            <ul>
+              <li><b>Verbose</b>: Use this to get a JSON formatted rich output with debugging information.</li>
+              <li><b>Number of keyphrases</b>: Select a number here to select the number of keyphrases you want. Default
+                value is 5</li>
+            </ul>
+          </section>
         </section>
       </div>
       <div id="hangul-file-selector">
@@ -296,6 +324,15 @@
   }
   document.querySelector('#about-btn').addEventListener('click', function () {
     let about = document.getElementById('about');
+    let display_state = window.getComputedStyle(about).display
+    if (display_state === "none") {
+      about.removeAttribute('hidden')
+    } else {
+      about.setAttribute('hidden', true)
+    }
+  });
+  document.querySelector('#help-btn').addEventListener('click', function () {
+    let about = document.getElementById('help');
     let display_state = window.getComputedStyle(about).display
     if (display_state === "none") {
       about.removeAttribute('hidden')
