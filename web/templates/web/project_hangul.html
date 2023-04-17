@@ -111,6 +111,10 @@
     display: flex;
     flex-direction: column;
   }
+  .analyze-textbox {
+    text-align: center;
+    padding: 10px;
+  }
 </style>
 
 <body>
@@ -189,6 +193,7 @@
           </select>
         </div>
       </div>
+      <div id="analyze-display">
       {% if meta_content %}
       <div
         style="margin: 30px; padding-bottom: 10rem; display: flex; flex-direction: column; overflow-wrap:break-word ;">
@@ -284,7 +289,7 @@
         </div>
         {% endif %}
         <div class="row-field">
-          <p><strong>Identified Key Phrase Sequences: </strong></p>
+          <p><strong>Identified Key Phrase Sequences</strong> (Higher score is a better keyphrase)<strong>: </strong></p>
           <div class="selectable-content">
             <p style="white-space: pre-line">{{keywords}}</p>
           </div>
@@ -300,6 +305,13 @@
         </div>
       </div>
       {% endif %}
+    </div>
+    <div class="analyze-textbox" id="upload-text" hidden>
+      <p>Selected PDF for upload. Click 'Analyze PDF' to start the analysis.</p>
+    </div>
+      <div class="analyze-textbox" id="analyze-text" hidden>
+        <p>Analyzing PDF. Please wait...</p>
+      </div>
     </div>
     <form action="" method="post" enctype="multipart/form-data" hidden>
       <div class="ui placeholder segment">
@@ -341,12 +353,17 @@
     }
   });
   document.querySelector('#hangul-file-button').addEventListener('click', () => {
+    document.getElementById('analyze-display')?.setAttribute('hidden', true)
+    document.getElementById('upload-text')?.removeAttribute('hidden')
     document.querySelector('#hangul-file-hidden').click()
   })
-  document.querySelector('#hangul-submit-button').addEventListener('click', () => {
+  document.querySelector('#hangul-submit-button').addEventListener('click', (event) => {
     const kp = document.getElementById('kp')
     const kp_num = Number(kp.options[kp.selectedIndex].text);
     document.querySelector('#hangul-keyword-phrase-number').setAttribute('value', kp_num)
+    document.getElementById('analyze-display')?.setAttribute('hidden', true)
+    document.getElementById('upload-text')?.setAttribute('hidden', true)
+    document.getElementById('analyze-text')?.removeAttribute('hidden')
     document.querySelector('#hangul-submit-hidden').click()
   })
   document.querySelector('#hangul-file-hidden').addEventListener('change', (event) => {

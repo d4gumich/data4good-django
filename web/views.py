@@ -59,7 +59,6 @@ class HangulView(TemplateView):
            kp = request.POST.get('keyphrase_num', 5)
            meta_content = run_hangul(temp_path)
            meta_content['keywords'] = generate_keywords(meta_content['full_content'], int(kp))
-           meta_content['keywords'] = list(reversed(meta_content['keywords'])) #reversing the list
            meta_content.pop('full_content')
            context = {
                'meta_content': json.dumps(meta_content, indent=2),

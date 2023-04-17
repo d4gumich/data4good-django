@@ -15,4 +15,4 @@ def generate_keywords(summary:str, top_n:int=5)->list:
                                          top=top_n)
 
     keywords = kw_extractor.extract_keywords(summary)
-    return [f'{kw[0]} (Score: {abs(round(kw[1], 4))})' for kw in keywords]
+    return [f'{kw[0]} (Score: {-1 * (round(kw[1], 3))})' for kw in keywords]
